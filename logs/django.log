@@ -1433,3 +1433,35 @@ INFO 2025-11-29 02:48:56,351 basehttp "GET /login/ HTTP/1.1" 200 14224
 INFO 2025-11-29 02:49:01,648 basehttp "POST /login/ HTTP/1.1" 200 14224
 INFO 2025-11-29 02:51:05,877 basehttp "POST /login/ HTTP/1.1" 200 17650
 INFO 2025-11-29 06:26:27,044 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 06:27:00,516 basehttp "GET / HTTP/1.1" 200 36157
+WARNING 2025-11-29 06:27:15,484 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:27:15,486 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+WARNING 2025-11-29 06:27:35,666 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:27:35,685 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:27:36,369 basehttp - Broken pipe from ('127.0.0.1', 54278)
+INFO 2025-11-29 06:28:11,732 basehttp "GET / HTTP/1.1" 200 38099
+WARNING 2025-11-29 06:28:11,891 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:28:11,892 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:28:50,137 basehttp "GET / HTTP/1.1" 200 38099
+WARNING 2025-11-29 06:28:50,413 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:28:50,438 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+WARNING 2025-11-29 06:28:54,575 log Not Found: /favicon.ico
+WARNING 2025-11-29 06:28:54,577 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-11-29 06:36:35,707 basehttp "GET / HTTP/1.1" 200 38876
+WARNING 2025-11-29 06:36:35,829 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:36:35,831 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:37:03,475 basehttp "GET / HTTP/1.1" 200 41156
+WARNING 2025-11-29 06:37:03,640 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:37:03,642 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:37:10,248 basehttp "GET /dashboard/ HTTP/1.1" 200 49931
+WARNING 2025-11-29 06:37:10,374 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:37:10,377 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:37:16,950 basehttp "GET / HTTP/1.1" 200 41156
+WARNING 2025-11-29 06:37:17,079 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:37:17,080 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:39:02,910 basehttp "GET / HTTP/1.1" 200 41497
+WARNING 2025-11-29 06:39:03,232 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:39:03,246 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-29 06:39:19,594 basehttp "GET / HTTP/1.1" 200 38876
+WARNING 2025-11-29 06:39:19,776 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-29 06:39:19,778 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
