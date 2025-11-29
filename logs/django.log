@@ -1,0 +1,1434 @@
+INFO 2025-11-28 19:27:48,084 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 19:28:39,000 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\admin.py changed, reloading.
+INFO 2025-11-28 19:28:40,386 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 19:29:31,549 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 19:29:35,583 basehttp "GET /admin/core/paymentplan/ HTTP/1.1" 200 18587
+INFO 2025-11-28 19:29:35,804 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:40,749 basehttp "GET /admin/core/adminmessage/ HTTP/1.1" 200 18343
+INFO 2025-11-28 19:29:40,833 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:40,841 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-11-28 19:29:40,943 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-11-28 19:29:42,015 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 20919
+INFO 2025-11-28 19:29:42,085 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:43,058 basehttp "GET /admin/core/cryptowallet/ HTTP/1.1" 200 18328
+INFO 2025-11-28 19:29:43,126 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:44,646 basehttp "GET /admin/core/emaillog/ HTTP/1.1" 200 16682
+INFO 2025-11-28 19:29:44,714 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:46,100 basehttp "GET /admin/core/evidencefile/ HTTP/1.1" 200 21009
+INFO 2025-11-28 19:29:46,168 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:29:52,734 basehttp "GET /admin/core/evidencefile/10/change/ HTTP/1.1" 200 18429
+INFO 2025-11-28 19:29:52,809 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-11-28 19:29:52,814 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:30:02,613 basehttp "GET /admin/core/kycverification/ HTTP/1.1" 200 16697
+INFO 2025-11-28 19:30:02,707 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 19:30:04,132 basehttp "GET /admin/core/notification/ HTTP/1.1" 200 21628
+INFO 2025-11-28 19:30:04,209 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 20:03:37,698 basehttp "GET / HTTP/1.1" 200 11432
+WARNING 2025-11-28 20:05:09,985 log Not Found: /profile/
+WARNING 2025-11-28 20:05:09,987 basehttp "GET /profile/ HTTP/1.1" 404 9598
+INFO 2025-11-28 20:05:16,686 basehttp "GET /register/ HTTP/1.1" 200 8413
+INFO 2025-11-28 20:06:30,171 basehttp "GET /deposit/7E3C1FAD/ HTTP/1.1" 200 25971
+INFO 2025-11-28 20:06:33,154 basehttp "GET / HTTP/1.1" 200 12428
+ERROR 2025-11-28 20:06:52,264 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 175, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile' not found. 'profile' is not a valid view function or pattern name.
+ERROR 2025-11-28 20:06:52,304 basehttp "GET /dashboard/ HTTP/1.1" 500 179266
+INFO 2025-11-28 20:07:57,204 basehttp "GET /dashboard/ HTTP/1.1" 200 14659
+INFO 2025-11-28 20:13:51,874 basehttp "GET /dashboard/ HTTP/1.1" 200 14659
+INFO 2025-11-28 20:13:53,444 basehttp "GET / HTTP/1.1" 200 12428
+INFO 2025-11-28 20:13:56,498 basehttp "GET /dashboard/ HTTP/1.1" 200 14659
+INFO 2025-11-28 20:14:00,724 basehttp "GET /cases/new/ HTTP/1.1" 200 11583
+INFO 2025-11-28 20:14:17,311 basehttp "GET /ajax/get-scam-type-fields/?scam_type=crypto HTTP/1.1" 200 126
+INFO 2025-11-28 20:14:53,330 basehttp "POST /cases/new/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:14:53,356 basehttp "GET /payment/48BCA529/ HTTP/1.1" 200 16102
+INFO 2025-11-28 20:15:07,479 basehttp "POST /payment/48BCA529/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:15:07,528 basehttp "GET /deposit/48BCA529/ HTTP/1.1" 200 13878
+INFO 2025-11-28 20:15:35,386 basehttp "POST /deposit/48BCA529/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:15:35,445 basehttp "GET /cases/48BCA529/ HTTP/1.1" 200 12518
+INFO 2025-11-28 20:16:03,804 basehttp "GET /dashboard/ HTTP/1.1" 200 16605
+INFO 2025-11-28 20:16:13,533 basehttp "GET /settings/ HTTP/1.1" 200 16811
+INFO 2025-11-28 20:16:24,066 basehttp "POST /settings/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:16:24,104 basehttp "GET /settings/ HTTP/1.1" 200 17403
+INFO 2025-11-28 20:16:33,290 basehttp "GET /kyc/ HTTP/1.1" 200 10923
+ERROR 2025-11-28 20:16:47,772 log Internal Server Error: /notifications/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 669, in notifications_list
+    return render(request, 'dashboard/notifications.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/notifications.html
+ERROR 2025-11-28 20:16:47,778 basehttp "GET /notifications/ HTTP/1.1" 500 93488
+INFO 2025-11-28 20:17:06,753 basehttp "GET /notifications/ HTTP/1.1" 200 17568
+INFO 2025-11-28 20:17:11,155 basehttp "GET /notifications/mark-read/9/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:17:11,183 basehttp "GET /dashboard/ HTTP/1.1" 200 16804
+INFO 2025-11-28 20:18:09,489 basehttp "GET /contact/ HTTP/1.1" 200 11693
+INFO 2025-11-28 20:18:13,517 basehttp "GET /faq/ HTTP/1.1" 200 12027
+INFO 2025-11-28 20:18:28,035 basehttp "GET /about/ HTTP/1.1" 200 9910
+INFO 2025-11-28 20:18:33,939 basehttp "GET / HTTP/1.1" 200 12428
+INFO 2025-11-28 20:18:52,193 basehttp "GET /settings/ HTTP/1.1" 200 16811
+INFO 2025-11-28 20:19:18,341 basehttp "GET /faq/ HTTP/1.1" 200 12027
+INFO 2025-11-28 20:19:19,299 basehttp "GET /about/ HTTP/1.1" 200 9910
+INFO 2025-11-28 20:29:14,140 basehttp "GET /about/ HTTP/1.1" 200 15914
+INFO 2025-11-28 20:29:31,022 basehttp "GET /settings/ HTTP/1.1" 200 22815
+INFO 2025-11-28 20:29:37,115 basehttp "GET / HTTP/1.1" 200 18432
+INFO 2025-11-28 20:30:51,873 basehttp "GET / HTTP/1.1" 200 36624
+INFO 2025-11-28 20:31:47,225 basehttp "GET /dashboard/ HTTP/1.1" 200 22217
+INFO 2025-11-28 20:31:49,456 basehttp "GET /cases/48BCA529/ HTTP/1.1" 200 17862
+INFO 2025-11-28 20:31:53,328 basehttp "GET /dashboard/ HTTP/1.1" 200 22217
+INFO 2025-11-28 20:34:10,867 basehttp "GET /cases/ HTTP/1.1" 200 20493
+INFO 2025-11-28 20:36:23,190 basehttp "GET /dashboard/ HTTP/1.1" 200 42690
+INFO 2025-11-28 20:37:45,245 basehttp "GET /settings/ HTTP/1.1" 200 22815
+INFO 2025-11-28 20:37:52,230 basehttp "GET /dashboard/ HTTP/1.1" 200 42690
+INFO 2025-11-28 20:38:24,023 basehttp "GET /cases/ HTTP/1.1" 200 45801
+INFO 2025-11-28 20:39:17,721 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 21437
+INFO 2025-11-28 20:39:17,847 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 20:39:23,528 basehttp "GET /admin/core/casestatusupdate/6/change/ HTTP/1.1" 200 21772
+INFO 2025-11-28 20:39:23,605 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 20:39:28,883 basehttp "POST /admin/core/casestatusupdate/6/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:39:28,946 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 21679
+INFO 2025-11-28 20:39:29,011 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 20:39:33,899 basehttp "GET /cases/ HTTP/1.1" 200 45801
+INFO 2025-11-28 20:40:10,877 basehttp "GET /cases/ HTTP/1.1" 200 20493
+INFO 2025-11-28 20:41:14,921 basehttp "GET /dashboard/ HTTP/1.1" 200 42690
+INFO 2025-11-28 20:41:27,815 basehttp "GET /cases/new/ HTTP/1.1" 200 17587
+INFO 2025-11-28 20:41:27,821 basehttp - Broken pipe from ('127.0.0.1', 60408)
+INFO 2025-11-28 20:43:13,234 basehttp "GET /dashboard/ HTTP/1.1" 200 42611
+INFO 2025-11-28 20:43:16,525 basehttp "GET /dashboard/ HTTP/1.1" 200 42611
+WARNING 2025-11-28 20:43:25,618 log Not Found: /favicon.ico
+WARNING 2025-11-28 20:43:25,619 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-11-28 20:43:35,917 basehttp "GET /kyc/ HTTP/1.1" 200 16927
+INFO 2025-11-28 20:44:42,050 basehttp "GET /dashboard/ HTTP/1.1" 200 42613
+WARNING 2025-11-28 20:45:12,363 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:45:12,364 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:51:34,912 basehttp "GET /dashboard/ HTTP/1.1" 200 43530
+WARNING 2025-11-28 20:51:35,126 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:51:35,134 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:51:40,557 basehttp "GET / HTTP/1.1" 200 37541
+WARNING 2025-11-28 20:51:40,652 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:51:40,653 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:52:28,779 basehttp "GET /dashboard/ HTTP/1.1" 200 44374
+WARNING 2025-11-28 20:52:28,965 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:52:29,005 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:52:52,794 basehttp "GET /cases/new/ HTTP/1.1" 200 18504
+WARNING 2025-11-28 20:52:52,949 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:52:52,950 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:55:37,134 basehttp "GET /cases/new/ HTTP/1.1" 200 24741
+WARNING 2025-11-28 20:55:37,380 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:55:37,382 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:57:24,431 basehttp "GET /cases/new/ HTTP/1.1" 200 24741
+WARNING 2025-11-28 20:57:24,683 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:57:24,685 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:58:04,819 basehttp "POST /cases/new/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:58:04,841 basehttp "GET /payment/27061E99/ HTTP/1.1" 200 29810
+WARNING 2025-11-28 20:58:04,935 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:58:04,942 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:59:04,873 basehttp "POST /payment/27061E99/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:59:04,978 basehttp "GET /deposit/27061E99/ HTTP/1.1" 200 20983
+WARNING 2025-11-28 20:59:05,190 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:59:05,206 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 20:59:47,831 basehttp "POST /deposit/27061E99/ HTTP/1.1" 302 0
+INFO 2025-11-28 20:59:47,852 basehttp "GET /cases/27061E99/ HTTP/1.1" 200 26116
+WARNING 2025-11-28 20:59:47,980 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 20:59:47,984 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 21:00:11,495 basehttp "GET /admin/core/paymentplan/ HTTP/1.1" 200 18587
+INFO 2025-11-28 21:00:11,608 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:00:11,614 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,629 basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,629 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,632 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,637 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,638 basehttp "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,639 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,642 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,659 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,664 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,703 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,720 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,723 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,737 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,775 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,776 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,809 basehttp "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,822 basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,827 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:11,835 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:27,782 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 21328
+INFO 2025-11-28 21:00:27,859 basehttp "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:00:27,865 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:00:35,842 basehttp "POST /admin/core/userdeposit/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:00:35,891 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 21455
+INFO 2025-11-28 21:00:35,978 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:00:55,523 basehttp "GET /cases/27061E99/ HTTP/1.1" 200 25234
+WARNING 2025-11-28 21:00:55,613 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 21:00:55,616 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 21:01:03,996 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 21956
+INFO 2025-11-28 21:01:04,059 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:01:08,853 basehttp "GET /admin/core/casestatusupdate/7/change/ HTTP/1.1" 200 21826
+INFO 2025-11-28 21:01:08,911 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:01:08,913 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:01:08,919 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-11-28 21:01:08,924 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:01:08,935 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:01:15,330 basehttp - Broken pipe from ('127.0.0.1', 49566)
+INFO 2025-11-28 21:01:15,521 basehttp "POST /admin/core/casestatusupdate/7/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:01:15,582 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 22210
+INFO 2025-11-28 21:01:15,638 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:01:21,329 basehttp "GET /cases/27061E99/ HTTP/1.1" 200 25247
+WARNING 2025-11-28 21:01:21,419 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 21:01:21,424 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 21:01:30,385 basehttp "GET /dashboard/ HTTP/1.1" 200 49291
+WARNING 2025-11-28 21:01:30,487 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 21:01:30,488 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 21:02:02,722 basehttp "GET /contact/ HTTP/1.1" 200 18614
+WARNING 2025-11-28 21:02:02,837 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-28 21:02:02,839 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 9718
+INFO 2025-11-28 21:02:20,360 basehttp "GET /dashboard/ HTTP/1.1" 200 49292
+INFO 2025-11-28 21:17:49,696 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\context_processors.py changed, reloading.
+INFO 2025-11-28 21:18:03,104 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:18:30,425 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:18:31,862 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:19:11,855 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\templatetags\custom_filters.py changed, reloading.
+INFO 2025-11-28 21:19:13,052 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:22:21,367 basehttp "GET /dashboard/ HTTP/1.1" 200 50156
+INFO 2025-11-28 21:22:27,519 basehttp "GET /notifications/ HTTP/1.1" 200 27845
+INFO 2025-11-28 21:22:34,245 basehttp "GET /cases/ HTTP/1.1" 200 54109
+INFO 2025-11-28 21:23:20,269 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:23:21,586 autoreload Watching for file changes with StatReloader
+ERROR 2025-11-28 21:25:26,069 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 187, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'timesince_simple'
+ERROR 2025-11-28 21:25:26,107 basehttp "GET /dashboard/ HTTP/1.1" 500 273337
+ERROR 2025-11-28 21:25:54,240 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 187, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 289: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+ERROR 2025-11-28 21:25:54,250 basehttp "GET /dashboard/ HTTP/1.1" 500 236911
+ERROR 2025-11-28 21:26:46,983 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 187, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 289: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+ERROR 2025-11-28 21:26:46,994 basehttp "GET /dashboard/ HTTP/1.1" 500 237339
+INFO 2025-11-28 21:27:48,838 basehttp "GET /notifications/ HTTP/1.1" 200 22329
+INFO 2025-11-28 21:27:53,576 basehttp "POST /notifications/mark-all-read/ HTTP/1.1" 302 0
+ERROR 2025-11-28 21:27:53,714 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 187, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 289: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+ERROR 2025-11-28 21:27:53,721 basehttp "GET /dashboard/ HTTP/1.1" 500 236491
+INFO 2025-11-28 21:27:54,632 basehttp "POST /notifications/mark-all-read/ HTTP/1.1" 302 0
+ERROR 2025-11-28 21:27:54,751 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 187, in dashboard
+    return render(request, 'dashboard/home.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 289: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+ERROR 2025-11-28 21:27:54,758 basehttp "GET /dashboard/ HTTP/1.1" 500 236506
+INFO 2025-11-28 21:28:01,556 basehttp "GET /cases/48BCA529/ HTTP/1.1" 200 27268
+INFO 2025-11-28 21:28:13,583 basehttp "GET /notifications/ HTTP/1.1" 200 22229
+INFO 2025-11-28 21:35:31,893 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\templatetags\custom_filters.py changed, reloading.
+INFO 2025-11-28 21:35:36,775 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:36:06,405 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:36:07,795 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:36:28,931 basehttp "GET /dashboard/ HTTP/1.1" 200 50409
+INFO 2025-11-28 21:40:51,985 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:40:53,075 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:40:55,459 basehttp "GET /dashboard/ HTTP/1.1" 200 50113
+INFO 2025-11-28 21:41:31,570 basehttp "GET /admin/core/casestatusupdate/7/change/ HTTP/1.1" 200 21826
+INFO 2025-11-28 21:41:31,697 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:41:42,204 basehttp "POST /admin/core/casestatusupdate/7/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:41:42,305 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 22202
+INFO 2025-11-28 21:41:42,371 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:41:46,356 basehttp "GET /dashboard/ HTTP/1.1" 200 50113
+INFO 2025-11-28 21:42:02,556 basehttp "GET /admin/core/casestatusupdate/7/change/ HTTP/1.1" 200 21826
+INFO 2025-11-28 21:42:02,620 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:42:09,800 basehttp "POST /admin/core/casestatusupdate/7/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:42:09,845 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 22198
+INFO 2025-11-28 21:42:09,900 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:42:14,143 basehttp "GET /dashboard/ HTTP/1.1" 200 50113
+INFO 2025-11-28 21:42:59,343 basehttp "GET /dashboard/ HTTP/1.1" 200 50162
+INFO 2025-11-28 21:43:17,904 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:43:19,526 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:43:21,455 basehttp "GET /dashboard/ HTTP/1.1" 200 50162
+INFO 2025-11-28 21:43:24,763 basehttp "GET /dashboard/ HTTP/1.1" 200 50162
+INFO 2025-11-28 21:48:20,028 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:48:21,374 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:48:49,462 basehttp "GET /dashboard/ HTTP/1.1" 200 50085
+INFO 2025-11-28 21:50:04,814 basehttp "GET /admin/core/casestatusupdate/5/change/ HTTP/1.1" 200 21827
+INFO 2025-11-28 21:50:04,910 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:50:04,918 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:11,447 basehttp "POST /admin/core/casestatusupdate/5/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:50:11,500 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 22203
+INFO 2025-11-28 21:50:11,565 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:11,595 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:50:14,487 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 19561
+INFO 2025-11-28 21:50:14,543 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:19,758 basehttp "GET /admin/core/userprofile/ HTTP/1.1" 200 17539
+INFO 2025-11-28 21:50:19,835 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:50:19,842 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:21,316 basehttp "GET /admin/core/userwallet/ HTTP/1.1" 200 17105
+INFO 2025-11-28 21:50:21,383 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:23,876 basehttp "GET /admin/core/userprofile/ HTTP/1.1" 200 17539
+INFO 2025-11-28 21:50:23,934 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:26,114 basehttp "GET /admin/core/emaillog/ HTTP/1.1" 200 16682
+INFO 2025-11-28 21:50:26,172 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:27,531 basehttp "GET /admin/core/cryptowallet/ HTTP/1.1" 200 18328
+INFO 2025-11-28 21:50:27,589 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:28,757 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 21962
+INFO 2025-11-28 21:50:28,820 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:50:38,986 basehttp "GET /dashboard/ HTTP/1.1" 200 50085
+INFO 2025-11-28 21:51:07,928 basehttp "POST /admin/core/casestatusupdate/ HTTP/1.1" 200 15010
+INFO 2025-11-28 21:51:08,006 basehttp "GET /static/admin/js/cancel.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:51:09,758 basehttp "POST /admin/core/casestatusupdate/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:51:09,806 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 17629
+INFO 2025-11-28 21:51:09,860 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:13,227 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 23057
+INFO 2025-11-28 21:51:13,284 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:17,543 basehttp "POST /admin/core/scamcase/ HTTP/1.1" 200 17810
+INFO 2025-11-28 21:51:21,351 basehttp "POST /admin/core/scamcase/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:51:21,394 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 17506
+INFO 2025-11-28 21:51:21,447 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:23,249 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 16938
+INFO 2025-11-28 21:51:23,870 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:24,753 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 17366
+INFO 2025-11-28 21:51:24,811 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:25,643 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 16520
+INFO 2025-11-28 21:51:25,704 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:26,491 basehttp "GET /admin/core/paymentplan/ HTTP/1.1" 200 18587
+INFO 2025-11-28 21:51:26,552 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:29,320 basehttp "GET /admin/core/paymentplan/2/change/ HTTP/1.1" 200 20076
+INFO 2025-11-28 21:51:29,381 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:41,199 basehttp "POST /admin/core/paymentplan/2/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:51:41,229 basehttp "GET /admin/core/paymentplan/ HTTP/1.1" 200 18802
+INFO 2025-11-28 21:51:41,304 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:43,460 basehttp "GET /admin/core/paymentplan/3/change/ HTTP/1.1" 200 20124
+INFO 2025-11-28 21:51:43,521 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:51,051 basehttp "POST /admin/core/paymentplan/3/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:51:51,078 basehttp "GET /admin/core/paymentplan/ HTTP/1.1" 200 18800
+INFO 2025-11-28 21:51:51,145 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:51:57,777 basehttp "GET /dashboard/ HTTP/1.1" 200 29580
+INFO 2025-11-28 21:52:08,639 basehttp "GET /admin/core/user/ HTTP/1.1" 200 20785
+INFO 2025-11-28 21:52:08,720 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:52:11,656 basehttp "GET /admin/core/userwallet/ HTTP/1.1" 200 17099
+INFO 2025-11-28 21:52:11,720 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:52:18,472 basehttp "POST /admin/core/userwallet/ HTTP/1.1" 200 14249
+INFO 2025-11-28 21:52:19,758 basehttp "POST /admin/core/userwallet/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:52:19,790 basehttp "GET /admin/core/userwallet/ HTTP/1.1" 200 16747
+INFO 2025-11-28 21:52:19,855 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:52:24,004 basehttp "GET /dashboard/ HTTP/1.1" 200 29443
+INFO 2025-11-28 21:52:26,759 basehttp "GET /cases/new/ HTTP/1.1" 200 25299
+INFO 2025-11-28 21:53:45,429 basehttp "POST /cases/new/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:53:45,471 basehttp "GET /payment/1CCED796/ HTTP/1.1" 200 30367
+INFO 2025-11-28 21:54:02,949 basehttp "POST /payment/1CCED796/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:54:02,992 basehttp "GET /deposit/1CCED796/ HTTP/1.1" 200 21547
+INFO 2025-11-28 21:54:20,449 basehttp "POST /deposit/1CCED796/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:54:20,505 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 28301
+INFO 2025-11-28 21:54:38,505 basehttp "GET /dashboard/ HTTP/1.1" 200 37836
+INFO 2025-11-28 21:54:58,289 basehttp "GET /admin/core/userwallet/ HTTP/1.1" 200 17090
+INFO 2025-11-28 21:54:58,371 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:02,847 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 20534
+INFO 2025-11-28 21:55:02,910 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:10,876 basehttp "POST /admin/core/scamcase/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:55:10,909 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 20684
+INFO 2025-11-28 21:55:10,966 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:13,010 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 19559
+INFO 2025-11-28 21:55:13,065 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:19,576 basehttp "POST /admin/core/userdeposit/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:55:19,614 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 19686
+INFO 2025-11-28 21:55:19,676 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:23,082 basehttp "GET /dashboard/ HTTP/1.1" 200 37882
+INFO 2025-11-28 21:55:41,998 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 19855
+INFO 2025-11-28 21:55:42,067 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:55:45,098 basehttp "GET /admin/core/casestatusupdate/8/change/ HTTP/1.1" 200 21609
+INFO 2025-11-28 21:55:45,158 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:56:12,327 basehttp "POST /admin/core/casestatusupdate/8/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:56:12,364 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 20101
+INFO 2025-11-28 21:56:12,435 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:56:23,911 basehttp "GET /dashboard/ HTTP/1.1" 200 37882
+INFO 2025-11-28 21:56:37,125 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 20547
+INFO 2025-11-28 21:56:37,203 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:56:39,135 basehttp "GET /admin/core/scamcase/7/change/ HTTP/1.1" 200 38472
+INFO 2025-11-28 21:56:39,193 basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:56:39,196 basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-11-28 21:56:39,199 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 21:56:39,232 basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:56:39,367 basehttp "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+INFO 2025-11-28 21:56:39,703 basehttp "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-11-28 21:56:56,853 basehttp "POST /admin/core/scamcase/7/change/ HTTP/1.1" 302 0
+INFO 2025-11-28 21:56:56,895 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 20771
+INFO 2025-11-28 21:56:56,964 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2025-11-28 21:57:04,653 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 185, in dashboard
+    total_recovered = completed_cases_amount * 0.7
+                      ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+ERROR 2025-11-28 21:57:04,657 basehttp "GET /dashboard/ HTTP/1.1" 500 78740
+ERROR 2025-11-28 21:57:10,483 log Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 185, in dashboard
+    total_recovered = completed_cases_amount * 0.7
+                      ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+ERROR 2025-11-28 21:57:10,485 basehttp "GET /dashboard/ HTTP/1.1" 500 78740
+INFO 2025-11-28 21:58:29,969 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:58:31,618 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:58:33,411 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-28 21:58:34,779 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 21:58:38,573 basehttp "GET /dashboard/ HTTP/1.1" 200 37726
+INFO 2025-11-28 21:59:09,972 basehttp "GET /admin/core/scamcase/7/change/ HTTP/1.1" 200 38472
+INFO 2025-11-28 21:59:10,054 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 22:00:01,291 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 16520
+INFO 2025-11-28 22:00:01,361 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 22:00:03,850 basehttp "GET /admin/core/recoverytransaction/add/ HTTP/1.1" 200 20708
+INFO 2025-11-28 22:00:03,916 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 22:00:19,239 basehttp "POST /admin/core/recoverytransaction/add/ HTTP/1.1" 302 0
+INFO 2025-11-28 22:00:19,283 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 19173
+INFO 2025-11-28 22:00:19,350 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-28 22:00:24,332 basehttp "GET /dashboard/ HTTP/1.1" 200 39099
+INFO 2025-11-28 22:00:47,178 basehttp "GET /withdraw/ HTTP/1.1" 200 21638
+ERROR 2025-11-28 22:04:17,266 log Internal Server Error: /withdraw/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 462, in withdraw
+    }
+    
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'intcomma'
+ERROR 2025-11-28 22:04:17,278 basehttp "GET /withdraw/ HTTP/1.1" 500 245282
+INFO 2025-11-28 22:06:33,936 basehttp "GET /withdraw/ HTTP/1.1" 200 29725
+INFO 2025-11-28 22:08:42,292 basehttp "POST /withdraw/ HTTP/1.1" 302 0
+INFO 2025-11-28 22:08:42,350 basehttp "GET /withdrawal/history/ HTTP/1.1" 200 18503
+INFO 2025-11-28 22:09:01,548 basehttp "GET /dashboard/ HTTP/1.1" 200 40043
+INFO 2025-11-28 22:09:13,978 basehttp "GET /cases/ HTTP/1.1" 200 26751
+INFO 2025-11-28 22:13:30,764 basehttp "GET /cases/ HTTP/1.1" 200 26751
+INFO 2025-11-28 22:13:45,591 basehttp "GET /cases/ HTTP/1.1" 200 26751
+INFO 2025-11-28 22:13:58,554 basehttp "GET /cases/ HTTP/1.1" 200 26751
+INFO 2025-11-28 22:15:27,944 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-28 22:15:30,129 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 22:18:09,198 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-28 22:18:11,027 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 22:18:19,765 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-28 22:18:20,815 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 22:18:22,919 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-28 22:18:24,745 autoreload Watching for file changes with StatReloader
+INFO 2025-11-28 22:18:27,692 basehttp "GET /cases/ HTTP/1.1" 200 31670
+INFO 2025-11-28 22:18:36,344 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 42495
+INFO 2025-11-28 22:18:36,344 basehttp - Broken pipe from ('127.0.0.1', 54977)
+INFO 2025-11-28 22:19:25,736 basehttp "GET /settings/ HTTP/1.1" 200 24286
+INFO 2025-11-28 22:19:35,769 basehttp "GET /withdrawal/history/ HTTP/1.1" 200 17670
+INFO 2025-11-28 22:19:40,984 basehttp "GET /dashboard/ HTTP/1.1" 200 40043
+INFO 2025-11-29 00:38:21,048 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:38:28,430 basehttp "GET /cases/ HTTP/1.1" 200 31669
+INFO 2025-11-29 00:39:08,352 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:39:53,615 basehttp "GET /cases/ HTTP/1.1" 200 31669
+INFO 2025-11-29 00:40:04,882 basehttp - Broken pipe from ('127.0.0.1', 58563)
+INFO 2025-11-29 00:40:04,883 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 42515
+INFO 2025-11-29 00:40:08,284 basehttp "GET /cases/ HTTP/1.1" 200 31669
+INFO 2025-11-29 00:40:46,019 basehttp "GET /cases/ HTTP/1.1" 200 31664
+INFO 2025-11-29 00:40:53,672 basehttp - Broken pipe from ('127.0.0.1', 51904)
+INFO 2025-11-29 00:40:53,680 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 42515
+INFO 2025-11-29 00:41:35,910 basehttp "GET /cases/ HTTP/1.1" 200 31664
+INFO 2025-11-29 00:42:55,074 basehttp "GET /cases/ HTTP/1.1" 200 31659
+INFO 2025-11-29 00:43:28,856 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:44:34,199 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:44:44,143 basehttp "GET /withdraw/ HTTP/1.1" 200 30878
+INFO 2025-11-29 00:45:19,478 basehttp "GET /withdraw/ HTTP/1.1" 200 30873
+INFO 2025-11-29 00:45:29,416 basehttp "GET /notifications/ HTTP/1.1" 200 18206
+INFO 2025-11-29 00:45:37,942 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 42515
+INFO 2025-11-29 00:45:46,274 basehttp "GET /cases/ HTTP/1.1" 200 31659
+INFO 2025-11-29 00:45:51,057 basehttp "GET /notifications/ HTTP/1.1" 200 18206
+INFO 2025-11-29 00:45:59,438 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:46:02,686 basehttp "GET /cases/new/ HTTP/1.1" 200 25299
+INFO 2025-11-29 00:50:32,791 basehttp "GET /cases/new/ HTTP/1.1" 200 41095
+INFO 2025-11-29 00:53:07,708 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\scam_recovery\settings.py changed, reloading.
+INFO 2025-11-29 00:53:09,116 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 00:53:14,426 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\scam_recovery\settings.py changed, reloading.
+INFO 2025-11-29 00:53:15,517 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 00:53:43,444 basehttp "GET /cases/new/ HTTP/1.1" 200 41095
+INFO 2025-11-29 00:53:47,556 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 39202
+INFO 2025-11-29 00:53:48,276 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 200 4270
+INFO 2025-11-29 00:53:48,298 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 200 4867
+INFO 2025-11-29 00:53:48,304 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 200 101784
+INFO 2025-11-29 00:53:48,322 basehttp "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 200 22120
+INFO 2025-11-29 00:53:48,329 basehttp "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 200 16565
+INFO 2025-11-29 00:53:48,332 basehttp "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 200 6878
+INFO 2025-11-29 00:53:48,348 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 200 189
+INFO 2025-11-29 00:53:48,348 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 200 3516
+INFO 2025-11-29 00:53:48,351 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 200 240033
+INFO 2025-11-29 00:53:48,359 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 200 93675
+INFO 2025-11-29 00:53:48,360 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 200 811
+INFO 2025-11-29 00:53:48,369 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 200 811
+INFO 2025-11-29 00:53:48,400 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 200 524
+INFO 2025-11-29 00:53:48,402 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,466 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,473 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,474 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 200 664912
+INFO 2025-11-29 00:53:48,475 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,491 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 200 12677
+INFO 2025-11-29 00:53:48,492 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 200 1194
+INFO 2025-11-29 00:53:48,493 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 200 14237
+INFO 2025-11-29 00:53:48,497 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,512 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:53:48,530 basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+INFO 2025-11-29 00:53:48,616 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,717 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:48,743 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:53:49,418 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200
+INFO 2025-11-29 00:53:57,835 basehttp "GET /admin/core/recoverytransaction/?o=1 HTTP/1.1" 200 39912
+INFO 2025-11-29 00:53:57,932 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:53:58,175 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:00,091 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 39202
+INFO 2025-11-29 00:54:01,966 basehttp "GET /admin/core/recoverytransaction/add/ HTTP/1.1" 200 14449
+INFO 2025-11-29 00:54:04,091 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 39202
+INFO 2025-11-29 00:54:04,174 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:54:06,124 basehttp "GET /admin/core/recoverytransaction/add/ HTTP/1.1" 200 14449
+INFO 2025-11-29 00:54:11,738 basehttp "GET /admin/ HTTP/1.1" 200 26220
+INFO 2025-11-29 00:54:11,837 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:11,840 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:11,841 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:11,842 basehttp "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 200 3861
+INFO 2025-11-29 00:54:11,842 basehttp "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 200 6994
+INFO 2025-11-29 00:54:11,847 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:11,853 basehttp "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 200 115997
+INFO 2025-11-29 00:54:11,895 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:11,896 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 200 12677
+INFO 2025-11-29 00:54:11,931 basehttp "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 200 1194
+INFO 2025-11-29 00:54:12,015 basehttp "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 200 524
+INFO 2025-11-29 00:54:12,017 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 200 811
+INFO 2025-11-29 00:54:12,019 basehttp "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 200 4274
+INFO 2025-11-29 00:54:12,048 basehttp "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 200 6329
+INFO 2025-11-29 00:54:12,062 basehttp "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 200 1177
+INFO 2025-11-29 00:54:12,098 basehttp "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 200 21589
+INFO 2025-11-29 00:54:12,244 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:12,413 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25096
+INFO 2025-11-29 00:54:12,420 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 107460
+INFO 2025-11-29 00:54:12,432 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 150472
+INFO 2025-11-29 00:54:24,658 basehttp "GET /admin/core/cryptowallet/ HTTP/1.1" 200 34766
+INFO 2025-11-29 00:54:24,705 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,705 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,706 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,706 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,707 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,707 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,722 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,737 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,743 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,746 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:24,752 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:54:30,838 basehttp "GET /admin/core/userdeposit/ HTTP/1.1" 200 41645
+INFO 2025-11-29 00:54:30,878 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:54:39,390 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 44928
+INFO 2025-11-29 00:54:39,434 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:39,434 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:39,435 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:39,436 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:39,437 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:39,452 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:54:39,640 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:44,942 basehttp "GET /admin/core/emaillog/ HTTP/1.1" 200 37123
+INFO 2025-11-29 00:54:44,989 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:54:52,744 basehttp "GET /admin/core/casestatusupdate/ HTTP/1.1" 200 39282
+INFO 2025-11-29 00:54:52,790 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,790 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,790 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,791 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,792 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,792 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,810 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,817 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,818 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:54:52,827 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:55:01,499 basehttp "GET /admin/core/adminmessage/ HTTP/1.1" 200 35427
+INFO 2025-11-29 00:55:01,535 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:55:05,132 basehttp "GET /admin/core/adminmessage/add/ HTTP/1.1" 200 15308
+INFO 2025-11-29 00:55:05,187 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,187 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,188 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,188 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,208 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,216 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:55:05,249 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,255 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:05,259 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,753 basehttp "POST /admin/core/adminmessage/add/ HTTP/1.1" 302 0
+INFO 2025-11-29 00:55:31,882 basehttp "GET /admin/core/adminmessage/ HTTP/1.1" 200 36439
+INFO 2025-11-29 00:55:31,967 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,968 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,968 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,969 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,969 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,970 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,980 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,987 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:31,992 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,003 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,016 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,019 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,019 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,032 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:32,036 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 00:55:32,120 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-11-29 00:55:37,960 basehttp "GET /dashboard/ HTTP/1.1" 200 41312
+INFO 2025-11-29 00:55:50,984 basehttp "POST /notifications/mark-read/18/ HTTP/1.1" 200 17
+INFO 2025-11-29 00:55:51,419 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:56:01,324 basehttp "GET /notifications/ HTTP/1.1" 200 18978
+INFO 2025-11-29 00:56:06,773 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 42513
+INFO 2025-11-29 00:56:31,932 basehttp "GET /contact/?case=1CCED796 HTTP/1.1" 200 19172
+INFO 2025-11-29 00:56:58,554 basehttp "GET / HTTP/1.1" 200 38099
+INFO 2025-11-29 00:57:03,149 basehttp "GET /dashboard/ HTTP/1.1" 200 40036
+INFO 2025-11-29 00:57:07,499 basehttp "GET /cases/new/ HTTP/1.1" 200 24532
+INFO 2025-11-29 00:59:11,821 basehttp "POST /cases/new/ HTTP/1.1" 200 24532
+INFO 2025-11-29 00:59:32,198 basehttp "POST /cases/new/ HTTP/1.1" 200 25299
+INFO 2025-11-29 01:00:23,486 basehttp "POST /cases/new/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:00:23,552 basehttp "GET /payment/B24D4873/ HTTP/1.1" 200 30367
+INFO 2025-11-29 01:03:09,892 basehttp "GET /payment/B24D4873/ HTTP/1.1" 200 29543
+INFO 2025-11-29 01:04:48,409 basehttp "GET /payment/B24D4873/ HTTP/1.1" 200 29531
+INFO 2025-11-29 01:05:18,682 basehttp "GET /payment/B24D4873/ HTTP/1.1" 200 29561
+INFO 2025-11-29 01:05:32,114 basehttp "GET /payment/B24D4873/ HTTP/1.1" 200 29573
+INFO 2025-11-29 01:06:19,658 basehttp "POST /cases/new/ HTTP/1.1" 200 28831
+WARNING 2025-11-29 01:06:23,809 log Not Found: /favicon.ico
+WARNING 2025-11-29 01:06:23,814 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-11-29 01:06:30,041 basehttp "POST /cases/new/ HTTP/1.1" 200 28831
+INFO 2025-11-29 01:08:18,530 basehttp "POST /payment/B24D4873/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:08:18,582 basehttp "GET /deposit/B24D4873/ HTTP/1.1" 200 21544
+INFO 2025-11-29 01:09:48,864 basehttp "GET / HTTP/1.1" 200 38096
+INFO 2025-11-29 01:09:57,892 basehttp "GET /dashboard/ HTTP/1.1" 200 29437
+INFO 2025-11-29 01:10:02,488 basehttp "GET /cases/new/ HTTP/1.1" 200 34950
+INFO 2025-11-29 01:11:27,525 basehttp "GET /cases/new/ HTTP/1.1" 200 34950
+WARNING 2025-11-29 01:11:30,830 log Not Found: /favicon.ico
+WARNING 2025-11-29 01:11:30,833 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-11-29 01:14:55,655 basehttp "GET /cases/new/ HTTP/1.1" 200 38509
+INFO 2025-11-29 01:16:36,154 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:16:41,869 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 01:16:46,542 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:16:47,974 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 01:16:50,275 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:16:51,361 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 01:16:55,513 basehttp "GET /cases/new/ HTTP/1.1" 200 39654
+INFO 2025-11-29 01:19:40,519 basehttp "GET /deposit/B24D4873/ HTTP/1.1" 200 42146
+INFO 2025-11-29 01:26:34,661 basehttp "POST /deposit/B24D4873/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:26:34,925 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36922
+INFO 2025-11-29 01:27:08,066 basehttp "GET /admin/ HTTP/1.1" 200 26220
+INFO 2025-11-29 01:27:08,203 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,210 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,218 basehttp "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,219 basehttp "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,236 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,237 basehttp "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,240 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,296 basehttp "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,306 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,337 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,354 basehttp "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,360 basehttp "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,364 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,380 basehttp "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,387 basehttp "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,400 basehttp "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,905 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,908 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:08,912 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,132 basehttp "GET /admin/core/adminmessage/ HTTP/1.1" 200 36285
+INFO 2025-11-29 01:27:09,212 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,217 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,217 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,219 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,219 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,223 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,270 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,271 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,299 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:27:09,333 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:27:14,930 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 46077
+INFO 2025-11-29 01:27:14,980 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:27:31,215 basehttp "POST /admin/core/scamcase/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:27:31,333 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 46150
+INFO 2025-11-29 01:27:31,399 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:27:39,321 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36121
+INFO 2025-11-29 01:28:03,293 basehttp "GET /settings/ HTTP/1.1" 200 24286
+INFO 2025-11-29 01:28:13,285 basehttp "GET /settings/ HTTP/1.1" 200 24286
+INFO 2025-11-29 01:30:15,866 basehttp "GET /notifications/ HTTP/1.1" 200 20576
+INFO 2025-11-29 01:30:20,847 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36121
+INFO 2025-11-29 01:30:35,102 basehttp "GET /cases/ HTTP/1.1" 200 40523
+INFO 2025-11-29 01:30:42,519 basehttp - Broken pipe from ('127.0.0.1', 61913)
+INFO 2025-11-29 01:30:42,525 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36121
+INFO 2025-11-29 01:30:47,522 basehttp "GET /dashboard/ HTTP/1.1" 200 47212
+INFO 2025-11-29 01:31:03,917 basehttp "GET /settings/ HTTP/1.1" 200 24286
+ERROR 2025-11-29 01:31:07,962 log Internal Server Error: /withdrawal/history/
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py", line 488, in withdrawal_history
+    return render(request, 'payment/withdrawal_history.html', context)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\pysmart\recovery\venv\Lib\site-packages\django\template\base.py", line 590, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 5: 'block'. Looking for one of: endblock.
+ERROR 2025-11-29 01:31:07,984 basehttp "GET /withdrawal/history/ HTTP/1.1" 500 189802
+INFO 2025-11-29 01:31:24,795 basehttp "GET /withdrawal/history/ HTTP/1.1" 200 34898
+INFO 2025-11-29 01:32:12,211 basehttp "GET /settings/ HTTP/1.1" 200 24286
+INFO 2025-11-29 01:39:50,474 basehttp "GET /admin/core/scamcase/8/change/ HTTP/1.1" 200 29200
+INFO 2025-11-29 01:39:50,583 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,600 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,602 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,603 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,607 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,609 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,622 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,637 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,637 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,657 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,664 basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,671 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,671 basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:50,692 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:39:50,851 basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:51,016 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:51,055 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:51,238 basehttp "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+INFO 2025-11-29 01:39:51,238 basehttp "GET /static/admin/img/icon-clock.svg HTTP/1.1" 304 0
+INFO 2025-11-29 01:40:17,049 basehttp "POST /admin/core/scamcase/8/change/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:40:17,144 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 46243
+INFO 2025-11-29 01:40:17,205 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:40:17,212 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:40:17,215 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-11-29 01:40:17,250 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:40:23,526 basehttp "GET /cases/ HTTP/1.1" 200 40300
+INFO 2025-11-29 01:40:27,679 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36109
+INFO 2025-11-29 01:40:27,680 basehttp - Broken pipe from ('127.0.0.1', 64533)
+INFO 2025-11-29 01:40:38,968 basehttp "GET /admin/core/scamcase/8/change/ HTTP/1.1" 200 29200
+INFO 2025-11-29 01:40:39,042 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:40:48,758 basehttp "POST /admin/core/scamcase/8/change/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:40:48,809 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 46241
+INFO 2025-11-29 01:40:48,882 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:40:54,599 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 36150
+INFO 2025-11-29 01:41:08,606 basehttp "GET /admin/core/scamcase/8/change/ HTTP/1.1" 200 29200
+INFO 2025-11-29 01:41:08,698 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:41:18,959 basehttp "POST /admin/core/scamcase/8/change/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:41:19,012 basehttp "GET /admin/core/scamcase/ HTTP/1.1" 200 46234
+INFO 2025-11-29 01:41:19,086 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:41:30,305 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 39202
+INFO 2025-11-29 01:41:30,358 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:41:34,335 basehttp "GET /admin/core/recoverytransaction/add/ HTTP/1.1" 200 14504
+INFO 2025-11-29 01:41:34,409 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:41:53,655 basehttp "POST /admin/core/recoverytransaction/add/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:41:53,727 basehttp "GET /admin/core/recoverytransaction/ HTTP/1.1" 200 40289
+INFO 2025-11-29 01:41:53,794 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-11-29 01:42:01,249 basehttp "GET /cases/B24D4873/ HTTP/1.1" 200 39253
+INFO 2025-11-29 01:42:09,919 basehttp "GET /dashboard/ HTTP/1.1" 200 48285
+INFO 2025-11-29 01:42:36,549 basehttp "GET /notifications/ HTTP/1.1" 200 21360
+INFO 2025-11-29 01:42:41,161 basehttp "POST /notifications/mark-all-read/ HTTP/1.1" 200 17
+INFO 2025-11-29 01:42:41,260 basehttp "GET /notifications/ HTTP/1.1" 200 21220
+INFO 2025-11-29 01:42:48,578 basehttp "GET /dashboard/ HTTP/1.1" 200 37774
+INFO 2025-11-29 01:43:12,303 basehttp "GET /settings/ HTTP/1.1" 200 27056
+INFO 2025-11-29 01:43:30,408 basehttp "GET /withdrawal/history/ HTTP/1.1" 200 34898
+INFO 2025-11-29 01:43:37,777 basehttp "GET /dashboard/ HTTP/1.1" 200 37774
+INFO 2025-11-29 01:43:53,255 basehttp "GET / HTTP/1.1" 200 36157
+WARNING 2025-11-29 01:43:55,489 log Not Found: /favicon.ico
+WARNING 2025-11-29 01:43:55,492 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-11-29 01:44:12,473 basehttp "GET /register/ HTTP/1.1" 200 14946
+INFO 2025-11-29 01:44:43,850 basehttp "GET /login/ HTTP/1.1" 200 13903
+INFO 2025-11-29 01:44:46,509 basehttp "GET /password-reset/ HTTP/1.1" 200 13243
+INFO 2025-11-29 01:44:54,071 basehttp "GET /register/ HTTP/1.1" 200 14946
+INFO 2025-11-29 01:50:46,643 basehttp "GET /register/ HTTP/1.1" 200 15569
+INFO 2025-11-29 01:55:11,149 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:55:13,032 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 01:56:04,353 basehttp "GET /register/ HTTP/1.1" 200 16379
+INFO 2025-11-29 01:56:11,842 basehttp "GET /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 01:56:17,568 basehttp "GET /password-reset/ HTTP/1.1" 200 13795
+INFO 2025-11-29 01:56:24,314 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-11-29 01:56:24,329 basehttp "GET /login/ HTTP/1.1" 200 15039
+INFO 2025-11-29 01:56:43,544 basehttp "GET / HTTP/1.1" 200 36157
+INFO 2025-11-29 01:59:00,722 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:59:02,339 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 01:59:05,405 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 01:59:06,980 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:00:35,957 basehttp "GET /dashboard/ HTTP/1.1" 200 37773
+INFO 2025-11-29 02:00:43,735 basehttp "GET / HTTP/1.1" 200 36157
+INFO 2025-11-29 02:00:45,853 basehttp "GET /register/ HTTP/1.1" 200 17210
+INFO 2025-11-29 02:01:41,868 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\context_processors.py changed, reloading.
+INFO 2025-11-29 02:01:43,119 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:02:30,782 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:02:31,881 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:02:34,040 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:02:35,823 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:02:50,171 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:02:51,334 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:03:35,693 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:03:37,157 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:04:47,094 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-29 02:04:48,899 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:06:17,983 basehttp "GET /dashboard/ HTTP/1.1" 200 37778
+INFO 2025-11-29 02:06:30,394 basehttp "GET /cases/new/ HTTP/1.1" 200 41357
+INFO 2025-11-29 02:07:17,270 basehttp "GET /cases/new/ HTTP/1.1" 200 41356
+INFO 2025-11-29 02:10:30,459 basehttp "GET /cases/new/ HTTP/1.1" 200 41358
+INFO 2025-11-29 02:11:41,572 basehttp "POST /cases/new/ HTTP/1.1" 200 41836
+INFO 2025-11-29 02:15:56,972 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:15:58,593 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:16:17,916 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:16:19,679 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:16:36,118 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:16:37,658 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:16:50,625 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:16:51,970 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:17:15,954 basehttp "POST /cases/new/ HTTP/1.1" 200 41836
+INFO 2025-11-29 02:17:26,775 basehttp "GET / HTTP/1.1" 200 38099
+INFO 2025-11-29 02:17:31,684 basehttp "GET /cases/ HTTP/1.1" 200 40503
+INFO 2025-11-29 02:17:35,319 basehttp "GET /cases/new/ HTTP/1.1" 200 41358
+INFO 2025-11-29 02:18:58,905 basehttp "GET /cases/new/ HTTP/1.1" 200 40662
+INFO 2025-11-29 02:19:49,740 basehttp "POST /cases/new/ HTTP/1.1" 200 40953
+INFO 2025-11-29 02:21:28,065 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:21:30,778 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:21:36,106 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:21:37,912 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:21:41,920 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:21:43,174 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:21:50,759 basehttp "POST /cases/new/ HTTP/1.1" 200 40953
+INFO 2025-11-29 02:22:09,036 basehttp "POST /cases/new/ HTTP/1.1" 200 40953
+INFO 2025-11-29 02:22:28,488 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:22:30,105 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:22:33,364 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:22:34,570 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:25:12,101 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:25:14,523 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:25:48,928 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:25:50,721 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:25:52,628 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:25:53,763 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:26:10,513 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\views.py changed, reloading.
+INFO 2025-11-29 02:26:11,896 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:26:18,576 basehttp "POST /cases/new/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:26:18,643 basehttp "GET /payment/074FA777/ HTTP/1.1" 200 30380
+INFO 2025-11-29 02:27:37,974 basehttp "GET /payment/074FA777/ HTTP/1.1" 200 29579
+INFO 2025-11-29 02:29:09,537 basehttp "GET /payment/074FA777/ HTTP/1.1" 200 29575
+INFO 2025-11-29 02:29:33,679 basehttp "POST /payment/074FA777/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:29:33,788 basehttp "GET /deposit/074FA777/ HTTP/1.1" 200 43130
+INFO 2025-11-29 02:30:09,270 basehttp "GET /deposit/074FA777/ HTTP/1.1" 200 42316
+INFO 2025-11-29 02:31:18,276 basehttp "POST /deposit/074FA777/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:31:18,443 basehttp "GET /cases/074FA777/ HTTP/1.1" 200 36480
+INFO 2025-11-29 02:32:58,667 basehttp "GET /cases/074FA777/ HTTP/1.1" 200 35636
+INFO 2025-11-29 02:33:02,624 basehttp "GET /cases/ HTTP/1.1" 200 49122
+INFO 2025-11-29 02:33:17,782 basehttp "GET /settings/ HTTP/1.1" 200 27259
+INFO 2025-11-29 02:33:58,706 basehttp "GET /settings/ HTTP/1.1" 200 27262
+INFO 2025-11-29 02:34:09,201 basehttp "GET /dashboard/ HTTP/1.1" 200 46874
+INFO 2025-11-29 02:34:11,273 basehttp "GET /withdraw/ HTTP/1.1" 200 31992
+INFO 2025-11-29 02:34:38,399 basehttp "GET /withdraw/ HTTP/1.1" 200 31999
+INFO 2025-11-29 02:35:29,459 basehttp "GET /withdrawal/history/ HTTP/1.1" 200 34903
+INFO 2025-11-29 02:35:45,181 basehttp "GET /dashboard/ HTTP/1.1" 200 46874
+INFO 2025-11-29 02:38:06,267 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-29 02:38:08,065 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:38:13,703 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\models.py changed, reloading.
+INFO 2025-11-29 02:38:15,380 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:39:04,824 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:39:06,212 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:39:09,369 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:39:11,081 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:39:13,744 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:39:15,698 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:40:05,791 autoreload C:\Users\User\Desktop\pysmart\recovery\scam_recovery\core\forms.py changed, reloading.
+INFO 2025-11-29 02:40:07,635 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:41:23,566 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:41:36,554 basehttp "GET /dashboard/ HTTP/1.1" 200 46879
+INFO 2025-11-29 02:41:40,952 basehttp "GET /settings/ HTTP/1.1" 200 28783
+INFO 2025-11-29 02:41:53,715 basehttp "POST /settings/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:41:53,771 basehttp "GET /settings/ HTTP/1.1" 200 29559
+INFO 2025-11-29 02:41:59,017 basehttp "GET /dashboard/ HTTP/1.1" 200 46873
+INFO 2025-11-29 02:42:13,490 basehttp "GET /settings/ HTTP/1.1" 200 28780
+INFO 2025-11-29 02:42:26,146 basehttp "POST /settings/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:42:26,222 basehttp "GET /settings/ HTTP/1.1" 200 29562
+INFO 2025-11-29 02:42:31,764 basehttp "GET /dashboard/ HTTP/1.1" 200 46879
+INFO 2025-11-29 02:42:49,606 basehttp "GET /settings/ HTTP/1.1" 200 28783
+INFO 2025-11-29 02:43:06,377 basehttp "POST /settings/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:43:06,450 basehttp "GET /settings/ HTTP/1.1" 200 29562
+INFO 2025-11-29 02:43:17,020 basehttp "GET /dashboard/ HTTP/1.1" 200 46879
+INFO 2025-11-29 02:43:55,340 basehttp "GET /withdraw/ HTTP/1.1" 200 31999
+INFO 2025-11-29 02:44:53,455 basehttp "GET /dashboard/ HTTP/1.1" 200 46879
+INFO 2025-11-29 02:45:01,677 basehttp "GET /settings/ HTTP/1.1" 200 28783
+INFO 2025-11-29 02:45:22,984 basehttp "GET /register/ HTTP/1.1" 200 18731
+INFO 2025-11-29 02:45:43,016 basehttp "GET /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 02:45:45,365 basehttp "GET /password-reset/ HTTP/1.1" 200 13795
+INFO 2025-11-29 02:45:51,472 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:45:51,484 basehttp "GET /login/ HTTP/1.1" 200 15013
+INFO 2025-11-29 02:46:19,820 basehttp "GET /password-reset/7c4cc575-fe11-4bbc-99b6-68f40864bd1f/ HTTP/1.1" 200 13679
+INFO 2025-11-29 02:46:42,417 basehttp "POST /password-reset/7c4cc575-fe11-4bbc-99b6-68f40864bd1f/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:46:42,477 basehttp "GET /login/ HTTP/1.1" 200 15042
+INFO 2025-11-29 02:46:53,464 basehttp "POST /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 02:47:07,172 basehttp "POST /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 02:47:35,729 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-11-29 02:47:35,822 basehttp "GET /dashboard/ HTTP/1.1" 200 46879
+INFO 2025-11-29 02:48:03,319 basehttp "GET /cases/ HTTP/1.1" 200 49122
+INFO 2025-11-29 02:48:46,836 autoreload Watching for file changes with StatReloader
+INFO 2025-11-29 02:48:51,108 basehttp "GET / HTTP/1.1" 200 36157
+INFO 2025-11-29 02:48:56,351 basehttp "GET /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 02:49:01,648 basehttp "POST /login/ HTTP/1.1" 200 14224
+INFO 2025-11-29 02:51:05,877 basehttp "POST /login/ HTTP/1.1" 200 17650

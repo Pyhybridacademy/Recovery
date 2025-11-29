@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; background: #f9fafb; }
+        .container { max-width: 600px; margin: 0 auto; background: white; }
+        .header { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white; padding: 40px; text-align: center; }
+        .content { padding: 40px; }
+        .button { display: inline-block; background: #2563eb; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; margin: 20px 0; }
+        .footer { background: #f9fafb; padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #e5e7eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Welcome to RecoveryPro</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ user.first_name|default:user.username }},</p>
+            
+            <p>Thank you for joining RecoveryPro! We're excited to help you recover your scammed funds.</p>
+            
+            <h3>Your Account is Active</h3>
+            <p>You can now:</p>
+            <ul>
+                <li>Submit scam recovery cases</li>
+                <li>Track your recovery progress</li>
+                <li>Manage your payments</li>
+                <li>Withdraw recovered funds</li>
+            </ul>
+            
+            <p><strong>Next Steps:</strong></p>
+            <ol>
+                <li>Complete your KYC verification (required for withdrawals)</li>
+                <li>Submit your scam case with detailed information</li>
+                <li>Choose a recovery plan</li>
+                <li>Make your deposit to begin investigation</li>
+            </ol>
+            
+            <center>
+                <a href="https://recoverypro.com/dashboard/" class="button">Go to Dashboard</a>
+            </center>
+            
+            <p>If you have any questions, our support team is available 24/7.</p>
+            
+            <p>Best regards,<br/>RecoveryPro Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>RecoveryPro © 2025. All rights reserved.</p>
+            <p>This email was sent to {{ user.email }}</p>
+        </div>
+    </div>
+</body>
+</html>

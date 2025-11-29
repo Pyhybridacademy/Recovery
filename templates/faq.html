@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-bold text-center mb-4">Frequently Asked Questions</h1>
+        <p class="text-xl text-gray-600 text-center mb-16">Find answers to common questions about our recovery services</p>
+
+        <div class="space-y-4">
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>How much does recovery cost?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">We operate on a contingency basis, meaning you only pay a commission if we successfully recover your funds. Our standard commission is 25-30% of recovered amounts, which is significantly lower than industry standards.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>How long does recovery typically take?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">Recovery timelines vary depending on the complexity of your case. Simple cases may be resolved in 2-4 weeks, while complex crypto or international cases may take 2-6 months. We'll provide regular updates throughout the process.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>What types of scams do you handle?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">We specialize in cryptocurrency scams, banking fraud, investment scams, forex trading scams, PayPal fraud, wire transfer fraud, and other financial crimes. If you're not sure if we can help, contact us for a free consultation.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>Is my information safe with RecoveryPro?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">Yes. We use military-grade encryption, maintain strict confidentiality protocols, and comply with all data protection regulations. Your information is only accessed by authorized team members working on your case.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>What is KYC verification?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">KYC (Know Your Customer) verification is a regulatory requirement. We verify your identity with government-issued ID, address proof, and a selfie. This ensures we're working with legitimate victims and complying with anti-fraud laws.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>Can I get a refund if you don't recover funds?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">Since we work on contingency, if we don't recover funds, you don't pay our commission. However, some processing fees may apply. We'll discuss all costs upfront before you engage our services.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>How do I track my case progress?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">You'll have access to your personal dashboard showing real-time case status, updates from your assigned agent, and any evidence we've gathered. You'll also receive email notifications for major milestones.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded-lg shadow-card cursor-pointer group">
+                <summary class="flex justify-between items-center font-bold text-lg">
+                    <span>What happens after funds are recovered?</span>
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="mt-4 text-gray-600 leading-relaxed">Once funds are recovered, we guide you through the withdrawal process. You can withdraw via bank transfer, cryptocurrency, or other methods. We handle all legal documentation and compliance requirements.</p>
+            </details>
+        </div>
+
+        <div class="bg-primary text-white p-8 rounded-lg mt-12 text-center">
+            <h3 class="text-2xl font-bold mb-4">Still Have Questions?</h3>
+            <p class="mb-6">Contact our support team for personalized assistance</p>
+            <a href="{% url 'contact' %}" class="inline-block bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

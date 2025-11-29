@@ -1,0 +1,550 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load humanize %}
+
+{% block title %}Case #{{ case.case_id }} - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-6 sm:py-8 bg-neutralGray min-h-screen">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header with Actions -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 animate-fadeInUp">
+            <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-midnight">Case <span class="text-cyan">#{{ case.case_id }}</span></h1>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold 
+                        {% if case.status == 'completed' %}bg-green-100 text-green-700
+                        {% elif case.status == 'secured' %}bg-blue-100 text-blue-700
+                        {% elif case.status == 'recovery' %}bg-purple-100 text-purple-700
+                        {% elif case.status == 'investigation' %}bg-yellow-100 text-yellow-700
+                        {% elif case.status == 'rejected' %}bg-red-100 text-red-700
+                        {% else %}bg-cyan bg-opacity-10 text-cyan{% endif %}">
+                        {{ case.get_status_display }}
+                    </span>
+                </div>
+                <p class="text-coolGray text-sm sm:text-base">{{ case.title }}</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="printCase()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-midnight hover:bg-gray-50 transition text-sm font-semibold">
+                    <i class="fas fa-print mr-2"></i>Print
+                </button>
+                <a href="{% url 'cases' %}" class="px-4 py-2 bg-midnight text-white rounded-lg hover:bg-navy transition text-sm font-semibold">
+                    <i class="fas fa-arrow-left mr-2"></i>Back
+                </a>
+            </div>
+        </div>
+
+        <!-- Status Alert -->
+        {% if case.status == 'completed' %}
+        <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 text-xl mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-green-800 text-sm">Case Successfully Completed</h3>
+                    <p class="text-green-700 text-sm mt-1">This case has been resolved and all recovery processes are complete.</p>
+                </div>
+            </div>
+        </div>
+        {% elif case.status == 'rejected' %}
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+            <div class="flex items-center">
+                <i class="fas fa-times-circle text-red-500 text-xl mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-red-800 text-sm">Case Rejected</h3>
+                    <p class="text-red-700 text-sm mt-1">This case was rejected during the review process.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Case Overview Card -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h2 class="text-xl font-bold text-midnight mb-6 flex items-center">
+                        <i class="fas fa-chart-bar text-cyan mr-3"></i>Case Overview
+                    </h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-neutralGray p-4 rounded-xl text-center">
+                            <i class="fas fa-tag text-cyan text-xl mb-2"></i>
+                            <p class="text-coolGray text-xs mb-1">Scam Type</p>
+                            <p class="font-bold text-midnight text-sm">{{ case.get_scam_type_display }}</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-xl text-center border-l-4 border-red-500">
+                            <i class="fas fa-dollar-sign text-red-500 text-xl mb-2"></i>
+                            <p class="text-coolGray text-xs mb-1">Amount Lost</p>
+                            <p class="font-bold text-red-600 text-lg">{{ user.get_currency_symbol }}{{ case.amount_lost|floatformat:2|intcomma }}</p>
+                        </div>
+                        <div class="bg-neutralGray p-4 rounded-xl text-center">
+                            <i class="far fa-calendar text-cyan text-xl mb-2"></i>
+                            <p class="text-coolGray text-xs mb-1">Incident Date</p>
+                            <p class="font-bold text-midnight text-sm">{{ case.incident_date|date:"M d, Y" }}</p>
+                        </div>
+                        <div class="bg-neutralGray p-4 rounded-xl text-center">
+                            <i class="fas fa-clock text-cyan text-xl mb-2"></i>
+                            <p class="text-coolGray text-xs mb-1">Days Active</p>
+                            <p class="font-bold text-midnight text-sm">{{ case.created_at|timesince }}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-bold text-midnight mb-3 flex items-center">
+                                <i class="fas fa-align-left text-cyan mr-2"></i>Case Description
+                            </h3>
+                            <div class="bg-neutralGray p-4 rounded-xl">
+                                <p class="text-coolGray leading-relaxed text-sm">{{ case.description|linebreaks }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Scam-specific Details -->
+                        {% if case.scam_type == 'crypto' %}
+                        <div>
+                            <h3 class="font-bold text-midnight mb-3 flex items-center">
+                                <i class="fab fa-bitcoin text-cyan mr-2"></i>Crypto Details
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {% if case.blockchain %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Blockchain</p>
+                                    <p class="font-bold text-midnight text-sm">{{ case.blockchain }}</p>
+                                </div>
+                                {% endif %}
+                                {% if case.victim_wallet %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Your Wallet</p>
+                                    <p class="font-bold text-midnight text-sm font-mono text-xs">{{ case.victim_wallet|truncatechars:20 }}</p>
+                                </div>
+                                {% endif %}
+                                {% if case.scammer_wallet %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Scammer's Wallet</p>
+                                    <p class="font-bold text-midnight text-sm font-mono text-xs">{{ case.scammer_wallet|truncatechars:20 }}</p>
+                                </div>
+                                {% endif %}
+                                {% if case.transaction_hash %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Transaction Hash</p>
+                                    <p class="font-bold text-midnight text-sm font-mono text-xs">{{ case.transaction_hash|truncatechars:20 }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% elif case.scam_type == 'banking' %}
+                        <div>
+                            <h3 class="font-bold text-midnight mb-3 flex items-center">
+                                <i class="fas fa-university text-cyan mr-2"></i>Banking Details
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {% if case.bank_name %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Bank Name</p>
+                                    <p class="font-bold text-midnight text-sm">{{ case.bank_name }}</p>
+                                </div>
+                                {% endif %}
+                                {% if case.account_debited %}
+                                <div class="bg-neutralGray p-3 rounded-lg">
+                                    <p class="text-coolGray text-xs mb-1">Account Debited</p>
+                                    <p class="font-bold text-midnight text-sm">{{ case.account_debited }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Timeline & Activity -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-midnight flex items-center">
+                            <i class="fas fa-stream text-cyan mr-3"></i>Case Timeline
+                        </h2>
+                        <button onclick="toggleTimeline()" class="text-cyan hover:text-cyanDark text-sm font-semibold">
+                            <i class="fas fa-expand mr-1"></i>Toggle View
+                        </button>
+                    </div>
+
+                    <div id="timeline-view" class="space-y-4">
+                        {% for update in status_updates %}
+                        <div class="flex gap-4 pb-4 border-b border-gray-200 last:border-0 group hover:bg-neutralGray hover:bg-opacity-50 p-3 rounded-xl transition">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-cyan bg-opacity-10 rounded-full flex items-center justify-center group-hover:bg-cyan group-hover:text-white transition">
+                                    <i class="fas fa-{{ update.icon|default:'circle' }} text-cyan text-sm group-hover:text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <p class="font-bold text-midnight text-sm">{{ update.get_new_status_display }}</p>
+                                    <span class="text-coolGray text-xs bg-gray-100 px-2 py-1 rounded">{{ update.created_at|date:"M d, Y" }}</span>
+                                </div>
+                                <p class="text-coolGray text-sm leading-relaxed">{{ update.message|default:"Status updated" }}</p>
+                                <p class="text-coolGray text-xs mt-2 flex items-center">
+                                    <i class="far fa-clock mr-1"></i>
+                                    {{ update.created_at|date:"H:i A" }} by {{ update.created_by.username }}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="text-center py-8">
+                            <i class="fas fa-history text-4xl text-coolGray mb-3"></i>
+                            <p class="text-coolGray text-sm">No status updates yet</p>
+                            <p class="text-coolGray text-xs mt-1">Updates will appear here as your case progresses</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Compact Timeline View (Hidden by default) -->
+                    <div id="compact-timeline" class="hidden">
+                        <div class="flex overflow-x-auto pb-4 space-x-4">
+                            {% for update in status_updates %}
+                            <div class="flex-shrink-0 w-48 bg-neutralGray p-4 rounded-xl">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-6 h-6 bg-cyan bg-opacity-10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-{{ update.icon|default:'circle' }} text-cyan text-xs"></i>
+                                    </div>
+                                    <span class="font-bold text-midnight text-xs">{{ update.get_new_status_display }}</span>
+                                </div>
+                                <p class="text-coolGray text-xs mb-2">{{ update.message|truncatewords:10 }}</p>
+                                <p class="text-coolGray text-xs">{{ update.created_at|date:"M d" }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evidence & Documents -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h2 class="text-xl font-bold text-midnight mb-6 flex items-center">
+                        <i class="fas fa-paperclip text-cyan mr-3"></i>Evidence & Documents
+                    </h2>
+
+                    {% if evidence_files %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {% for file in evidence_files %}
+                        <div class="border-2 border-gray-200 rounded-xl p-4 hover:border-cyan hover:shadow-md transition group">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-file-{{ file.file_type|default:'alt' }} text-cyan text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-midnight text-sm truncate">{{ file.file.name|slice:"-20:" }}</p>
+                                        <p class="text-coolGray text-xs">{{ file.file_type|default:"Document" }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="{{ file.file.url }}" target="_blank" class="text-cyan hover:text-cyanDark" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ file.file.url }}" download class="text-cyan hover:text-cyanDark" title="Download">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% if file.description %}
+                            <p class="text-coolGray text-xs">{{ file.description }}</p>
+                            {% endif %}
+                            <p class="text-coolGray text-xs mt-2">{{ file.uploaded_at|date:"M d, Y" }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-8">
+                        <i class="fas fa-file-upload text-4xl text-coolGray mb-3"></i>
+                        <p class="text-coolGray text-sm">No evidence files uploaded</p>
+                        <p class="text-coolGray text-xs mt-1">Upload evidence to help with your case investigation</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Recovery Progress -->
+                {% if recovery_transactions %}
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h2 class="text-xl font-bold text-midnight mb-6 flex items-center">
+                        <i class="fas fa-chart-line text-green-500 mr-3"></i>Recovery Progress
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        {% for trans in recovery_transactions %}
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 bg-green-50 rounded-xl border-l-4 border-green-500 hover:shadow-md transition">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <p class="font-bold text-midnight text-sm">{{ trans.recovery_method }}</p>
+                                    <span class="text-coolGray text-xs bg-white px-2 py-1 rounded">{{ trans.recovery_date|date:"M d, Y" }}</span>
+                                </div>
+                                {% if trans.description %}
+                                <p class="text-coolGray text-sm">{{ trans.description }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-green-600">{{ user.get_currency_symbol }}{{ trans.amount_recovered|floatformat:2|intcomma }}</p>
+                                <p class="text-coolGray text-xs">Recovered</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <!-- Total Recovery -->
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-sm opacity-90">Total Recovered</p>
+                                    <p class="text-2xl font-bold">{{ user.get_currency_symbol }}{{ case.get_total_recovered|floatformat:2|intcomma }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm opacity-90">Recovery Rate</p>
+                                    <p class="text-2xl font-bold">
+                                        {% widthratio case.get_total_recovered case.amount_lost 100 %}%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Case Progress -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold text-midnight mb-4 flex items-center">
+                        <i class="fas fa-tasks text-cyan mr-2"></i>Case Progress
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm text-coolGray mb-2">
+                                <span>Progress</span>
+                                <span class="font-bold text-midnight">{{ case.get_progress_percentage }}%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-gradient-cyan h-3 rounded-full transition-all duration-500" style="width: {{ case.get_progress_percentage }}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            {% for status_value, status_display in case.STATUS_CHOICES %}
+                            <div class="flex items-center gap-3 p-2 rounded-lg {% if case.status == status_value %}bg-cyan bg-opacity-10 border border-cyan{% endif %}">
+                                <div class="w-3 h-3 rounded-full {% if case.get_status_order >= forloop.counter %}bg-cyan{% else %}bg-gray-300{% endif %}"></div>
+                                <span class="text-sm {% if case.get_status_order >= forloop.counter %}text-midnight font-semibold{% else %}text-coolGray{% endif %}">
+                                    {{ status_display }}
+                                </span>
+                                {% if case.status == status_value %}
+                                <i class="fas fa-arrow-right text-cyan ml-auto"></i>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Team -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold text-midnight mb-4 flex items-center">
+                        <i class="fas fa-users text-cyan mr-2"></i>Case Team
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        {% if case.assigned_agent %}
+                        <div class="flex items-center gap-3 p-3 bg-neutralGray rounded-xl">
+                            <div class="w-12 h-12 bg-gradient-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                {{ case.assigned_agent.username.0|upper }}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-midnight text-sm truncate">{{ case.assigned_agent.get_full_name|default:case.assigned_agent.username }}</p>
+                                <p class="text-coolGray text-xs">Recovery Specialist</p>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                    <span class="text-coolGray text-xs">4.9/5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-user-clock text-2xl text-coolGray mb-2"></i>
+                            <p class="text-coolGray text-sm">Awaiting Agent</p>
+                            <p class="text-coolGray text-xs mt-1">Specialist will be assigned soon</p>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="border-t pt-4">
+                            <a href="{% url 'contact' %}?case={{ case.case_id }}" class="block text-center bg-cyan text-white py-2 rounded-lg font-semibold hover:bg-cyanDark transition text-sm">
+                                <i class="fas fa-headset mr-2"></i>Contact Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Summary -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold text-midnight mb-4 flex items-center">
+                        <i class="fas fa-chart-pie text-cyan mr-2"></i>Financial Summary
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                            <span class="text-coolGray text-sm">Amount Lost</span>
+                            <span class="font-bold text-red-600">{{ user.get_currency_symbol }}{{ case.amount_lost|floatformat:2|intcomma }}</span>
+                        </div>
+                        
+                        {% if case.get_total_recovered > 0 %}
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <span class="text-coolGray text-sm">Amount Recovered</span>
+                            <span class="font-bold text-green-600">{{ user.get_currency_symbol }}{{ case.get_total_recovered|floatformat:2|intcomma }}</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                            <span class="text-coolGray text-sm">Recovery Rate</span>
+                            <span class="font-bold text-blue-600">
+                                {% widthratio case.get_total_recovered case.amount_lost 100 %}%
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if deposits %}
+                        <div class="flex justify-between items-center p-3 bg-cyan-50 rounded-lg">
+                            <span class="text-coolGray text-sm">Total Deposits</span>
+                            <span class="font-bold text-cyan-600">{{ user.get_currency_symbol }}{{ case.get_total_deposits|floatformat:2|intcomma }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-midnight text-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-bolt text-cyan mr-2"></i>Quick Actions
+                    </h3>
+                    
+                    <div class="space-y-2">
+                        <button onclick="shareCase()" class="w-full bg-cyan text-white py-2 rounded-lg font-semibold hover:bg-cyanDark transition text-sm">
+                            <i class="fas fa-share mr-2"></i>Share Case
+                        </button>
+                        <a href="{% url 'contact' %}?case={{ case.case_id }}" class="block w-full bg-navy text-white py-2 rounded-lg text-center font-semibold hover:bg-cyan transition text-sm">
+                            <i class="fas fa-headset mr-2"></i>Get Help
+                        </a>
+                        <a href="{% url 'cases' %}" class="block w-full bg-white text-midnight py-2 rounded-lg text-center font-semibold hover:bg-gray-100 transition text-sm">
+                            <i class="fas fa-arrow-left mr-2"></i>All Cases
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Statistics -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold text-midnight mb-4 flex items-center">
+                        <i class="fas fa-chart-bar text-cyan mr-2"></i>Case Stats
+                    </h3>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-coolGray">Case Duration</span>
+                            <span class="font-bold text-midnight">{{ case.created_at|timesince }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-coolGray">Status Updates</span>
+                            <span class="font-bold text-midnight">{{ status_updates.count }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-coolGray">Evidence Files</span>
+                            <span class="font-bold text-midnight">{{ evidence_files.count }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-coolGray">Last Updated</span>
+                            <span class="font-bold text-midnight">{{ case.updated_at|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add these methods to your ScamCase model -->
+<script>
+function printCase() {
+    window.print();
+}
+
+function toggleTimeline() {
+    const timelineView = document.getElementById('timeline-view');
+    const compactTimeline = document.getElementById('compact-timeline');
+    
+    if (timelineView.classList.contains('hidden')) {
+        timelineView.classList.remove('hidden');
+        compactTimeline.classList.add('hidden');
+    } else {
+        timelineView.classList.add('hidden');
+        compactTimeline.classList.remove('hidden');
+    }
+}
+
+function shareCase() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Case #{{ case.case_id }} - RecoveryPro',
+            text: 'Check out my case progress on RecoveryPro',
+            url: window.location.href
+        });
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('Case link copied to clipboard!');
+        });
+    }
+}
+
+// Add copy functionality for wallet addresses and emails
+document.addEventListener('DOMContentLoaded', function() {
+    const copyButtons = document.querySelectorAll('[data-copy]');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const text = this.getAttribute('data-copy');
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                }, 2000);
+            });
+        });
+    });
+});
+</script>
+
+<style>
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+    }
+    
+    .bg-neutralGray, .bg-white {
+        background: white !important;
+    }
+    
+    .shadow-card {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb !important;
+    }
+}
+
+/* Custom scrollbar for compact timeline */
+.compact-timeline::-webkit-scrollbar {
+    height: 6px;
+}
+
+.compact-timeline::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 10px;
+}
+
+.compact-timeline::-webkit-scrollbar-thumb {
+    background: #02B3E4;
+    border-radius: 10px;
+}
+</style>
+{% endblock %}

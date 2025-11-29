@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+
+{% block title %}Withdrawal History - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-6 sm:py-8 bg-neutralGray min-h-screen">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-midnight mb-2">
+                        Withdrawal <span class="text-cyan">History</span>
+                    </h1>
+                    <p class="text-coolGray text-sm sm:text-base">Track all your withdrawal requests and their status</p>
+                </div>
+                <a href="{% url 'withdraw' %}" class="bg-cyan text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyanDark transition inline-flex items-center shadow-lg">
+                    <i class="fas fa-plus mr-2"></i>New Withdrawal
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            <!-- Total Withdrawn -->
+            <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-lg transition-all duration-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-cyan bg-opacity-10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-dollar-sign text-cyan text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray text-xs font-semibold mb-1">TOTAL WITHDRAWN</p>
+                <p class="text-3xl font-bold text-midnight">{{ user.get_currency_symbol }}{{ total_withdrawn }}</p>
+                <div class="mt-3 flex items-center text-xs text-green-600">
+                    <i class="fas fa-arrow-up mr-1"></i>
+                    <span class="font-semibold">All time</span>
+                </div>
+            </div>
+
+            <!-- Pending -->
+            <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-lg transition-all duration-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-clock text-yellow-600 text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray text-xs font-semibold mb-1">PENDING</p>
+                <p class="text-3xl font-bold text-yellow-600">{{ pending_count }}</p>
+                <div class="mt-3 flex items-center text-xs text-yellow-600">
+                    <i class="fas fa-hourglass-half mr-1"></i>
+                    <span class="font-semibold">Under review</span>
+                </div>
+            </div>
+
+            <!-- Completed -->
+            <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-lg transition-all duration-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray text-xs font-semibold mb-1">COMPLETED</p>
+                <p class="text-3xl font-bold text-green-600">{{ completed_count }}</p>
+                <div class="mt-3 flex items-center text-xs text-green-600">
+                    <i class="fas fa-check mr-1"></i>
+                    <span class="font-semibold">Successfully processed</span>
+                </div>
+            </div>
+
+            <!-- Rejected -->
+            <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-lg transition-all duration-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-times-circle text-red-600 text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray text-xs font-semibold mb-1">REJECTED</p>
+                <p class="text-3xl font-bold text-red-600">{{ rejected_count }}</p>
+                <div class="mt-3 flex items-center text-xs text-red-600">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                    <span class="font-semibold">Review details</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdrawal List -->
+        <div class="bg-white rounded-xl shadow-card overflow-hidden">
+            <div class="p-6 border-b-2 border-gray-100">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-history text-cyan text-2xl mr-3"></i>
+                        <h2 class="text-xl font-bold text-midnight">Transaction History</h2>
+                    </div>
+                    
+                    <!-- Filter Options (Optional) -->
+                    <div class="flex items-center space-x-2">
+                        <select class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-cyan focus:ring-2 focus:ring-cyan focus:ring-opacity-20 outline-none transition" id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="completed">Completed</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {% if withdrawals %}
+                <!-- Desktop Table View -->
+                <div class="hidden lg:block overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Request ID</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Method</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold text-coolGray uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            {% for withdrawal in withdrawals %}
+                                <tr class="hover:bg-gray-50 transition-colors duration-150" data-status="{{ withdrawal.status }}">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-cyan bg-opacity-10 rounded-lg flex items-center justify-center mr-3">
+                                                <i class="fas fa-receipt text-cyan"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-midnight">{{ withdrawal.request_id }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <p class="font-bold text-lg text-midnight">{{ user.get_currency_symbol }}{{ withdrawal.amount }}</p>
+                                        <p class="text-xs text-coolGray">USD</p>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            {% if withdrawal.method == 'bank' %}
+                                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2">
+                                                    <i class="fas fa-university text-blue-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-midnight font-medium">Bank Transfer</span>
+                                            {% elif withdrawal.method == 'crypto' %}
+                                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-2">
+                                                    <i class="fas fa-coins text-orange-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-midnight font-medium">Cryptocurrency</span>
+                                            {% elif withdrawal.method == 'paypal' %}
+                                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2">
+                                                    <i class="fab fa-paypal text-blue-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-midnight font-medium">PayPal</span>
+                                            {% elif withdrawal.method == 'cashapp' %}
+                                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-2">
+                                                    <i class="fas fa-mobile text-green-600 text-sm"></i>
+                                                </div>
+                                                <span class="text-midnight font-medium">CashApp</span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
+                                            {% if withdrawal.status == 'completed' %}bg-green-100 text-green-800
+                                            {% elif withdrawal.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                            {% elif withdrawal.status == 'processing' %}bg-blue-100 text-blue-800
+                                            {% elif withdrawal.status == 'rejected' %}bg-red-100 text-red-800
+                                            {% endif %}">
+                                            {% if withdrawal.status == 'completed' %}<i class="fas fa-check-circle mr-1"></i>
+                                            {% elif withdrawal.status == 'pending' %}<i class="fas fa-clock mr-1"></i>
+                                            {% elif withdrawal.status == 'processing' %}<i class="fas fa-spinner mr-1"></i>
+                                            {% elif withdrawal.status == 'rejected' %}<i class="fas fa-times-circle mr-1"></i>
+                                            {% endif %}
+                                            {{ withdrawal.get_status_display }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <p class="text-midnight font-medium">{{ withdrawal.created_at|date:"M d, Y" }}</p>
+                                        <p class="text-xs text-coolGray">{{ withdrawal.created_at|date:"h:i A" }}</p>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button onclick="viewDetails('{{ withdrawal.request_id }}')" class="text-cyan hover:text-cyanDark font-semibold text-sm">
+                                            <i class="fas fa-eye mr-1"></i>View
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Card View -->
+                <div class="lg:hidden divide-y divide-gray-100">
+                    {% for withdrawal in withdrawals %}
+                        <div class="p-6 hover:bg-gray-50 transition-colors" data-status="{{ withdrawal.status }}">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-cyan bg-opacity-10 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-receipt text-cyan text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-midnight">{{ withdrawal.request_id }}</p>
+                                        <p class="text-xs text-coolGray">{{ withdrawal.created_at|date:"M d, Y" }}</p>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
+                                    {% if withdrawal.status == 'completed' %}bg-green-100 text-green-800
+                                    {% elif withdrawal.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                    {% elif withdrawal.status == 'processing' %}bg-blue-100 text-blue-800
+                                    {% elif withdrawal.status == 'rejected' %}bg-red-100 text-red-800
+                                    {% endif %}">
+                                    {{ withdrawal.get_status_display }}
+                                </span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-coolGray text-sm">Amount</span>
+                                    <span class="font-bold text-lg text-midnight">{{ user.get_currency_symbol }}{{ withdrawal.amount }}</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-coolGray text-sm">Method</span>
+                                    <div class="flex items-center">
+                                        {% if withdrawal.method == 'bank' %}
+                                            <i class="fas fa-university text-blue-600 mr-2"></i>
+                                            <span class="text-midnight font-medium text-sm">Bank Transfer</span>
+                                        {% elif withdrawal.method == 'crypto' %}
+                                            <i class="fas fa-coins text-orange-600 mr-2"></i>
+                                            <span class="text-midnight font-medium text-sm">Cryptocurrency</span>
+                                        {% elif withdrawal.method == 'paypal' %}
+                                            <i class="fab fa-paypal text-blue-600 mr-2"></i>
+                                            <span class="text-midnight font-medium text-sm">PayPal</span>
+                                        {% elif withdrawal.method == 'cashapp' %}
+                                            <i class="fas fa-mobile text-green-600 mr-2"></i>
+                                            <span class="text-midnight font-medium text-sm">CashApp</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <button onclick="viewDetails('{{ withdrawal.request_id }}')" class="w-full mt-3 text-cyan hover:text-cyanDark font-semibold text-sm py-2 border-2 border-cyan rounded-lg transition">
+                                    <i class="fas fa-eye mr-2"></i>View Details
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination (if needed) -->
+                {% if withdrawals.has_other_pages %}
+                    <div class="px-6 py-4 bg-gray-50 border-t-2 border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-coolGray">
+                                Showing {{ withdrawals.start_index }} to {{ withdrawals.end_index }} of {{ withdrawals.paginator.count }} results
+                            </div>
+                            <div class="flex space-x-2">
+                                {% if withdrawals.has_previous %}
+                                    <a href="?page={{ withdrawals.previous_page_number }}" class="px-4 py-2 border-2 border-gray-300 rounded-lg text-midnight hover:border-cyan hover:text-cyan transition">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                {% endif %}
+                                {% if withdrawals.has_next %}
+                                    <a href="?page={{ withdrawals.next_page_number }}" class="px-4 py-2 border-2 border-gray-300 rounded-lg text-midnight hover:border-cyan hover:text-cyan transition">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                <!-- Empty State -->
+                <div class="p-16 text-center">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-inbox text-gray-400 text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight mb-2">No Withdrawal History</h3>
+                    <p class="text-coolGray mb-6 max-w-md mx-auto">
+                        You haven't made any withdrawal requests yet. When you request a withdrawal, it will appear here.
+                    </p>
+                    <a href="{% url 'withdraw' %}" class="inline-flex items-center bg-cyan text-white px-8 py-3 rounded-lg font-semibold hover:bg-cyanDark transition shadow-lg">
+                        <i class="fas fa-plus mr-2"></i>Request Withdrawal
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Help Section -->
+        <div class="mt-8 bg-gradient-to-r from-cyan to-blue-500 rounded-xl p-6 text-white">
+            <div class="flex items-start">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                    <i class="fas fa-question-circle text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">Need Help with Withdrawals?</h3>
+                    <p class="text-white text-opacity-90 text-sm mb-4">
+                        Our support team is available 24/7 to assist you with any withdrawal-related questions or issues.
+                    </p>
+                    <a href="{% url 'contact' %}" class="inline-flex items-center bg-white text-cyan px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition text-sm">
+                        <i class="fas fa-headset mr-2"></i>Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Filter select styling */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem 1.25rem;
+    padding-right: 2.5rem;
+}
+
+/* Smooth transitions */
+.shadow-card {
+    transition: all 0.3s ease;
+}
+
+/* Table row hover effect */
+tbody tr:hover {
+    transform: scale(1.01);
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+</style>
+
+<script>
+// Status filter functionality
+const statusFilter = document.getElementById('statusFilter');
+if (statusFilter) {
+    statusFilter.addEventListener('change', function() {
+        const selectedStatus = this.value;
+        const rows = document.querySelectorAll('[data-status]');
+        
+        rows.forEach(row => {
+            if (selectedStatus === 'all' || row.dataset.status === selectedStatus) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+}
+
+// View details function
+function viewDetails(requestId) {
+    // You can implement a modal or redirect to a detail page
+    alert(`Viewing details for withdrawal request: ${requestId}\n\nThis would normally show a detailed modal or navigate to a detail page.`);
+    // Example: window.location.href = `/withdrawal/${requestId}/`;
+}
+
+// Add animation class to stat cards on load
+document.addEventListener('DOMContentLoaded', function() {
+    const statCards = document.querySelectorAll('.grid > div');
+    statCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('animate-fadeInUp');
+        }, index * 100);
+    });
+});
+</script>
+{% endblock %}

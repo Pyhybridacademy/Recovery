@@ -1,0 +1,64 @@
+<!-- templates/dashboard/notifications.html -->
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Notifications - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-10 bg-neutralGray min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-card p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-2xl font-bold text-midnight flex items-center">
+                    <i class="fas fa-bell text-cyan mr-3"></i>Notifications
+                </h1>
+                {% if notifications %}
+                <button onclick="markAllRead()" class="px-4 py-2 bg-cyan text-white rounded-lg hover:bg-cyanDark transition text-sm">
+                    Mark All Read
+                </button>
+                {% endif %}
+            </div>
+            
+            {% if notifications %}
+            <div class="space-y-4">
+                {% for notif in notifications %}
+                <div class="p-4 border-2 border-gray-100 rounded-xl hover:border-cyan transition {% if not notif.is_read %}bg-cyan bg-opacity-5{% endif %}">
+                    <div class="flex items-start justify-between mb-2">
+                        <h3 class="font-bold text-midnight">{{ notif.title }}</h3>
+                        <span class="text-xs text-coolGray">{{ notif.created_at|timesince_simple }}</span>
+                    </div>
+                    <p class="text-coolGray text-sm mb-3">{{ notif.message }}</p>
+                    {% if notif.related_case %}
+                    <a href="{% url 'case_detail' notif.related_case.case_id %}" class="text-cyan text-sm font-semibold hover:text-cyanDark transition">
+                        View Case <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-12">
+                <i class="fas fa-bell-slash text-5xl text-coolGray mb-4"></i>
+                <p class="text-coolGray text-lg">No notifications yet</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+function markAllRead() {
+    fetch('{% url "mark_all_notifications_read" %}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    }).then(response => {
+        if (response.ok) {
+            location.reload();
+        }
+    });
+}
+</script>
+{% endblock %}

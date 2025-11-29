@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; background: #f9fafb; }
+        .container { max-width: 600px; margin: 0 auto; background: white; }
+        .header { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 40px; text-align: center; }
+        .content { padding: 40px; }
+        .button { display: inline-block; background: #2563eb; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .footer { background: #f9fafb; padding: 20px; text-align: center; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>❌ Withdrawal Rejected</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ user.first_name|default:user.username }},</p>
+            
+            <p>Unfortunately, your withdrawal request has been rejected.</p>
+            
+            <div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; margin: 20px 0;">
+                <strong>Withdrawal Details:</strong>
+                <p>Request ID: {{ withdrawal.request_id }}</p>
+                <p>Amount: ${{ withdrawal.amount }}</p>
+                <p>Status: Rejected</p>
+            </div>
+            
+            <h3>What Happened:</h3>
+            <p>Your withdrawal was rejected due to one of the following reasons:</p>
+            <ul>
+                <li>Invalid payment details provided</li>
+                <li>Insufficient verification</li>
+                <li>Account security concerns</li>
+                <li>Payment method issues</li>
+            </ul>
+            
+            <p><strong>Your funds have been refunded to your wallet.</strong></p>
+            
+            <center>
+                <a href="https://recoverypro.com/withdraw/" class="button">Try Again</a>
+            </center>
+            
+            <p>If you need help, contact our support team at support@recoverypro.com</p>
+            
+            <p>Best regards,<br/>RecoveryPro Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>RecoveryPro © 2025. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

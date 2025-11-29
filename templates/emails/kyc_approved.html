@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; background: #f9fafb; }
+        .container { max-width: 600px; margin: 0 auto; background: white; }
+        .header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 40px; text-align: center; }
+        .content { padding: 40px; }
+        .button { display: inline-block; background: #10b981; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .footer { background: #f9fafb; padding: 20px; text-align: center; color: #666; font-size: 12px; border-top: 1px solid #e5e7eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✅ KYC Verification Approved</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ user.first_name|default:user.username }},</p>
+            
+            <p>Great news! Your KYC verification has been approved. You now have full access to all RecoveryPro features.</p>
+            
+            <h3>What You Can Do Now:</h3>
+            <ul>
+                <li>Submit scam recovery cases</li>
+                <li>Make deposits for investigations</li>
+                <li>Withdraw recovered funds</li>
+                <li>Access premium features</li>
+            </ul>
+            
+            <center>
+                <a href="https://recoverypro.com/dashboard/" class="button">Go to Dashboard</a>
+            </center>
+            
+            <p>Start your recovery journey today!</p>
+            
+            <p>Best regards,<br/>RecoveryPro Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>RecoveryPro © 2025. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="min-h-screen flex items-center justify-center bg-neutralGray py-12">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-xl shadow-card p-8 animate-fadeInUp">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-darkGray mb-2 flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-cyan mr-3"></i>RecoveryPro
+                </h1>
+                <p class="text-coolGray">Create your recovery account</p>
+            </div>
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="id_username" class="block text-sm font-bold mb-2 text-darkGray">Username</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_email" class="block text-sm font-bold mb-2 text-darkGray">Email Address</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_phone" class="block text-sm font-bold mb-2 text-darkGray">Phone (Optional)</label>
+                    {{ form.phone }}
+                </div>
+
+                <div>
+                    <label for="id_preferred_currency" class="block text-sm font-bold mb-2 text-darkGray">Preferred Currency</label>
+                    {{ form.preferred_currency }}
+                    <p class="text-coolGray text-xs mt-1">This will be your default currency for all transactions</p>
+                </div>
+
+                <div>
+                    <label for="id_password1" class="block text-sm font-bold mb-2 text-darkGray">Password</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.password1.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_password2" class="block text-sm font-bold mb-2 text-darkGray">Confirm Password</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.password2.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="bg-cyanLight bg-opacity-10 p-4 rounded-lg text-sm text-darkGray border border-cyanLight">
+                    <p class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-info-circle text-cyan mr-2"></i>Password Requirements:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>At least 8 characters</li>
+                        <li>Mix of letters, numbers, and symbols</li>
+                        <li>Not too similar to your username</li>
+                    </ul>
+                </div>
+
+                <label class="flex items-start">
+                    <input type="checkbox" name="agree_terms" required class="w-4 h-4 text-cyan rounded border-coolGray mt-1 focus:ring-cyan">
+                    <span class="ml-2 text-sm text-coolGray">I agree to the <a href="#" class="text-cyan hover:text-cyanDark transition">Terms of Service</a> and <a href="#" class="text-cyan hover:text-cyanDark transition">Privacy Policy</a></span>
+                </label>
+
+                <button type="submit" class="w-full px-6 py-3 rounded-lg btn-primary text-white font-bold hover:shadow-card transition flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i>Create Account
+                </button>
+            </form>
+
+            <p class="text-center text-coolGray mt-6">Already have an account? <a href="{% url 'login' %}" class="text-cyan font-bold hover:text-cyanDark transition">Login here</a></p>
+        </div>
+    </div>
+</section>
+
+<style>
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select {
+    @apply w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition;
+}
+</style>
+{% endblock %}

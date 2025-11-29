@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load humanize %}
+
+{% block title %}My Cases - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-10 bg-neutralGray min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4 animate-fadeInUp">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-midnight mb-2">My <span class="text-cyan">Cases</span></h1>
+                <p class="text-coolGray text-lg">Track and manage all your recovery cases</p>
+            </div>
+            <a href="{% url 'new_case' %}" class="bg-midnight text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition transform hover:scale-105 flex items-center">
+                <i class="fas fa-plus mr-2"></i>Submit New Case
+            </a>
+        </div>
+
+        <!-- Stats Summary Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-xl shadow-card border-l-4 border-midnight hover:shadow-lg transition">
+                <p class="text-xs text-coolGray font-medium mb-1">Total Cases</p>
+                <p class="text-2xl font-bold text-midnight">{{ total_cases|default:"0" }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-card border-l-4 border-yellow-500 hover:shadow-lg transition">
+                <p class="text-xs text-coolGray font-medium mb-1">In Progress</p>
+                <p class="text-2xl font-bold text-yellow-600">{{ active_cases|default:"0" }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-card border-l-4 border-green-500 hover:shadow-lg transition">
+                <p class="text-xs text-coolGray font-medium mb-1">Completed</p>
+                <p class="text-2xl font-bold text-green-600">{{ completed_cases|default:"0" }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-card border-l-4 border-cyan hover:shadow-lg transition">
+                <p class="text-xs text-coolGray font-medium mb-1">Total Recovered</p>
+                <p class="text-2xl font-bold text-cyan">{{ user.get_currency_symbol }}{{ total_recovered|default:"0"|floatformat:2|intcomma }}</p>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-card mb-8">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-filter text-cyan"></i>
+                    <span class="font-bold text-midnight">Filters:</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterCases('all')" class="filter-btn active px-4 py-2 rounded-lg bg-cyan text-white font-semibold hover:bg-cyanDark transition">
+                        <i class="fas fa-th-large mr-2"></i>All Cases
+                    </button>
+                    <button onclick="filterCases('active')" class="filter-btn px-4 py-2 rounded-lg bg-white border-2 border-gray-200 text-coolGray font-semibold hover:border-cyan hover:text-cyan transition">
+                        <i class="fas fa-clock mr-2"></i>Active
+                    </button>
+                    <button onclick="filterCases('investigation')" class="filter-btn px-4 py-2 rounded-lg bg-white border-2 border-gray-200 text-coolGray font-semibold hover:border-cyan hover:text-cyan transition">
+                        <i class="fas fa-search mr-2"></i>Investigation
+                    </button>
+                    <button onclick="filterCases('completed')" class="filter-btn px-4 py-2 rounded-lg bg-white border-2 border-gray-200 text-coolGray font-semibold hover:border-cyan hover:text-cyan transition">
+                        <i class="fas fa-check-circle mr-2"></i>Completed
+                    </button>
+                    <button onclick="filterCases('rejected')" class="filter-btn px-4 py-2 rounded-lg bg-white border-2 border-gray-200 text-coolGray font-semibold hover:border-cyan hover:text-cyan transition">
+                        <i class="fas fa-times-circle mr-2"></i>Rejected
+                    </button>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 md:ml-auto">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search cases by ID, title, or description..." 
+                               class="w-full pl-10 pr-4 py-2 border-2 border-gray-200 rounded-lg focus:border-cyan focus:outline-none transition">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-coolGray"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cases Grid -->
+        {% if cases %}
+            <div class="grid grid-cols-1 gap-6" id="casesContainer">
+                {% for case in cases %}
+                    <div class="case-card bg-white rounded-2xl shadow-card hover:shadow-xl transition border-l-4 
+                        {% if case.status == 'completed' %}border-green-500
+                        {% elif case.status == 'secured' %}border-blue-500
+                        {% elif case.status == 'recovery' %}border-purple-500
+                        {% elif case.status == 'investigation' %}border-yellow-500
+                        {% elif case.status == 'rejected' %}border-red-500
+                        {% else %}border-cyan{% endif %} 
+                        overflow-hidden group cursor-pointer"
+                        onclick="window.location.href='{% url 'case_detail' case.case_id %}'">
+                        
+                        <div class="p-6">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                                <!-- Left Section: Case Info -->
+                                <div class="flex-1">
+                                    <div class="flex items-start space-x-4 mb-4">
+                                        <div class="w-14 h-14 
+                                            {% if case.status == 'completed' %}bg-green-100
+                                            {% elif case.status == 'secured' %}bg-blue-100
+                                            {% elif case.status == 'recovery' %}bg-purple-100
+                                            {% elif case.status == 'investigation' %}bg-yellow-100
+                                            {% elif case.status == 'rejected' %}bg-red-100
+                                            {% else %}bg-cyan bg-opacity-10{% endif %}
+                                            rounded-xl flex items-center justify-center text-2xl 
+                                            {% if case.status == 'completed' %}text-green-600
+                                            {% elif case.status == 'secured' %}text-blue-600
+                                            {% elif case.status == 'recovery' %}text-purple-600
+                                            {% elif case.status == 'investigation' %}text-yellow-600
+                                            {% elif case.status == 'rejected' %}text-red-600
+                                            {% else %}text-cyan{% endif %}
+                                            group-hover:scale-110 transition flex-shrink-0">
+                                            <i class="fas fa-{{ case.get_scam_type_icon }}"></i>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center gap-3 mb-2">
+                                                <p class="font-bold text-cyan text-xl">Case #{{ case.case_id }}</p>
+                                                <span class="px-3 py-1 rounded-full text-xs font-bold 
+                                                    {% if case.status == 'completed' %}bg-green-100 text-green-700
+                                                    {% elif case.status == 'secured' %}bg-blue-100 text-blue-700
+                                                    {% elif case.status == 'recovery' %}bg-purple-100 text-purple-700
+                                                    {% elif case.status == 'investigation' %}bg-yellow-100 text-yellow-700
+                                                    {% elif case.status == 'rejected' %}bg-red-100 text-red-700
+                                                    {% else %}bg-cyan bg-opacity-10 text-cyan{% endif %}">
+                                                    {{ case.get_status_display }}
+                                                </span>
+                                                {% if case.assigned_agent %}
+                                                <span class="px-2 py-1 rounded-full text-xs bg-gray-100 text-coolGray flex items-center">
+                                                    <i class="fas fa-user-shield mr-1"></i>Agent Assigned
+                                                </span>
+                                                {% endif %}
+                                            </div>
+                                            <h3 class="text-midnight font-bold text-lg mb-2 hover:text-cyan transition">{{ case.title }}</h3>
+                                            <p class="text-coolGray text-sm line-clamp-2">{{ case.description|truncatewords:20 }}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Case Details Grid -->
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-4 border-t border-gray-100">
+                                        <div>
+                                            <p class="text-xs text-coolGray mb-1 flex items-center">
+                                                <i class="fas fa-tag text-cyan mr-1"></i>Type
+                                            </p>
+                                            <p class="text-sm font-bold text-midnight">{{ case.get_scam_type_display }}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-coolGray mb-1 flex items-center">
+                                                <i class="fas fa-dollar-sign text-cyan mr-1"></i>Amount Lost
+                                            </p>
+                                            <p class="text-sm font-bold text-midnight">{{ user.get_currency_symbol }}{{ case.amount_lost|floatformat:2|intcomma }}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-coolGray mb-1 flex items-center">
+                                                <i class="far fa-calendar text-cyan mr-1"></i>Incident Date
+                                            </p>
+                                            <p class="text-sm font-bold text-midnight">{{ case.incident_date|date:"M d, Y" }}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-coolGray mb-1 flex items-center">
+                                                <i class="fas fa-clock text-cyan mr-1"></i>Last Updated
+                                            </p>
+                                            <p class="text-sm font-bold text-midnight">{{ case.updated_at|timesince_simple }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Section: Progress & Action -->
+                                <div class="lg:w-64 flex flex-col justify-between space-y-4">
+                                    <!-- Progress Section -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-3">
+                                            <p class="text-sm text-coolGray font-medium">Recovery Progress</p>
+                                            <p class="text-lg font-bold text-midnight">{{ case.get_progress_percentage }}%</p>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                                            <div class="h-3 rounded-full transition-all duration-500
+                                                {% if case.status == 'completed' %}bg-green-500
+                                                {% elif case.status == 'secured' %}bg-blue-500
+                                                {% elif case.status == 'recovery' %}bg-purple-500
+                                                {% elif case.status == 'investigation' %}bg-yellow-500
+                                                {% else %}bg-cyan{% endif %}"
+                                                style="width: {{ case.get_progress_percentage }}%">
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quick Stats -->
+                                        <div class="flex justify-between mt-3 text-xs text-coolGray">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-file-alt mr-1"></i>{{ case.evidence_files.count }} files
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-sync-alt mr-1"></i>{{ case.status_updates.count }} updates
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="flex gap-2">
+                                        <a href="{% url 'case_detail' case.case_id %}" 
+                                           class="flex-1 bg-midnight text-white py-3 px-4 rounded-xl font-bold text-center hover:shadow-lg transition flex items-center justify-center group">
+                                            View Details
+                                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                                        </a>
+                                        <div class="relative group/actions">
+                                            <button class="w-12 h-12 bg-gray-100 hover:bg-cyan hover:text-white rounded-xl transition flex items-center justify-center">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 opacity-0 invisible group-hover/actions:opacity-100 group-hover/actions:visible transition-all z-10">
+                                                <a href="{% url 'case_detail' case.case_id %}" class="block px-4 py-3 hover:bg-neutralGray text-midnight text-sm font-semibold">
+                                                    <i class="fas fa-eye mr-2 text-cyan"></i>View Details
+                                                </a>
+                                                {% if case.status != 'completed' and case.status != 'rejected' %}
+                                                <a href="{% url 'contact' %}?case={{ case.case_id }}" class="block px-4 py-3 hover:bg-neutralGray text-midnight text-sm font-semibold">
+                                                    <i class="fas fa-headset mr-2 text-cyan"></i>Contact Support
+                                                </a>
+                                                {% endif %}
+                                                <button onclick="shareCase('{{ case.case_id }}')" class="w-full text-left px-4 py-3 hover:bg-neutralGray text-midnight text-sm font-semibold">
+                                                    <i class="fas fa-share mr-2 text-cyan"></i>Share Case
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Load More / Pagination -->
+            <div class="mt-10 text-center">
+                <button id="loadMoreBtn" class="bg-white border-2 border-cyan text-cyan px-8 py-3 rounded-xl font-bold hover:bg-cyan hover:text-white transition">
+                    <i class="fas fa-refresh mr-2"></i>Load More Cases
+                </button>
+            </div>
+        {% else %}
+            <!-- Empty State -->
+            <div class="bg-white p-16 rounded-2xl shadow-card text-center">
+                <div class="w-32 h-32 bg-neutralGray rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-folder-open text-6xl text-coolGray"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-midnight mb-3">No Cases Yet</h2>
+                <p class="text-coolGray text-lg mb-2">You haven't submitted any recovery cases</p>
+                <p class="text-coolGray text-sm mb-8 max-w-md mx-auto">
+                    Start your journey to recovery by submitting your first case. Our expert agents are ready to help you recover your funds.
+                </p>
+                <a href="{% url 'new_case' %}" class="inline-flex items-center bg-gradient-cyan text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg transition transform hover:scale-105">
+                    <i class="fas fa-plus mr-3"></i>Submit Your First Case
+                </a>
+                
+                <!-- Help Section -->
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <p class="text-coolGray mb-4">Need help getting started?</p>
+                    <div class="flex justify-center gap-6">
+                        <a href="{% url 'faq' %}" class="text-cyan hover:text-cyanDark font-semibold flex items-center">
+                            <i class="fas fa-question-circle mr-2"></i>View FAQ
+                        </a>
+                        <a href="{% url 'contact' %}" class="text-cyan hover:text-cyanDark font-semibold flex items-center">
+                            <i class="fas fa-headset mr-2"></i>Contact Support
+                        </a>
+                        <a href="{% url 'about' %}" class="text-cyan hover:text-cyanDark font-semibold flex items-center">
+                            <i class="fas fa-play-circle mr-2"></i>How It Works
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+// Filter functionality
+function filterCases(status) {
+    // Remove active class from all buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-cyan', 'text-white');
+        btn.classList.add('bg-white', 'border-2', 'border-gray-200', 'text-coolGray');
+    });
+    
+    // Add active class to clicked button
+    event.target.classList.add('active', 'bg-cyan', 'text-white');
+    event.target.classList.remove('bg-white', 'border-2', 'border-gray-200', 'text-coolGray');
+    
+    // Filter cases
+    const cases = document.querySelectorAll('.case-card');
+    cases.forEach(caseCard => {
+        const caseStatus = caseCard.querySelector('[data-status]')?.getAttribute('data-status') || 
+                          caseCard.className.includes(status) ? status : 'other';
+        
+        if (status === 'all' || caseStatus === status) {
+            caseCard.style.display = 'block';
+        } else {
+            caseCard.style.display = 'none';
+        }
+    });
+}
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const cases = document.querySelectorAll('.case-card');
+    
+    cases.forEach(caseCard => {
+        const caseId = caseCard.querySelector('p.font-bold.text-cyan').textContent.toLowerCase();
+        const caseTitle = caseCard.querySelector('h3').textContent.toLowerCase();
+        const caseDesc = caseCard.querySelector('p.line-clamp-2').textContent.toLowerCase();
+        
+        if (caseId.includes(searchTerm) || caseTitle.includes(searchTerm) || caseDesc.includes(searchTerm)) {
+            caseCard.style.display = 'block';
+        } else {
+            caseCard.style.display = 'none';
+        }
+    });
+});
+
+// Share case functionality
+function shareCase(caseId) {
+    event.stopPropagation(); // Prevent card click
+    const caseUrl = `${window.location.origin}/cases/${caseId}/`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: `Case #${caseId} - RecoveryPro`,
+            text: 'Check out my recovery case progress on RecoveryPro',
+            url: caseUrl
+        });
+    } else {
+        navigator.clipboard.writeText(caseUrl).then(() => {
+            alert('Case link copied to clipboard!');
+        });
+    }
+}
+
+// Load more functionality
+document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
+    // This would typically make an AJAX request to load more cases
+    // For now, we'll just show a message
+    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+    setTimeout(() => {
+        this.innerHTML = '<i class="fas fa-check mr-2"></i>All Cases Loaded';
+        this.disabled = true;
+        this.classList.remove('hover:bg-cyan', 'hover:text-white');
+    }, 1500);
+});
+
+// Make entire card clickable (except action buttons)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.case-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking on buttons or links
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('button') || e.target.closest('a')) {
+                return;
+            }
+            window.location.href = this.querySelector('a[href*="/cases/"]').href;
+        });
+    });
+});
+</script>
+
+<style>
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.case-card {
+    transition: all 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Smooth animations */
+.filter-btn, .case-card, .load-more-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style>
+{% endblock %}

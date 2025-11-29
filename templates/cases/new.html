@@ -1,0 +1,598 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit New Case - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-6 sm:py-8 bg-neutralGray min-h-screen">
+    <div class="max-w-5xl mx-auto px-4">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-2xl sm:text-3xl font-bold text-midnight mb-2">Submit a <span class="text-cyan">Scam Case</span></h1>
+            <p class="text-coolGray text-sm sm:text-base">Fill out all required fields to help us investigate your case effectively</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6" id="caseForm">
+            {% csrf_token %}
+
+            <!-- Case Information -->
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-card">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-100">
+                    <i class="fas fa-info-circle text-cyan text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-midnight">Case Information</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Row 1: Scam Type and Case Title -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <label for="id_scam_type" class="block text-sm font-bold text-midnight mb-2">
+                                Type of Scam <span class="text-red-500">*</span>
+                            </label>
+                            {{ form.scam_type }}
+                            {% if form.scam_type.errors %}
+                                <p class="text-red-500 text-xs mt-1">{{ form.scam_type.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            <label for="id_title" class="block text-sm font-bold text-midnight mb-2">
+                                Case Title <span class="text-red-500">*</span>
+                            </label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                                <p class="text-red-500 text-xs mt-1">{{ form.title.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Description (Full Width) -->
+                    <div>
+                        <label for="id_description" class="block text-sm font-bold text-midnight mb-2">
+                            What Happened? <span class="text-red-500">*</span>
+                        </label>
+                        <p class="text-xs text-coolGray mb-2">Please provide as much detail as possible</p>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <p class="text-red-500 text-xs mt-1">{{ form.description.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Row 3: Amount, Currency, and Date -->
+                    <!-- In your cases/new.html - FIXED SECTION -->
+
+<!-- Row 3: Amount and Date (2 columns) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+        <label for="id_amount_lost" class="block text-sm font-bold text-midnight mb-2">
+            Amount Lost <span class="text-red-500">*</span>
+        </label>
+        <div class="relative">
+            <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">{{ user.get_currency_symbol }}</span>
+            {{ form.amount_lost }}
+        </div>
+        {% if form.amount_lost.errors %}
+            <p class="text-red-500 text-xs mt-1">{{ form.amount_lost.errors.0 }}</p>
+        {% endif %}
+        <p class="text-xs text-coolGray mt-1">Amount in {{ user.preferred_currency }}</p>
+    </div>
+
+    <div>
+        <label for="id_incident_date" class="block text-sm font-bold text-midnight mb-2">
+            Incident Date <span class="text-red-500">*</span>
+        </label>
+        {{ form.incident_date }}
+        {% if form.incident_date.errors %}
+            <p class="text-red-500 text-xs mt-1">{{ form.incident_date.errors.0 }}</p>
+        {% endif %}
+    </div>
+</div>
+                </div>
+            </div>
+
+            <!-- Scam-Specific Details (Conditional) -->
+            <div id="scamSpecificSection" class="bg-white p-6 sm:p-8 rounded-xl shadow-card" style="display: none;">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-100">
+                    <i class="fas fa-clipboard-list text-cyan text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-midnight">Additional Details</h2>
+                </div>
+                
+                <p class="text-sm text-coolGray mb-6">Provide additional information based on the type of scam</p>
+                
+                <div class="space-y-6">
+                    <!-- Crypto-specific fields -->
+                    <div id="cryptoFields" class="hidden space-y-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <label for="id_blockchain" class="block text-sm font-semibold text-midnight mb-2">
+                                    <i class="fas fa-link text-coolGray mr-2"></i>Blockchain Network
+                                </label>
+                                {{ form.blockchain }}
+                            </div>
+                            <div>
+                                <label for="id_exchange_used" class="block text-sm font-semibold text-midnight mb-2">
+                                    <i class="fas fa-exchange-alt text-coolGray mr-2"></i>Exchange Used
+                                </label>
+                                {{ form.exchange_used }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="id_victim_wallet" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-wallet text-coolGray mr-2"></i>Your Wallet Address
+                            </label>
+                            {{ form.victim_wallet }}
+                        </div>
+                        <div>
+                            <label for="id_scammer_wallet" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-user-secret text-coolGray mr-2"></i>Scammer's Wallet Address
+                            </label>
+                            {{ form.scammer_wallet }}
+                        </div>
+                        <div>
+                            <label for="id_transaction_hash" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-hashtag text-coolGray mr-2"></i>Transaction Hash/ID
+                            </label>
+                            {{ form.transaction_hash }}
+                        </div>
+                    </div>
+
+                    <!-- Banking-specific fields -->
+                    <div id="bankingFields" class="hidden space-y-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <label for="id_bank_name" class="block text-sm font-semibold text-midnight mb-2">
+                                    <i class="fas fa-university text-coolGray mr-2"></i>Bank Name
+                                </label>
+                                {{ form.bank_name }}
+                            </div>
+                            <div>
+                                <label for="id_account_debited" class="block text-sm font-semibold text-midnight mb-2">
+                                    <i class="fas fa-credit-card text-coolGray mr-2"></i>Account Debited
+                                </label>
+                                {{ form.account_debited }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="id_beneficiary_details" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-user text-coolGray mr-2"></i>Beneficiary Details
+                            </label>
+                            {{ form.beneficiary_details }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suspect Information -->
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-card">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-100">
+                    <i class="fas fa-user-secret text-cyan text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-midnight">Suspect Information</h2>
+                </div>
+                
+                <p class="text-sm text-coolGray mb-6">Provide any information you have about the scammer (all fields are optional but helpful)</p>
+                
+                <div class="space-y-6">
+                    <!-- Row 1: Email and Phone -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <label for="id_suspect_email" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-envelope text-coolGray mr-2"></i>Email Address
+                            </label>
+                            {{ form.suspect_email }}
+                        </div>
+                        <div>
+                            <label for="id_suspect_phone" class="block text-sm font-semibold text-midnight mb-2">
+                                <i class="fas fa-phone text-coolGray mr-2"></i>Phone Number
+                            </label>
+                            {{ form.suspect_phone }}
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Website (Full Width) -->
+                    <div>
+                        <label for="id_suspect_website" class="block text-sm font-semibold text-midnight mb-2">
+                            <i class="fas fa-globe text-coolGray mr-2"></i>Website or Social Media Profile
+                        </label>
+                        {{ form.suspect_website }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evidence Files -->
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-card">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-100">
+                    <i class="fas fa-paperclip text-cyan text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold text-midnight">Upload Evidence</h2>
+                </div>
+                
+                <p class="text-sm text-coolGray mb-6">Upload any supporting documents (screenshots, emails, transaction receipts, chat logs, etc.)</p>
+                
+                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-cyan transition-all duration-200" id="dropZone">
+                    {{ form.evidence_files }}
+                    <label for="id_evidence_files" class="cursor-pointer block">
+                        <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-cyan"></i>
+                        </div>
+                        <p class="text-midnight font-bold text-lg mb-2">Drag & Drop or Click to Upload</p>
+                        <p class="text-coolGray text-sm mb-4">Upload multiple files at once</p>
+                        <button type="button" onclick="document.getElementById('id_evidence_files').click();" class="bg-cyan text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyanDark transition inline-flex items-center">
+                            <i class="fas fa-folder-open mr-2"></i>Choose Files
+                        </button>
+                        <div class="mt-4 flex items-center justify-center text-xs text-coolGray">
+                            <i class="fas fa-info-circle text-cyan mr-2"></i>
+                            <span>Supported: PDF, JPG, PNG, DOC, DOCX, TXT • Max 10MB per file</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <!-- File List -->
+                <div id="fileList" class="mt-6 space-y-3 hidden">
+                    <!-- Files will be listed here -->
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="bg-gradient-to-r from-cyan to-blue-500 bg-opacity-10 border-2 border-cyan rounded-xl p-6">
+                <div class="flex items-start">
+                    <div class="w-12 h-12 bg-cyan bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                        <i class="fas fa-shield-alt text-cyan text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-midnight text-lg mb-2">Your Information is Secure & Confidential</p>
+                        <p class="text-coolGray text-sm leading-relaxed">
+                            All case information is encrypted and handled with strict confidentiality protocols. 
+                            Our expert investigation team will review your submission within 24 hours and contact you with the next steps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <button type="submit" class="bg-cyan text-white px-8 py-4 rounded-xl font-bold hover:bg-cyanDark transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <i class="fas fa-paper-plane mr-3"></i>Submit Case for Review
+                </button>
+                <a href="{% url 'cases' %}" class="border-2 border-gray-300 text-coolGray px-8 py-4 rounded-xl font-bold hover:border-cyan hover:text-cyan transition-all duration-200 text-center text-lg">
+                    <i class="fas fa-times mr-3"></i>Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+/* Form Base Styles - Applied to Django form fields */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    color: #0A1A2F;
+    background-color: white;
+    transition: all 0.2s ease;
+    outline: none;
+    font-size: 0.875rem;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="url"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="tel"]:hover,
+input[type="number"]:hover,
+input[type="date"]:hover,
+select:hover,
+textarea:hover {
+    border-color: #D1D5DB;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #02B3E4;
+    box-shadow: 0 0 0 3px rgba(2, 179, 228, 0.1);
+}
+
+/* Number input specific */
+#id_amount_lost {
+    padding-left: 2.5rem;
+}
+
+/* Select Dropdown Arrow */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5rem 1.5rem;
+    padding-right: 2.5rem;
+}
+
+/* Textarea */
+textarea {
+    resize: none;
+    line-height: 1.75;
+    min-height: 8rem;
+}
+
+/* File Input - Hide default and style wrapper */
+#id_evidence_files {
+    display: none;
+}
+
+/* Error states */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0 0;
+    color: #EF4444;
+    font-size: 0.75rem;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border-color: #FCA5A5;
+}
+
+input.error:focus,
+select.error:focus,
+textarea.error:focus {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* File Upload Zone */
+#dropZone {
+    transition: all 0.2s ease;
+}
+
+#dropZone.drag-over {
+    border-color: #02B3E4;
+    background-color: rgba(2, 179, 228, 0.05);
+    transform: scale(1.02);
+}
+
+/* File List Item Animation */
+.file-item {
+    transition: all 0.2s ease;
+}
+
+.file-item.removing {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+// Show/hide scam-specific fields based on scam type
+const scamTypeSelect = document.getElementById('id_scam_type');
+const scamSpecificSection = document.getElementById('scamSpecificSection');
+const cryptoFields = document.getElementById('cryptoFields');
+const bankingFields = document.getElementById('bankingFields');
+
+if (scamTypeSelect) {
+    scamTypeSelect.addEventListener('change', function() {
+        const scamType = this.value;
+        
+        // Hide all specific sections first
+        cryptoFields.classList.add('hidden');
+        bankingFields.classList.add('hidden');
+        
+        // Show relevant section based on scam type
+        if (scamType === 'crypto' || scamType === 'investment' || scamType === 'trading') {
+            scamSpecificSection.style.display = 'block';
+            cryptoFields.classList.remove('hidden');
+        } else if (scamType === 'banking') {
+            scamSpecificSection.style.display = 'block';
+            bankingFields.classList.remove('hidden');
+        } else {
+            scamSpecificSection.style.display = 'none';
+        }
+    });
+}
+
+// File upload handling
+const fileInput = document.getElementById('id_evidence_files');
+const dropZone = document.getElementById('dropZone');
+const fileList = document.getElementById('fileList');
+let uploadedFiles = [];
+
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+    document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// Drag and drop visual feedback
+dropZone.addEventListener('dragover', (e) => {
+    dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', (e) => {
+    dropZone.classList.remove('drag-over');
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    handleFiles(Array.from(files));
+});
+
+if (fileInput) {
+    fileInput.addEventListener('change', (e) => {
+        handleFiles(Array.from(e.target.files));
+    });
+}
+
+function handleFiles(files) {
+    const validExtensions = ['.pdf', '.jpg', '.jpeg', '.png', '.doc', '.docx', '.txt'];
+    
+    files.forEach(file => {
+        // Check file size
+        if (file.size > 10 * 1024 * 1024) {
+            alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+            return;
+        }
+        
+        // Check file extension
+        const fileName = file.name.toLowerCase();
+        const isValid = validExtensions.some(ext => fileName.endsWith(ext));
+        
+        if (!isValid) {
+            alert(`File "${file.name}" has an unsupported format. Please upload PDF, JPG, PNG, DOC, DOCX, or TXT files.`);
+            return;
+        }
+        
+        uploadedFiles.push(file);
+    });
+    
+    updateFileList();
+}
+
+function updateFileList() {
+    if (uploadedFiles.length > 0) {
+        fileList.classList.remove('hidden');
+        fileList.innerHTML = uploadedFiles.map((file, index) => {
+            const fileIcon = getFileIcon(file.name);
+            return `
+            <div class="file-item flex items-center justify-between p-4 bg-gray-50 rounded-lg border-2 border-gray-200 hover:border-cyan transition-all">
+                <div class="flex items-center space-x-4 min-w-0 flex-1">
+                    <div class="w-10 h-10 bg-cyan bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-${fileIcon} text-cyan text-lg"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="font-semibold text-midnight text-sm truncate">${file.name}</p>
+                        <p class="text-coolGray text-xs">${formatFileSize(file.size)}</p>
+                    </div>
+                </div>
+                <button type="button" onclick="removeFile(${index})" 
+                        class="text-red-500 hover:text-red-700 hover:bg-red-50 transition rounded-lg p-2 flex-shrink-0 ml-4"
+                        title="Remove file">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            `;
+        }).join('');
+    } else {
+        fileList.classList.add('hidden');
+    }
+}
+
+function getFileIcon(fileName) {
+    const extension = fileName.toLowerCase().split('.').pop();
+    const iconMap = {
+        'pdf': 'file-pdf',
+        'jpg': 'file-image',
+        'jpeg': 'file-image',
+        'png': 'file-image',
+        'doc': 'file-word',
+        'docx': 'file-word',
+        'txt': 'file-alt'
+    };
+    return iconMap[extension] || 'file';
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+}
+
+function removeFile(index) {
+    const fileItem = document.querySelectorAll('.file-item')[index];
+    fileItem.classList.add('removing');
+    setTimeout(() => {
+        uploadedFiles.splice(index, 1);
+        updateFileList();
+    }, 200);
+}
+
+// Set max date to today
+const dateInput = document.querySelector('input[type="date"]');
+if (dateInput) {
+    dateInput.max = new Date().toISOString().split('T')[0];
+}
+
+// Form validation on blur
+document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+    field.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+            this.classList.add('error');
+        } else {
+            this.classList.remove('error');
+        }
+    });
+    
+    field.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            this.classList.remove('error');
+        }
+    });
+});
+
+// Form submission validation
+document.getElementById('caseForm').addEventListener('submit', function(e) {
+    let hasErrors = false;
+    
+    // Check all required fields
+    this.querySelectorAll('[required]').forEach(field => {
+        if (field.value.trim() === '') {
+            hasErrors = true;
+            field.classList.add('error');
+            if (!field.classList.contains('visible-error')) {
+                field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                field.classList.add('visible-error');
+            }
+        }
+    });
+    
+    if (hasErrors) {
+        e.preventDefault();
+        alert('Please fill in all required fields before submitting.');
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Settings - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-12 bg-neutralGray min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 animate-fadeInUp">
+            <h1 class="text-4xl font-bold text-darkGray mb-2">Account Settings</h1>
+            <p class="text-coolGray">Manage your profile, security, and wallet information</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex overflow-x-auto border-b border-coolGray mb-8 pb-1">
+            <button id="profile-tab" class="px-6 py-3 font-bold text-cyan border-b-2 border-cyan flex items-center whitespace-nowrap">
+                <i class="fas fa-user mr-2"></i>Profile
+            </button>
+            <button id="security-tab" class="px-6 py-3 font-bold text-coolGray hover:text-cyan transition flex items-center whitespace-nowrap">
+                <i class="fas fa-lock mr-2"></i>Security
+            </button>
+            <button id="kyc-tab" class="px-6 py-3 font-bold text-coolGray hover:text-cyan transition flex items-center whitespace-nowrap">
+                <i class="fas fa-id-card mr-2"></i>KYC
+            </button>
+            <button id="wallet-tab" class="px-6 py-3 font-bold text-coolGray hover:text-cyan transition flex items-center whitespace-nowrap">
+                <i class="fas fa-wallet mr-2"></i>Wallet
+            </button>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile-content" class="tab-content animate-fadeIn">
+            <div class="bg-white p-8 rounded-xl shadow-card">
+                <h2 class="text-2xl font-bold text-darkGray mb-6 flex items-center">
+                    <i class="fas fa-user-circle text-cyan mr-3"></i>Personal Information
+                </h2>
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="profile">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Username</label>
+                            {{ user_form.username }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Email</label>
+                            {{ user_form.email }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Phone</label>
+                            {{ user_form.phone }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Preferred Currency</label>
+                            {{ user_form.preferred_currency }}
+                        </div>
+                    </div>
+
+                    <hr class="my-6 border-coolGray">
+
+                    <h3 class="text-xl font-bold text-darkGray mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-cyan mr-3"></i>Address Information
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Date of Birth</label>
+                            {{ profile_form.date_of_birth }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">Country</label>
+                            {{ profile_form.country }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-darkGray">City</label>
+                            {{ profile_form.city }}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-darkGray">Address</label>
+                        {{ profile_form.address }}
+                    </div>
+
+                    <button type="submit" class="px-8 py-3 rounded-lg btn-primary text-white font-bold transition flex items-center">
+                        <i class="fas fa-save mr-2"></i>Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Security Tab -->
+        <div id="security-content" class="tab-content hidden animate-fadeIn">
+            <div class="bg-white p-8 rounded-xl shadow-card">
+                <h2 class="text-2xl font-bold text-darkGray mb-6 flex items-center">
+                    <i class="fas fa-lock text-cyan mr-3"></i>Change Password
+                </h2>
+                <form method="post" class="space-y-6 max-w-md">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="password">
+                    
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-darkGray">Current Password</label>
+                        {{ password_form.old_password }}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-darkGray">New Password</label>
+                        {{ password_form.new_password1 }}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-darkGray">Confirm Password</label>
+                        {{ password_form.new_password2 }}
+                    </div>
+
+                    <button type="submit" class="px-8 py-3 rounded-lg btn-primary text-white font-bold transition flex items-center">
+                        <i class="fas fa-key mr-2"></i>Update Password
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- KYC Tab -->
+        <div id="kyc-content" class="tab-content hidden animate-fadeIn">
+            <div class="bg-white p-8 rounded-xl shadow-card">
+                <h2 class="text-2xl font-bold text-darkGray mb-6 flex items-center">
+                    <i class="fas fa-id-card text-cyan mr-3"></i>KYC Verification Status
+                </h2>
+                {% if latest_kyc %}
+                    <div class="p-6 bg-neutralGray rounded-lg mb-6">
+                        <p class="font-bold mb-2 text-darkGray">Status: 
+                            <span class="px-3 py-1 rounded-full text-sm font-bold 
+                                {% if latest_kyc.status == 'approved' %}bg-green-100 text-green-800
+                                {% elif latest_kyc.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                {% elif latest_kyc.status == 'rejected' %}bg-red-100 text-red-800
+                                {% else %}bg-cyanLight text-cyanDark{% endif %}">
+                                {{ latest_kyc.get_status_display }}
+                            </span>
+                        </p>
+                        <p class="text-coolGray text-sm">Submitted: {{ latest_kyc.submitted_at|date:"M d, Y" }}</p>
+                        {% if latest_kyc.rejection_reason %}
+                            <p class="text-red-600 text-sm mt-2">Reason: {{ latest_kyc.rejection_reason }}</p>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p class="text-coolGray mb-6">You haven't submitted KYC verification yet.</p>
+                {% endif %}
+
+                <a href="{% url 'kyc_verification' %}" class="inline-block px-8 py-3 rounded-lg btn-primary text-white font-bold hover:shadow-card transition flex items-center">
+                    <i class="fas fa-arrow-right mr-2"></i>Go to KYC
+                </a>
+            </div>
+        </div>
+
+        <!-- Wallet Tab -->
+        <div id="wallet-content" class="tab-content hidden animate-fadeIn">
+            <div class="bg-white p-8 rounded-xl shadow-card">
+                <h2 class="text-2xl font-bold text-darkGray mb-6 flex items-center">
+                    <i class="fas fa-wallet text-cyan mr-3"></i>Wallet Information
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="p-6 bg-neutralGray rounded-lg shadow-card">
+                        <p class="text-coolGray text-sm mb-1">Available Balance</p>
+                        <p class="text-3xl font-bold text-cyan">{{ user.get_currency_symbol }}{{ wallet.available_balance }}</p>
+                    </div>
+                    <div class="p-6 bg-neutralGray rounded-lg shadow-card">
+                        <p class="text-coolGray text-sm mb-1">Pending Balance</p>
+                        <p class="text-3xl font-bold text-yellow-500">{{ user.get_currency_symbol }}{{ wallet.pending_balance }}</p>
+                    </div>
+                    <div class="p-6 bg-neutralGray rounded-lg shadow-card">
+                        <p class="text-coolGray text-sm mb-1">Total Recovered</p>
+                        <p class="text-3xl font-bold text-green-500">{{ user.get_currency_symbol }}{{ wallet.total_recovered }}</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="{% url 'withdraw' %}" class="inline-block px-8 py-3 rounded-lg btn-primary text-white font-bold hover:shadow-card transition flex items-center">
+                        <i class="fas fa-money-bill mr-2"></i>Withdraw Funds
+                    </a>
+                    <a href="{% url 'withdrawal_history' %}" class="inline-block px-8 py-3 border-2 border-cyan text-cyan rounded-lg font-bold hover:bg-cyan hover:text-white transition flex items-center">
+                        <i class="fas fa-history mr-2"></i>History
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="mt-12 bg-red-50 border-2 border-red-200 p-8 rounded-xl animate-fadeIn">
+            <h2 class="text-2xl font-bold text-red-600 mb-4 flex items-center">
+                <i class="fas fa-exclamation-triangle mr-3"></i>Danger Zone
+            </h2>
+            <p class="text-darkGray mb-6">Permanently delete your account and all associated data. This action cannot be undone.</p>
+            <button onclick="confirmDelete()" class="px-8 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition flex items-center">
+                <i class="fas fa-trash mr-2"></i>Delete Account
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up tab switching
+    const tabs = {
+        'profile-tab': 'profile-content',
+        'security-tab': 'security-content',
+        'kyc-tab': 'kyc-content',
+        'wallet-tab': 'wallet-content'
+    };
+    
+    for (const [tabId, contentId] of Object.entries(tabs)) {
+        document.getElementById(tabId).addEventListener('click', function() {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active state from all tabs
+            document.querySelectorAll('[id$="-tab"]').forEach(tab => {
+                tab.classList.remove('text-cyan', 'border-cyan');
+                tab.classList.add('text-coolGray', 'hover:text-cyan');
+            });
+            
+            // Show selected content
+            document.getElementById(contentId).classList.remove('hidden');
+            
+            // Set active state on selected tab
+            this.classList.remove('text-coolGray', 'hover:text-cyan');
+            this.classList.add('text-cyan', 'border-cyan');
+        });
+    }
+});
+
+function confirmDelete() {
+    if(confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        if(prompt('Enter your password to confirm deletion:') === '{{ user.password }}') {
+            window.location.href = "{% url 'delete_account' %}";
+        }
+    }
+}
+</script>
+
+<style>
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], select, textarea {
+    @apply w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition;
+}
+</style>
+{% endblock %}

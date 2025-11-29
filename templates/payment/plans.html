@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Recovery Plans - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-6 sm:py-10 bg-neutralGray min-h-screen">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-8 sm:mb-10 animate-fadeInUp">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-midnight mb-3">Select a <span class="text-cyan">Recovery Plan</span></h1>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm sm:text-base">
+                <div class="bg-white px-4 py-2 rounded-lg shadow-sm border-2 border-gray-200">
+                    <span class="text-coolGray">Case:</span> 
+                    <span class="font-bold text-cyan">#{{ case.case_id }}</span>
+                </div>
+                <div class="bg-red-50 px-4 py-2 rounded-lg shadow-sm border-2 border-red-200">
+                    <span class="text-coolGray">Amount:</span> 
+                    <span class="font-bold text-red-600">{{ user.get_currency_symbol }}{{ case.amount_lost }}</span>
+                </div>
+            </div>
+        </div>
+
+        {% if plans %}
+        <!-- Plans Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {% for plan in plans %}
+            <form method="post" class="bg-white rounded-xl shadow-card hover:shadow-xl transition overflow-hidden group">
+                {% csrf_token %}
+                <input type="hidden" name="plan_id" value="{{ plan.id }}">
+
+                <!-- Plan Header -->
+                <div class="bg-gradient-primary text-white p-5 sm:p-6 text-center">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2 text-midnight">{{ plan.get_name_display }}</h3>
+                    <p class="text-cyan text-xs sm:text-sm">{{ plan.description }}</p>
+                </div>
+
+                <!-- Plan Content -->
+                <div class="p-5 sm:p-6">
+                    <!-- Pricing -->
+                    <div class="bg-cyan bg-opacity-5 border-2 border-cyan border-opacity-20 p-5 sm:p-6 rounded-xl mb-6 text-center group-hover:bg-cyan group-hover:bg-opacity-10 transition">
+                        <p class="text-coolGray text-xs mb-2 font-medium">Deposit Required</p>
+                        <p class="text-3xl sm:text-4xl font-bold text-cyan mb-2">
+                            {% if plan.fixed_deposit %}
+                                {{ user.get_currency_symbol }}{{ plan.fixed_deposit }}
+                            {% else %}
+                                {{ user.get_currency_symbol }}{{ plan.calculated_deposit|default:"TBD" }}
+                            {% endif %}
+                        </p>
+                        {% if not plan.fixed_deposit %}
+                        <p class="text-coolGray text-xs">
+                            <i class="fas fa-calculator mr-1"></i>
+                            {{ plan.deposit_percentage }}% of total amount
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Features -->
+                    <div class="space-y-3 mb-6">
+                        <p class="font-bold text-midnight text-sm mb-3 flex items-center">
+                            <i class="fas fa-check-circle text-cyan mr-2 text-base"></i>Plan Features
+                        </p>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-check text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-coolGray text-xs sm:text-sm">24/7 Priority Support</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-check text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-coolGray text-xs sm:text-sm">Professional Investigation Team</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-check text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-coolGray text-xs sm:text-sm">Blockchain Forensic Analysis</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-check text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-coolGray text-xs sm:text-sm">Legal Documentation Support</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-shield-check text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <span class="text-coolGray text-xs sm:text-sm">Real-time Progress Updates</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button type="submit" class="w-full bg-midnight text-white py-3 rounded-lg font-bold hover:shadow-lg transition text-sm sm:text-base group-hover:scale-105">
+                        <i class="fas fa-arrow-right mr-2"></i>Select This Plan
+                    </button>
+                </div>
+            </form>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Information Section -->
+        <div class="bg-white border-2 border-cyan border-opacity-20 p-5 sm:p-8 rounded-xl">
+            <div class="flex items-start mb-4">
+                <i class="fas fa-info-circle text-cyan text-2xl mr-4 flex-shrink-0"></i>
+                <div>
+                    <h3 class="font-bold text-midnight text-lg sm:text-xl mb-2">About Recovery Plans</h3>
+                    <p class="text-coolGray text-sm leading-relaxed mb-4">Our recovery plans are designed to maximize your chances of fund recovery while maintaining transparency and security throughout the process.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-start space-x-3 p-4 bg-neutralGray rounded-lg">
+                    <i class="fas fa-lock text-cyan text-lg flex-shrink-0"></i>
+                    <div>
+                        <p class="font-bold text-midnight text-sm mb-1">Secure Escrow</p>
+                        <p class="text-coolGray text-xs">All deposits held in secure escrow until recovery confirmation</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-3 p-4 bg-neutralGray rounded-lg">
+                    <i class="fas fa-bolt text-cyan text-lg flex-shrink-0"></i>
+                    <div>
+                        <p class="font-bold text-midnight text-sm mb-1">Instant Activation</p>
+                        <p class="text-coolGray text-xs">Investigation begins immediately after deposit confirmation</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-3 p-4 bg-neutralGray rounded-lg">
+                    <i class="fas fa-credit-card text-cyan text-lg flex-shrink-0"></i>
+                    <div>
+                        <p class="font-bold text-midnight text-sm mb-1">Multiple Payment Options</p>
+                        <p class="text-coolGray text-xs">Accept cryptocurrency, wire transfer, and credit cards</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-3 p-4 bg-neutralGray rounded-lg">
+                    <i class="fas fa-undo text-cyan text-lg flex-shrink-0"></i>
+                    <div>
+                        <p class="font-bold text-midnight text-sm mb-1">Refund Policy</p>
+                        <p class="text-coolGray text-xs">Partial refund available if recovery is unsuccessful</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mt-8 bg-cyan bg-opacity-5 border-l-4 border-cyan p-5 sm:p-6 rounded-lg">
+            <div class="flex items-start">
+                <i class="fas fa-question-circle text-cyan text-xl mr-3 flex-shrink-0"></i>
+                <div>
+                    <p class="font-bold text-midnight mb-2 text-sm sm:text-base">Need Help Choosing?</p>
+                    <p class="text-coolGray text-xs sm:text-sm mb-4">Our recovery specialists are available 24/7 to help you select the best plan for your case.</p>
+                    <a href="{% url 'contact' %}" class="inline-block bg-cyan text-white px-6 py-2 rounded-lg font-bold hover:bg-cyanDark transition text-sm">
+                        <i class="fas fa-headset mr-2"></i>Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="min-h-screen flex items-center justify-center bg-neutralGray py-12">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-xl shadow-card p-8 animate-fadeInUp">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-darkGray mb-2 flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-cyan mr-3"></i>RecoveryPro
+                </h1>
+                <p class="text-coolGray">Welcome back to your account</p>
+            </div>
+
+            <!-- Error Messages -->
+            {% if form.errors %}
+            <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg animate-fadeIn">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                        <i class="fas fa-exclamation-triangle text-red-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-red-800 font-semibold">Login Failed</p>
+                        <p class="text-red-600 text-sm mt-1">
+                            {% if form.non_field_errors %}
+                                {{ form.non_field_errors.0 }}
+                            {% else %}
+                                Please check your username and password.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-6 p-4 rounded-lg border-l-4 
+                        {% if message.tags == 'success' %}bg-green-50 border-green-500 text-green-700
+                        {% elif message.tags == 'error' %}bg-red-50 border-red-500 text-red-700
+                        {% elif message.tags == 'warning' %}bg-yellow-50 border-yellow-500 text-yellow-700
+                        {% else %}bg-cyan text-white border-cyanDark{% endif %} 
+                        animate-fadeIn">
+                        <div class="flex items-center">
+                            <i class="fas 
+                                {% if message.tags == 'success' %}fa-check-circle
+                                {% elif message.tags == 'error' %}fa-exclamation-circle
+                                {% elif message.tags == 'warning' %}fa-exclamation-triangle
+                                {% else %}fa-info-circle{% endif %} 
+                                mr-3 text-lg"></i>
+                            <span class="font-medium">{{ message }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="id_username" class="block text-sm font-bold mb-2 text-darkGray">Username</label>
+                    <input type="text" id="id_username" name="username" required 
+                           class="w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition 
+                                  {% if form.username.errors %}border-red-500 bg-red-50{% endif %}" 
+                           placeholder="Enter your username"
+                           value="{{ form.username.value|default:'' }}">
+                    {% if form.username.errors %}
+                        <p class="text-red-500 text-xs mt-2 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ form.username.errors.0 }}
+                        </p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_password" class="block text-sm font-bold mb-2 text-darkGray">Password</label>
+                    <input type="password" id="id_password" name="password" required 
+                           class="w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition 
+                                  {% if form.password.errors %}border-red-500 bg-red-50{% endif %}" 
+                           placeholder="Enter your password">
+                    {% if form.password.errors %}
+                        <p class="text-red-500 text-xs mt-2 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ form.password.errors.0 }}
+                        </p>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center">
+                        <input type="checkbox" name="remember" class="w-4 h-4 text-cyan rounded border-coolGray focus:ring-cyan">
+                        <span class="ml-2 text-coolGray">Remember me</span>
+                    </label>
+                    <a href="{% url 'password_reset_request' %}" class="text-cyan hover:text-cyanDark transition">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="w-full px-6 py-3 rounded-lg btn-primary text-white font-bold hover:shadow-card transition flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </button>
+            </form>
+
+            <p class="text-center text-coolGray mt-6">Don't have an account? <a href="{% url 'register' %}" class="text-cyan font-bold hover:text-cyanDark transition">Register here</a></p>
+        </div>
+
+        <p class="text-center text-coolGray text-sm mt-8 flex items-center justify-center">
+            <i class="fas fa-lock text-cyan mr-2"></i>Your connection is secure and encrypted
+        </p>
+    </div>
+</section>
+
+<style>
+/* Add smooth transitions for error states */
+input:focus {
+    transition: all 0.3s ease;
+}
+
+/* Error state animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+input.border-red-500 {
+    animation: shake 0.5s ease-in-out;
+}
+</style>
+
+<script>
+// Add real-time validation
+document.addEventListener('DOMContentLoaded', function() {
+    const usernameInput = document.getElementById('id_username');
+    const passwordInput = document.getElementById('id_password');
+    const form = document.querySelector('form');
+
+    function validateField(field) {
+        if (field.value.trim() === '') {
+            field.classList.add('border-red-500', 'bg-red-50');
+        } else {
+            field.classList.remove('border-red-500', 'bg-red-50');
+        }
+    }
+
+    // Real-time validation
+    usernameInput.addEventListener('blur', () => validateField(usernameInput));
+    passwordInput.addEventListener('blur', () => validateField(passwordInput));
+
+    // Clear error states on input
+    usernameInput.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            this.classList.remove('border-red-500', 'bg-red-50');
+        }
+    });
+
+    passwordInput.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            this.classList.remove('border-red-500', 'bg-red-50');
+        }
+    });
+
+    // Form submission validation
+    form.addEventListener('submit', function(e) {
+        let hasErrors = false;
+
+        if (usernameInput.value.trim() === '') {
+            usernameInput.classList.add('border-red-500', 'bg-red-50');
+            hasErrors = true;
+        }
+
+        if (passwordInput.value.trim() === '') {
+            passwordInput.classList.add('border-red-500', 'bg-red-50');
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
+            e.preventDefault();
+            // Scroll to first error
+            const firstError = document.querySelector('.border-red-500');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstError.focus();
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+
+{% block title %}Withdraw Funds - RecoveryPro{% endblock %}
+
+{% load humanize %}  <!-- ADD THIS LINE -->
+{% load custom_filters %}
+{% block content %}
+<section class="py-10 bg-neutralGray min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8 animate-fadeInUp">
+            <h1 class="text-3xl sm:text-4xl font-bold text-midnight mb-2">
+                Withdraw Your <span class="text-cyan">Funds</span>
+            </h1>
+            <p class="text-coolGray text-lg">Transfer your recovered funds to your preferred payment method</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Withdrawal Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-card">
+                    <form method="post" class="space-y-6">
+                        {% csrf_token %}
+
+                        <!-- Amount Field -->
+                        <div class="group">
+                            <label class="block text-sm font-bold text-midnight mb-3">Withdrawal Amount *</label>
+                            {{ form.amount }}
+                            <p class="text-coolGray text-sm mt-2 flex items-center">
+                                <i class="fas fa-wallet text-cyan mr-2"></i>
+                                Available balance: <span class="font-bold text-midnight ml-1">{{ user.get_currency_symbol }}{{ wallet.available_balance|floatformat:2|intcomma }}</span>
+                            </p>
+                        </div>
+
+                        <!-- Method Field -->
+                        <div class="group">
+                            <label class="block text-sm font-bold text-midnight mb-3">Withdrawal Method *</label>
+                            {{ form.method }}
+                        </div>
+
+                        <!-- Dynamic Fields -->
+                        <!-- Bank Transfer Fields -->
+                        <div id="bank-fields" class="space-y-4 hidden animate-fadeIn">
+                            <div class="border-l-4 border-cyan pl-4">
+                                <h3 class="font-bold text-midnight text-lg mb-4 flex items-center">
+                                    <i class="fas fa-university text-cyan mr-2"></i>Bank Transfer Details
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-midnight mb-2">Bank Name *</label>
+                                        {{ form.bank_name }}
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-midnight mb-2">Account Number *</label>
+                                        {{ form.account_number }}
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-midnight mb-2">Routing Number *</label>
+                                        {{ form.routing_number }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Crypto Fields -->
+                        <div id="crypto-fields" class="space-y-4 hidden animate-fadeIn">
+                            <div class="border-l-4 border-cyan pl-4">
+                                <h3 class="font-bold text-midnight text-lg mb-4 flex items-center">
+                                    <i class="fab fa-bitcoin text-cyan mr-2"></i>Cryptocurrency Details
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-midnight mb-2">Cryptocurrency *</label>
+                                        {{ form.crypto_currency }}
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-midnight mb-2">Wallet Address *</label>
+                                        {{ form.crypto_wallet }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Fields -->
+                        <div id="paypal-fields" class="space-y-4 hidden animate-fadeIn">
+                            <div class="border-l-4 border-cyan pl-4">
+                                <h3 class="font-bold text-midnight text-lg mb-4 flex items-center">
+                                    <i class="fab fa-paypal text-cyan mr-2"></i>PayPal Details
+                                </h3>
+                                <div>
+                                    <label class="block text-sm font-medium text-midnight mb-2">PayPal Email *</label>
+                                    {{ form.paypal_email }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CashApp Fields -->
+                        <div id="cashapp-fields" class="space-y-4 hidden animate-fadeIn">
+                            <div class="border-l-4 border-cyan pl-4">
+                                <h3 class="font-bold text-midnight text-lg mb-4 flex items-center">
+                                    <i class="fas fa-money-bill-wave text-cyan mr-2"></i>CashApp Details
+                                </h3>
+                                <div>
+                                    <label class="block text-sm font-medium text-midnight mb-2">CashApp ID *</label>
+                                    {{ form.cashapp_id }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Box -->
+                        <div class="bg-cyan bg-opacity-10 border border-cyan rounded-xl p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-cyan mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-cyan font-semibold text-sm mb-1">Processing Information</p>
+                                    <p class="text-coolGray text-sm">Withdrawals are processed within 1-3 business days. You'll receive email confirmation once processed.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-midnight text-white py-4 rounded-xl font-bold hover:shadow-lg transition transform hover:scale-105 group">
+                            <i class="fas fa-paper-plane mr-2 group-hover:scale-110 transition"></i>
+                            Request Withdrawal
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Wallet Balance Card -->
+                <div class="bg-midnight text-white p-6 rounded-2xl shadow-card glow-effect">
+                    <h3 class="font-bold text-lg mb-6 flex items-center">
+                        <i class="fas fa-wallet text-cyan mr-2"></i>Wallet Overview
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-navy rounded-xl">
+                            <div>
+                                <p class="text-gray-300 text-sm">Available Balance</p>
+                                <p class="text-2xl font-bold text-white">{{ user.get_currency_symbol }}{{ wallet.available_balance|floatformat:2|intcomma }}</p>
+                            </div>
+                            <div class="w-12 h-12 bg-cyan bg-opacity-20 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-check text-cyan text-xl"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-navy rounded-xl">
+                            <div>
+                                <p class="text-gray-300 text-sm">Pending Balance</p>
+                                <p class="text-2xl font-bold text-yellow-400">{{ user.get_currency_symbol }}{{ wallet.pending_balance|floatformat:2|intcomma }}</p>
+                            </div>
+                            <div class="w-12 h-12 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-clock text-yellow-400 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-navy rounded-xl">
+                            <div>
+                                <p class="text-gray-300 text-sm">Total Recovered</p>
+                                <p class="text-2xl font-bold text-green-400">{{ user.get_currency_symbol }}{{ wallet.total_recovered|floatformat:2|intcomma }}</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-trophy text-green-400 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Withdrawals -->
+                <div class="bg-white p-6 rounded-2xl shadow-card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-bold text-midnight text-lg flex items-center">
+                            <i class="fas fa-history text-cyan mr-2"></i>Recent Withdrawals
+                        </h3>
+                        {% if withdrawal_history %}
+                        <span class="bg-cyan text-white text-xs font-bold px-2 py-1 rounded-full">
+                            {{ withdrawal_history|length }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if withdrawal_history %}
+                        <div class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
+                            {% for w in withdrawal_history|slice:":5" %}
+                                <div class="p-4 border-2 border-gray-100 rounded-xl hover:border-cyan transition group">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <p class="font-bold text-midnight">{{ user.get_currency_symbol }}{{ w.amount|floatformat:2 }}</p>
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold
+                                            {% if w.status == 'completed' %}bg-green-100 text-green-700
+                                            {% elif w.status == 'pending' %}bg-yellow-100 text-yellow-700
+                                            {% elif w.status == 'rejected' %}bg-red-100 text-red-700
+                                            {% elif w.status == 'processing' %}bg-cyan bg-opacity-10 text-cyan
+                                            {% else %}bg-gray-100 text-gray-700{% endif %}">
+                                            {{ w.get_status_display }}
+                                        </span>
+                                    </div>
+                                    <p class="text-coolGray text-xs">{{ w.method|title }} • {{ w.created_at|date:"M d, Y" }}</p>
+                                    <div class="mt-2 flex items-center text-xs text-cyan opacity-0 group-hover:opacity-100 transition">
+                                        <i class="fas fa-arrow-right mr-1"></i>
+                                        <span>View details</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'withdrawal_history' %}" class="mt-4 inline-flex items-center text-cyan text-sm font-bold hover:text-cyanDark transition">
+                            View All Withdrawals <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    {% else %}
+                        <div class="text-center py-8">
+                            <div class="w-16 h-16 bg-neutralGray rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-exchange-alt text-2xl text-coolGray"></i>
+                            </div>
+                            <p class="text-coolGray text-sm">No withdrawal history yet</p>
+                            <p class="text-coolGray text-xs mt-1">Your first withdrawal will appear here</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Tips Card -->
+                <div class="bg-gradient-to-br from-cyan to-cyanDark text-white p-6 rounded-2xl shadow-card">
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fas fa-lightbulb mr-2"></i>Withdrawal Tips
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-3 text-white text-opacity-80"></i>
+                            <span>Minimum withdrawal: {{ user.get_currency_symbol }}10</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-3 text-white text-opacity-80"></i>
+                            <span>Maximum: Your available balance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-3 text-white text-opacity-80"></i>
+                            <span>Double-check your payment details</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-3 text-white text-opacity-80"></i>
+                            <span>Processing: 1-3 business days</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mt-1 mr-3 text-white text-opacity-80"></i>
+                            <span>KYC verification required</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const methodSelect = document.querySelector('[name="method"]');
+    const bankFields = document.getElementById('bank-fields');
+    const cryptoFields = document.getElementById('crypto-fields');
+    const paypalFields = document.getElementById('paypal-fields');
+    const cashappFields = document.getElementById('cashapp-fields');
+    
+    function toggleFields() {
+        // Hide all fields
+        [bankFields, cryptoFields, paypalFields, cashappFields].forEach(field => {
+            field.classList.add('hidden');
+        });
+        
+        // Show relevant fields
+        switch(methodSelect.value) {
+            case 'bank':
+                bankFields.classList.remove('hidden');
+                break;
+            case 'crypto':
+                cryptoFields.classList.remove('hidden');
+                break;
+            case 'paypal':
+                paypalFields.classList.remove('hidden');
+                break;
+            case 'cashapp':
+                cashappFields.classList.remove('hidden');
+                break;
+        }
+    }
+    
+    // Initial toggle
+    toggleFields();
+    
+    // Add event listener
+    methodSelect.addEventListener('change', toggleFields);
+    
+    // Style form elements to match design
+    const formInputs = document.querySelectorAll('input, select');
+    formInputs.forEach(input => {
+        input.classList.add('w-full', 'px-4', 'py-3', 'border', 'border-gray-300', 'rounded-xl', 
+                          'focus:ring-2', 'focus:ring-cyan', 'focus:border-transparent',
+                          'transition', 'duration-200');
+    });
+});
+</script>
+
+<style>
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #02B3E4;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #0195C4;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; background: #f9fafb; }
+        .container { max-width: 600px; margin: 0 auto; background: white; }
+        .header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 40px; text-align: center; }
+        .content { padding: 40px; }
+        .button { display: inline-block; background: #10b981; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .footer { background: #f9fafb; padding: 20px; text-align: center; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Withdrawal Completed</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hi {{ user.first_name|default:user.username }},</p>
+            
+            <p>Your withdrawal has been completed successfully!</p>
+            
+            <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0;">
+                <strong>Withdrawal Details:</strong>
+                <p>Request ID: {{ withdrawal.request_id }}</p>
+                <p>Amount: ${{ withdrawal.amount }}</p>
+                <p>Method: {{ withdrawal.get_method_display }}</p>
+                <p>Completed: {{ withdrawal.processed_at|date:"M d, Y H:i" }}</p>
+            </div>
+            
+            <h3>What's Next:</h3>
+            <ul>
+                <li>Funds should arrive in your account shortly</li>
+                <li>Check your email for confirmation from your bank/payment provider</li>
+                <li>If you don't receive funds within 3 days, contact support</li>
+            </ul>
+            
+            <center>
+                <a href="https://recoverypro.com/dashboard/" class="button">Go to Dashboard</a>
+            </center>
+            
+            <p>We're glad we could help you recover your funds!</p>
+            
+            <p>Best regards,<br/>RecoveryPro Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>RecoveryPro © 2025. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

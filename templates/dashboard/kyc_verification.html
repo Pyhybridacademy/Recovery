@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}KYC Verification - RecoveryPro{% endblock %}
+
+{% block content %}
+<section class="py-8 bg-light min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-bold mb-2">KYC Verification</h1>
+        <p class="text-gray-600 mb-8">Complete your identity verification to access all features</p>
+
+        {% if latest_kyc and latest_kyc.status == 'approved' %}
+            <div class="bg-success bg-opacity-10 border border-success p-6 rounded-lg mb-8">
+                <p class="text-success font-bold"><i class="fas fa-check-circle mr-2"></i>Your KYC verification is approved!</p>
+                <p class="text-gray-700 mt-2">You have full access to all RecoveryPro features.</p>
+            </div>
+        {% endif %}
+
+        {% if form %}
+            <div class="bg-white p-8 rounded-lg shadow-card">
+                <form method="post" enctype="multipart/form-data" class="space-y-6">
+                    {% csrf_token %}
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Document Type *</label>
+                        {{ form.document_type }}
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Document Number *</label>
+                        {{ form.document_number }}
+                    </div>
+
+                    <hr class="my-6">
+
+                    <h3 class="text-xl font-bold mb-4">Document Images</h3>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Front of Document *</label>
+                        {{ form.document_front }}
+                        <p class="text-gray-600 text-sm mt-2">Clear photo of the front side of your ID</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Back of Document</label>
+                        {{ form.document_back }}
+                        <p class="text-gray-600 text-sm mt-2">Required for driver's license and national ID</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Selfie with Document *</label>
+                        {{ form.selfie }}
+                        <p class="text-gray-600 text-sm mt-2">Clear selfie holding your ID</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Proof of Address *</label>
+                        {{ form.proof_of_address }}
+                        <p class="text-gray-600 text-sm mt-2">Utility bill or bank statement (not older than 3 months)</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-bold text-blue-900 mb-2"><i class="fas fa-info-circle mr-2"></i>KYC Guidelines:</p>
+                        <ul class="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                            <li>All documents must be clear and legible</li>
+                            <li>Selfie must clearly show your face and the document</li>
+                            <li>Accepted formats: JPG, PNG, PDF</li>
+                            <li>Maximum file size: 10MB per image</li>
+                            <li>Verification typically takes 24-48 hours</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-secondary transition"><i class="fas fa-upload mr-2"></i>Submit for Verification</button>
+                </form>
+            </div>
+        {% elif latest_kyc %}
+            <div class="bg-white p-8 rounded-lg shadow-card">
+                <div class="flex items-start space-x-6">
+                    <div class="text-5xl text-warning"><i class="fas fa-hourglass-half"></i></div>
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">KYC Status: {{ latest_kyc.get_status_display }}</h2>
+                        <p class="text-gray-600 mb-4">Your KYC documents are being reviewed. We'll notify you once verification is complete.</p>
+                        <p class="text-sm text-gray-600">Submitted on: {{ latest_kyc.submitted_at|date:"M d, Y at H:i" }}</p>
+                        {% if latest_kyc.rejection_reason %}
+                            <div class="mt-4 p-4 bg-danger bg-opacity-10 rounded-lg">
+                                <p class="font-bold text-danger mb-2">Rejection Reason:</p>
+                                <p class="text-gray-700">{{ latest_kyc.rejection_reason }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+input[type="text"], input[type="email"], input[type="file"], select {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+
+{% block title %}RecoveryPro - Professional Scam Recovery Services{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="gradient-primary text-white py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-cyanLight rounded-full blur-3xl animate-pulse-slow"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fadeInUp">
+                <div class="inline-block bg-cyan bg-opacity-20 px-4 py-2 rounded-full text-cyan text-sm font-semibold mb-6">
+                    <i class="fas fa-shield-check mr-2"></i>Trusted by 5000+ Victims
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Recover Your <span class="text-cyan">Scammed Funds</span></h1>
+                <p class="text-xl text-blue-100 mb-8 leading-relaxed">Expert recovery agents helping victims of crypto scams, fraud, and financial crimes recover their money through advanced blockchain forensics and legal expertise.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{% url 'register' %}" class="bg-cyan text-white px-8 py-4 rounded-lg font-bold hover:bg-cyanDark transition text-center shadow-lg hover:shadow-cyan/50 transform hover:scale-105">
+                        <i class="fas fa-arrow-right mr-2"></i>Start Free Recovery
+                    </a>
+                    <a href="{% url 'contact' %}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-center">
+                        <i class="fas fa-phone mr-2"></i>Emergency Hotline
+                    </a>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="flex items-center space-x-6 mt-10 pt-8 border-t border-white border-opacity-20">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-cyan text-xl"></i>
+                        <span class="text-sm">24/7 Support</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-lock text-cyan text-xl"></i>
+                        <span class="text-sm">100% Confidential</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-award text-cyan text-xl"></i>
+                        <span class="text-sm">Licensed Experts</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-fadeIn">
+                <div class="bg-white bg-opacity-10 p-10 rounded-3xl backdrop-blur-md shadow-2xl border border-white border-opacity-20 glow-effect">
+                    <div class="relative">
+                        <i class="fas fa-shield-alt text-8xl text-cyan mb-6 animate-pulse-slow"></i>
+                        <div class="absolute -top-2 -right-2 w-4 h-4 bg-cyan rounded-full animate-ping"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Your Recovery Starts Here</h3>
+                    <p class="text-blue-100 mb-6">Safe, secure, and professional investigation services</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-midnight bg-opacity-50 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-cyan">95%</div>
+                            <div class="text-xs text-blue-200 mt-1">Success Rate</div>
+                        </div>
+                        <div class="bg-midnight bg-opacity-50 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-cyan">48h</div>
+                            <div class="text-xs text-blue-200 mt-1">Avg Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="bg-white py-20 -mt-10 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center transform hover:scale-110 transition">
+                    <div class="text-5xl font-bold text-midnight mb-2">
+                        <span class="text-cyan">$</span>50M+
+                    </div>
+                    <p class="text-coolGray font-medium">Funds Recovered</p>
+                    <div class="mt-2 text-green-500 text-sm font-semibold">
+                        <i class="fas fa-arrow-up mr-1"></i>+15% This Month
+                    </div>
+                </div>
+                <div class="text-center transform hover:scale-110 transition">
+                    <div class="text-5xl font-bold text-midnight mb-2">5,000<span class="text-cyan">+</span></div>
+                    <p class="text-coolGray font-medium">Cases Closed</p>
+                    <div class="mt-2 text-cyan text-sm font-semibold">
+                        <i class="fas fa-check-circle mr-1"></i>Verified
+                    </div>
+                </div>
+                <div class="text-center transform hover:scale-110 transition">
+                    <div class="text-5xl font-bold text-midnight mb-2">95<span class="text-cyan">%</span></div>
+                    <p class="text-coolGray font-medium">Success Rate</p>
+                    <div class="mt-2 text-cyan text-sm font-semibold">
+                        <i class="fas fa-star mr-1"></i>Industry Leading
+                    </div>
+                </div>
+                <div class="text-center transform hover:scale-110 transition">
+                    <div class="text-5xl font-bold text-midnight mb-2">150<span class="text-cyan">+</span></div>
+                    <p class="text-coolGray font-medium">Expert Agents</p>
+                    <div class="mt-2 text-cyan text-sm font-semibold">
+                        <i class="fas fa-user-shield mr-1"></i>Certified
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-20 bg-neutralGray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 animate-fadeInUp">
+            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">How <span class="text-cyan">Recovery</span> Works</h2>
+            <p class="text-xl text-coolGray max-w-2xl mx-auto">Our proven 3-step process to get your money back</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-6">
+                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-midnight">Submit Your Case</h3>
+                <p class="text-coolGray leading-relaxed mb-6">Report your scam with detailed information and evidence. Our AI-powered system analyzes your case immediately and assigns it to the best recovery specialist.</p>
+                <ul class="space-y-2 text-sm text-coolGray">
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Free case evaluation</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Secure document upload</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>24-hour response time</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-6">
+                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-midnight">Deep Investigation</h3>
+                <p class="text-coolGray leading-relaxed mb-6">Our expert agents investigate every lead, trace blockchain transactions, analyze patterns, and identify recovery opportunities using cutting-edge forensic tools.</p>
+                <ul class="space-y-2 text-sm text-coolGray">
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Blockchain forensics</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>International coordination</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Real-time updates</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-6">
+                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-midnight">Fund Recovery</h3>
+                <p class="text-coolGray leading-relaxed mb-6">Once funds are located, we execute recovery through proper legal channels, banking institutions, and cryptocurrency exchanges to return your money.</p>
+                <ul class="space-y-2 text-sm text-coolGray">
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Legal recovery process</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Direct fund transfer</li>
+                    <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Full documentation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">Our <span class="text-cyan">Recovery</span> Services</h2>
+            <p class="text-xl text-coolGray max-w-2xl mx-auto">Specialized solutions for every type of financial fraud</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex items-start space-x-6">
+                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-midnight">Crypto Scam Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-4">Recover funds from Bitcoin, Ethereum, and other cryptocurrency scams through advanced blockchain analysis and exchange cooperation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">BTC</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ETH</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">USDT</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">NFTs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex items-start space-x-6">
+                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-midnight">Banking Fraud Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-4">Recover unauthorized wire transfers, ACH fraud, and fraudulent transactions from your bank accounts with our banking specialists.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Wire Transfer</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ACH</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Checks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex items-start space-x-6">
+                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-midnight">Investment Scam Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-4">Recover money lost in Ponzi schemes, forex trading scams, fake brokers, and fraudulent investment opportunities.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Forex</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Ponzi</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Binary Options</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex items-start space-x-6">
+                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-midnight">Payment Fraud Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-4">Recover funds from PayPal scams, credit card fraud, and other payment system frauds through payment processor cooperation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">PayPal</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Venmo</span>
+                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Zelle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-neutralGray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">What Our <span class="text-cyan">Clients Say</span></h2>
+            <p class="text-xl text-coolGray">Real stories from people we've helped</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-card">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray mb-6 leading-relaxed italic">"I lost $45,000 to a crypto investment scam. RecoveryPro traced the funds and recovered 90% within 3 months. Their team was professional and kept me informed every step of the way."</p>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">JD</div>
+                    <div class="ml-4">
+                        <div class="font-bold text-midnight">John D.</div>
+                        <div class="text-sm text-coolGray">Crypto Scam Victim</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-card">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray mb-6 leading-relaxed italic">"After being scammed by a fake forex broker, I thought my money was gone forever. RecoveryPro's investigation team worked with international authorities and recovered $28,000. Incredible service!"</p>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">SM</div>
+                    <div class="ml-4">
+                        <div class="font-bold text-midnight">Sarah M.</div>
+                        <div class="text-sm text-coolGray">Forex Scam Victim</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-card">
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-coolGray mb-6 leading-relaxed italic">"RecoveryPro helped me recover funds from a romance scam that cost me $12,000. Their compassionate approach and expertise made a difficult situation bearable. Highly recommend!"</p>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">MR</div>
+                    <div class="ml-4">
+                        <div class="font-bold text-midnight">Maria R.</div>
+                        <div class="text-sm text-coolGray">Romance Scam Victim</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="gradient-primary text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 right-10 w-96 h-96 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div class="inline-block bg-cyan bg-opacity-20 px-6 py-2 rounded-full text-cyan text-sm font-semibold mb-6">
+            <i class="fas fa-clock mr-2"></i>Time-Sensitive Recovery
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Don't Wait - <span class="text-cyan">Start Your Recovery Today</span></h2>
+        <p class="text-xl text-blue-100 mb-10 leading-relaxed">Every moment counts in fund recovery. Our agents are ready 24/7 to help you recover your funds. The sooner you act, the better your chances of full recovery.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="{% url 'register' %}" class="inline-flex items-center justify-center bg-cyan text-white px-10 py-4 rounded-lg font-bold hover:bg-cyanDark transition text-lg shadow-xl hover:shadow-cyan/50 transform hover:scale-105">
+                <i class="fas fa-arrow-right mr-3"></i>Get Started Now - It's Free
+            </a>
+            <a href="{% url 'contact' %}" class="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-lg">
+                <i class="fas fa-phone mr-3"></i>Call Emergency Line
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div class="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl">
+                <i class="fas fa-shield-check text-3xl text-cyan mb-3"></i>
+                <div class="font-bold mb-1">No Upfront Fees</div>
+                <div class="text-sm text-blue-100">Pay only when we recover</div>
+            </div>
+            <div class="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl">
+                <i class="fas fa-clock text-3xl text-cyan mb-3"></i>
+                <div class="font-bold mb-1">24/7 Support</div>
+                <div class="text-sm text-blue-100">Always here to help</div>
+            </div>
+            <div class="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl">
+                <i class="fas fa-lock text-3xl text-cyan mb-3"></i>
+                <div class="font-bold mb-1">100% Confidential</div>
+                <div class="text-sm text-blue-100">Your privacy guaranteed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Badges Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h3 class="text-2xl font-bold text-midnight mb-2">Trusted & Certified</h3>
+            <p class="text-coolGray">Licensed and regulated by international financial authorities</p>
+        </div>
+        <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+            <div class="text-4xl text-midnight"><i class="fas fa-certificate"></i></div>
+            <div class="text-4xl text-midnight"><i class="fas fa-shield-alt"></i></div>
+            <div class="text-4xl text-midnight"><i class="fas fa-award"></i></div>
+            <div class="text-4xl text-midnight"><i class="fas fa-star"></i></div>
+            <div class="text-4xl text-midnight"><i class="fas fa-medal"></i></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
