@@ -4,61 +4,61 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="gradient-primary text-white py-24 relative overflow-hidden">
+<section class="gradient-primary text-white py-12 md:py-20 lg:py-24 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-20 left-20 w-72 h-72 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute bottom-20 right-20 w-96 h-96 bg-cyanLight rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-10 md:top-20 left-10 md:left-20 w-40 md:w-72 h-40 md:h-72 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-10 md:bottom-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 bg-cyanLight rounded-full blur-3xl animate-pulse-slow"></div>
     </div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="animate-fadeInUp">
-                <div class="inline-block bg-cyan bg-opacity-20 px-4 py-2 rounded-full text-cyan text-sm font-semibold mb-6">
-                    <i class="fas fa-shield-check mr-2"></i>Trusted by 5000+ Victims
+    <div class="container-responsive relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="animate-fadeInUp text-center md:text-left">
+                <div class="inline-block bg-cyan bg-opacity-20 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-cyan text-xs md:text-sm font-semibold mb-4 md:mb-6">
+                    <i class="fas fa-shield-check mr-1 md:mr-2"></i>Trusted by 5000+ Victims
                 </div>
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Recover Your <span class="text-cyan">Scammed Funds</span></h1>
-                <p class="text-xl text-blue-100 mb-8 leading-relaxed">Expert recovery agents helping victims of crypto scams, fraud, and financial crimes recover their money through advanced blockchain forensics and legal expertise.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{% url 'register' %}" class="bg-cyan text-white px-8 py-4 rounded-lg font-bold hover:bg-cyanDark transition text-center shadow-lg hover:shadow-cyan/50 transform hover:scale-105">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">Recover Your <span class="text-cyan">Scammed Funds</span></h1>
+                <p class="text-base md:text-lg lg:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed">Expert recovery agents helping victims of crypto scams, fraud, and financial crimes recover their money through advanced blockchain forensics and legal expertise.</p>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                    <a href="{% url 'register' %}" class="bg-cyan text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-cyanDark transition text-center text-sm md:text-base shadow-lg hover:shadow-cyan/50 transform hover:scale-105">
                         <i class="fas fa-arrow-right mr-2"></i>Start Free Recovery
                     </a>
-                    <a href="{% url 'contact' %}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-center">
+                    <a href="{% url 'contact' %}" class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-center text-sm md:text-base">
                         <i class="fas fa-phone mr-2"></i>Emergency Hotline
                     </a>
                 </div>
                 
                 <!-- Trust Badges -->
-                <div class="flex items-center space-x-6 mt-10 pt-8 border-t border-white border-opacity-20">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-3 md:gap-6 mt-6 md:mt-10 pt-6 md:pt-8 border-t border-white border-opacity-20">
                     <div class="flex items-center space-x-2">
-                        <i class="fas fa-check-circle text-cyan text-xl"></i>
-                        <span class="text-sm">24/7 Support</span>
+                        <i class="fas fa-check-circle text-cyan text-base md:text-xl"></i>
+                        <span class="text-xs md:text-sm">24/7 Support</span>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <i class="fas fa-lock text-cyan text-xl"></i>
-                        <span class="text-sm">100% Confidential</span>
+                        <i class="fas fa-lock text-cyan text-base md:text-xl"></i>
+                        <span class="text-xs md:text-sm">100% Confidential</span>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <i class="fas fa-award text-cyan text-xl"></i>
-                        <span class="text-sm">Licensed Experts</span>
+                        <i class="fas fa-award text-cyan text-base md:text-xl"></i>
+                        <span class="text-xs md:text-sm">Licensed Experts</span>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center animate-fadeIn">
-                <div class="bg-white bg-opacity-10 p-10 rounded-3xl backdrop-blur-md shadow-2xl border border-white border-opacity-20 glow-effect">
+            <div class="text-center animate-fadeIn mt-8 md:mt-0">
+                <div class="bg-white bg-opacity-10 p-6 md:p-10 rounded-3xl backdrop-blur-md shadow-2xl border border-white border-opacity-20 glow-effect">
                     <div class="relative">
-                        <i class="fas fa-shield-alt text-8xl text-cyan mb-6 animate-pulse-slow"></i>
-                        <div class="absolute -top-2 -right-2 w-4 h-4 bg-cyan rounded-full animate-ping"></div>
+                        <i class="fas fa-shield-alt text-5xl md:text-8xl text-cyan mb-4 md:mb-6 animate-pulse-slow"></i>
+                        <div class="absolute -top-2 -right-2 w-3 h-3 md:w-4 md:h-4 bg-cyan rounded-full animate-ping"></div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3">Your Recovery Starts Here</h3>
-                    <p class="text-blue-100 mb-6">Safe, secure, and professional investigation services</p>
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div class="bg-midnight bg-opacity-50 p-4 rounded-xl">
-                            <div class="text-3xl font-bold text-cyan">95%</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3">Your Recovery Starts Here</h3>
+                    <p class="text-blue-100 mb-4 md:mb-6 text-sm md:text-base">Safe, secure, and professional investigation services</p>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 text-center">
+                        <div class="bg-midnight bg-opacity-50 p-3 md:p-4 rounded-xl">
+                            <div class="text-2xl md:text-3xl font-bold text-cyan">95%</div>
                             <div class="text-xs text-blue-200 mt-1">Success Rate</div>
                         </div>
-                        <div class="bg-midnight bg-opacity-50 p-4 rounded-xl">
-                            <div class="text-3xl font-bold text-cyan">48h</div>
+                        <div class="bg-midnight bg-opacity-50 p-3 md:p-4 rounded-xl">
+                            <div class="text-2xl md:text-3xl font-bold text-cyan">48h</div>
                             <div class="text-xs text-blue-200 mt-1">Avg Response</div>
                         </div>
                     </div>
@@ -69,37 +69,37 @@
 </section>
 
 <!-- Stats Section -->
-<section class="bg-white py-20 -mt-10 relative z-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<section class="bg-white py-12 md:py-20 -mt-6 md:-mt-10 relative z-20">
+    <div class="container-responsive">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-5xl font-bold text-midnight mb-2">
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">
                         <span class="text-cyan">$</span>50M+
                     </div>
-                    <p class="text-coolGray font-medium">Funds Recovered</p>
-                    <div class="mt-2 text-green-500 text-sm font-semibold">
-                        <i class="fas fa-arrow-up mr-1"></i>+15% This Month
+                    <p class="text-coolGray font-medium text-xs md:text-base">Funds Recovered</p>
+                    <div class="mt-1 md:mt-2 text-green-500 text-xs font-semibold">
+                        <i class="fas fa-arrow-up mr-1"></i><span class="hidden sm:inline">+15% </span>This Month
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-5xl font-bold text-midnight mb-2">5,000<span class="text-cyan">+</span></div>
-                    <p class="text-coolGray font-medium">Cases Closed</p>
-                    <div class="mt-2 text-cyan text-sm font-semibold">
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">5<span class="hidden sm:inline">,000</span><span class="sm:hidden">K</span><span class="text-cyan">+</span></div>
+                    <p class="text-coolGray font-medium text-xs md:text-base">Cases Closed</p>
+                    <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
                         <i class="fas fa-check-circle mr-1"></i>Verified
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-5xl font-bold text-midnight mb-2">95<span class="text-cyan">%</span></div>
-                    <p class="text-coolGray font-medium">Success Rate</p>
-                    <div class="mt-2 text-cyan text-sm font-semibold">
-                        <i class="fas fa-star mr-1"></i>Industry Leading
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">95<span class="text-cyan">%</span></div>
+                    <p class="text-coolGray font-medium text-xs md:text-base">Success Rate</p>
+                    <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
+                        <i class="fas fa-star mr-1"></i><span class="hidden sm:inline">Industry </span>Leading
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-5xl font-bold text-midnight mb-2">150<span class="text-cyan">+</span></div>
-                    <p class="text-coolGray font-medium">Expert Agents</p>
-                    <div class="mt-2 text-cyan text-sm font-semibold">
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">150<span class="text-cyan">+</span></div>
+                    <p class="text-coolGray font-medium text-xs md:text-base">Expert Agents</p>
+                    <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
                         <i class="fas fa-user-shield mr-1"></i>Certified
                     </div>
                 </div>
@@ -109,56 +109,56 @@
 </section>
 
 <!-- How It Works Section -->
-<section class="py-20 bg-neutralGray">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 animate-fadeInUp">
-            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">How <span class="text-cyan">Recovery</span> Works</h2>
-            <p class="text-xl text-coolGray max-w-2xl mx-auto">Our proven 3-step process to get your money back</p>
+<section class="py-12 md:py-20 bg-neutralGray">
+    <div class="container-responsive">
+        <div class="text-center mb-10 md:mb-16 animate-fadeInUp">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-midnight mb-3 md:mb-4">How <span class="text-cyan">Recovery</span> Works</h2>
+            <p class="text-base md:text-xl text-coolGray max-w-2xl mx-auto px-4">Our proven 3-step process to get your money back</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="relative mb-6">
-                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-4 md:mb-6">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-3xl md:text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
                         <i class="fas fa-file-alt"></i>
                     </div>
-                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 md:w-10 md:h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg">1</div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 text-midnight">Submit Your Case</h3>
-                <p class="text-coolGray leading-relaxed mb-6">Report your scam with detailed information and evidence. Our AI-powered system analyzes your case immediately and assigns it to the best recovery specialist.</p>
-                <ul class="space-y-2 text-sm text-coolGray">
+                <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-midnight">Submit Your Case</h3>
+                <p class="text-coolGray leading-relaxed mb-4 md:mb-6 text-sm md:text-base">Report your scam with detailed information and evidence. Our AI-powered system analyzes your case immediately and assigns it to the best recovery specialist.</p>
+                <ul class="space-y-2 text-xs md:text-sm text-coolGray">
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Free case evaluation</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Secure document upload</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>24-hour response time</li>
                 </ul>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="relative mb-6">
-                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-4 md:mb-6">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-3xl md:text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
                         <i class="fas fa-search-dollar"></i>
                     </div>
-                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 md:w-10 md:h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg">2</div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 text-midnight">Deep Investigation</h3>
-                <p class="text-coolGray leading-relaxed mb-6">Our expert agents investigate every lead, trace blockchain transactions, analyze patterns, and identify recovery opportunities using cutting-edge forensic tools.</p>
-                <ul class="space-y-2 text-sm text-coolGray">
+                <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-midnight">Deep Investigation</h3>
+                <p class="text-coolGray leading-relaxed mb-4 md:mb-6 text-sm md:text-base">Our expert agents investigate every lead, trace blockchain transactions, analyze patterns, and identify recovery opportunities using cutting-edge forensic tools.</p>
+                <ul class="space-y-2 text-xs md:text-sm text-coolGray">
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Blockchain forensics</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>International coordination</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Real-time updates</li>
                 </ul>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="relative mb-6">
-                    <div class="w-20 h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="relative mb-4 md:mb-6">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-cyan bg-opacity-10 rounded-2xl flex items-center justify-center text-3xl md:text-4xl text-cyan group-hover:bg-cyan group-hover:text-white transition">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <div class="absolute -top-2 -right-2 w-10 h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                    <div class="absolute -top-2 -right-2 w-8 h-8 md:w-10 md:h-10 bg-midnight text-white rounded-full flex items-center justify-center font-bold text-base md:text-lg">3</div>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 text-midnight">Fund Recovery</h3>
-                <p class="text-coolGray leading-relaxed mb-6">Once funds are located, we execute recovery through proper legal channels, banking institutions, and cryptocurrency exchanges to return your money.</p>
-                <ul class="space-y-2 text-sm text-coolGray">
+                <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-midnight">Fund Recovery</h3>
+                <p class="text-coolGray leading-relaxed mb-4 md:mb-6 text-sm md:text-base">Once funds are located, we execute recovery through proper legal channels, banking institutions, and cryptocurrency exchanges to return your money.</p>
+                <ul class="space-y-2 text-xs md:text-sm text-coolGray">
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Legal recovery process</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Direct fund transfer</li>
                     <li class="flex items-center"><i class="fas fa-check text-cyan mr-2"></i>Full documentation</li>
@@ -169,78 +169,78 @@
 </section>
 
 <!-- Services Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">Our <span class="text-cyan">Recovery</span> Services</h2>
-            <p class="text-xl text-coolGray max-w-2xl mx-auto">Specialized solutions for every type of financial fraud</p>
+<section class="py-12 md:py-20 bg-white">
+    <div class="container-responsive">
+        <div class="text-center mb-10 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-midnight mb-3 md:mb-4">Our <span class="text-cyan">Recovery</span> Services</h2>
+            <p class="text-base md:text-xl text-coolGray max-w-2xl mx-auto px-4">Specialized solutions for every type of financial fraud</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="flex items-start space-x-6">
-                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div class="bg-neutralGray p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-2xl md:text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
                         <i class="fab fa-bitcoin"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-3 text-midnight">Crypto Scam Recovery</h3>
-                        <p class="text-coolGray leading-relaxed mb-4">Recover funds from Bitcoin, Ethereum, and other cryptocurrency scams through advanced blockchain analysis and exchange cooperation.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-midnight">Crypto Scam Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Recover funds from Bitcoin, Ethereum, and other cryptocurrency scams through advanced blockchain analysis and exchange cooperation.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">BTC</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ETH</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">USDT</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">NFTs</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">BTC</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ETH</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">USDT</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">NFTs</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="flex items-start space-x-6">
-                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+            <div class="bg-neutralGray p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-2xl md:text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
                         <i class="fas fa-university"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-3 text-midnight">Banking Fraud Recovery</h3>
-                        <p class="text-coolGray leading-relaxed mb-4">Recover unauthorized wire transfers, ACH fraud, and fraudulent transactions from your bank accounts with our banking specialists.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-midnight">Banking Fraud Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Recover unauthorized wire transfers, ACH fraud, and fraudulent transactions from your bank accounts with our banking specialists.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Wire Transfer</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ACH</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Checks</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Wire Transfer</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">ACH</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Checks</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="flex items-start space-x-6">
-                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+            <div class="bg-neutralGray p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-2xl md:text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-3 text-midnight">Investment Scam Recovery</h3>
-                        <p class="text-coolGray leading-relaxed mb-4">Recover money lost in Ponzi schemes, forex trading scams, fake brokers, and fraudulent investment opportunities.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-midnight">Investment Scam Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Recover money lost in Ponzi schemes, forex trading scams, fake brokers, and fraudulent investment opportunities.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Forex</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Ponzi</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Binary Options</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Forex</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Ponzi</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Binary Options</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-neutralGray p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
-                <div class="flex items-start space-x-6">
-                    <div class="w-16 h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
+            <div class="bg-neutralGray p-6 md:p-8 rounded-2xl shadow-card hover:shadow-lg transition group">
+                <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-cyan bg-opacity-10 rounded-xl flex items-center justify-center text-2xl md:text-3xl text-cyan group-hover:bg-cyan group-hover:text-white transition flex-shrink-0">
                         <i class="fas fa-credit-card"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-3 text-midnight">Payment Fraud Recovery</h3>
-                        <p class="text-coolGray leading-relaxed mb-4">Recover funds from PayPal scams, credit card fraud, and other payment system frauds through payment processor cooperation.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-midnight">Payment Fraud Recovery</h3>
+                        <p class="text-coolGray leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Recover funds from PayPal scams, credit card fraud, and other payment system frauds through payment processor cooperation.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">PayPal</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Venmo</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Zelle</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">PayPal</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Venmo</span>
+                            <span class="px-2 md:px-3 py-1 bg-white rounded-full text-xs font-semibold text-cyan">Zelle</span>
                         </div>
                     </div>
                 </div>
@@ -250,17 +250,17 @@
 </section>
 
 <!-- Testimonials Section -->
-<section class="py-20 bg-neutralGray">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-midnight mb-4">What Our <span class="text-cyan">Clients Say</span></h2>
-            <p class="text-xl text-coolGray">Real stories from people we've helped</p>
+<section class="py-12 md:py-20 bg-neutralGray">
+    <div class="container-responsive">
+        <div class="text-center mb-10 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-midnight mb-3 md:mb-4">What Our <span class="text-cyan">Clients Say</span></h2>
+            <p class="text-base md:text-xl text-coolGray px-4">Real stories from people we've helped</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-card">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400 text-xl">
+                    <div class="flex text-yellow-400 text-base md:text-xl">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -268,19 +268,19 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-6 leading-relaxed italic">"I lost $45,000 to a crypto investment scam. RecoveryPro traced the funds and recovered 90% within 3 months. Their team was professional and kept me informed every step of the way."</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"I lost $45,000 to a crypto investment scam. RecoveryPro traced the funds and recovered 90% within 3 months. Their team was professional and kept me informed every step of the way."</p>
                 <div class="flex items-center">
-                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">JD</div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">JD</div>
                     <div class="ml-4">
-                        <div class="font-bold text-midnight">John D.</div>
-                        <div class="text-sm text-coolGray">Crypto Scam Victim</div>
+                        <div class="font-bold text-midnight text-sm md:text-base">John D.</div>
+                        <div class="text-xs md:text-sm text-coolGray">Crypto Scam Victim</div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-card">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400 text-xl">
+                    <div class="flex text-yellow-400 text-base md:text-xl">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -288,19 +288,19 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-6 leading-relaxed italic">"After being scammed by a fake forex broker, I thought my money was gone forever. RecoveryPro's investigation team worked with international authorities and recovered $28,000. Incredible service!"</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"After being scammed by a fake forex broker, I thought my money was gone forever. RecoveryPro's investigation team worked with international authorities and recovered $28,000. Incredible service!"</p>
                 <div class="flex items-center">
-                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">SM</div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">SM</div>
                     <div class="ml-4">
-                        <div class="font-bold text-midnight">Sarah M.</div>
-                        <div class="text-sm text-coolGray">Forex Scam Victim</div>
+                        <div class="font-bold text-midnight text-sm md:text-base">Sarah M.</div>
+                        <div class="text-xs md:text-sm text-coolGray">Forex Scam Victim</div>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-card">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400 text-xl">
+                    <div class="flex text-yellow-400 text-base md:text-xl">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -308,12 +308,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-6 leading-relaxed italic">"RecoveryPro helped me recover funds from a romance scam that cost me $12,000. Their compassionate approach and expertise made a difficult situation bearable. Highly recommend!"</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"RecoveryPro helped me recover funds from a romance scam that cost me $12,000. Their compassionate approach and expertise made a difficult situation bearable. Highly recommend!"</p>
                 <div class="flex items-center">
-                    <div class="w-12 h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-lg">MR</div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">MR</div>
                     <div class="ml-4">
-                        <div class="font-bold text-midnight">Maria R.</div>
-                        <div class="text-sm text-coolGray">Romance Scam Victim</div>
+                        <div class="font-bold text-midnight text-sm md:text-base">Maria R.</div>
+                        <div class="text-xs md:text-sm text-coolGray">Romance Scam Victim</div>
                     </div>
                 </div>
             </div>
@@ -322,21 +322,21 @@
 </section>
 
 <!-- CTA Section -->
-<section class="gradient-primary text-white py-20 relative overflow-hidden">
+<section class="gradient-primary text-white py-12 md:py-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-10 right-10 w-96 h-96 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-10 right-10 w-48 md:w-96 h-48 md:h-96 bg-cyan rounded-full blur-3xl animate-pulse-slow"></div>
     </div>
     
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div class="inline-block bg-cyan bg-opacity-20 px-6 py-2 rounded-full text-cyan text-sm font-semibold mb-6">
+    <div class="container-responsive text-center relative z-10 max-w-4xl">
+        <div class="inline-block bg-cyan bg-opacity-20 px-4 md:px-6 py-2 rounded-full text-cyan text-xs md:text-sm font-semibold mb-4 md:mb-6">
             <i class="fas fa-clock mr-2"></i>Time-Sensitive Recovery
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">Don't Wait - <span class="text-cyan">Start Your Recovery Today</span></h2>
-        <p class="text-xl text-blue-100 mb-10 leading-relaxed">Every moment counts in fund recovery. Our agents are ready 24/7 to help you recover your funds. The sooner you act, the better your chances of full recovery.</p>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-4">Don't Wait - <span class="text-cyan">Start Your Recovery Today</span></h2>
+        <p class="text-base md:text-xl text-blue-100 mb-6 md:mb-10 leading-relaxed px-4">Every moment counts in fund recovery. Our agents are ready 24/7 to help you recover your funds. The sooner you act, the better your chances of full recovery.</p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a href="{% url 'register' %}" class="inline-flex items-center justify-center bg-cyan text-white px-10 py-4 rounded-lg font-bold hover:bg-cyanDark transition text-lg shadow-xl hover:shadow-cyan/50 transform hover:scale-105">
-                <i class="fas fa-arrow-right mr-3"></i>Get Started Now - It's Free
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
+            <a href="{% url 'register' %}" class="inline-flex items-center justify-center bg-cyan text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold hover:bg-cyanDark transition text-sm md:text-lg shadow-xl hover:shadow-cyan/50 transform hover:scale-105">
+                <i class="fas fa-arrow-right mr-2 md:mr-3"></i>Get Started Now - It's Free
             </a>
             <a href="{% url 'contact' %}" class="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-lg">
                 <i class="fas fa-phone mr-3"></i>Call Emergency Line
