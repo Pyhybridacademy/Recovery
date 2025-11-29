@@ -29,10 +29,12 @@
             box-sizing: border-box;
         }
         
-        body { 
+        html, body { 
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
             max-width: 100vw;
+            margin: 0;
+            padding: 0;
         }
         
         .gradient-primary { 
@@ -137,36 +139,49 @@
             animation: fadeInUp 0.5s ease-out;
         }
         
-        /* Prevent horizontal overflow */
-        .max-w-7xl {
-            max-width: 100%;
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        /* Responsive container */
+        .container-responsive {
             width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
             padding-left: 1rem;
             padding-right: 1rem;
         }
         
         @media (min-width: 640px) {
-            .max-w-7xl {
+            .container-responsive {
                 max-width: 640px;
-                margin-left: auto;
-                margin-right: auto;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
         }
         
         @media (min-width: 768px) {
-            .max-w-7xl {
+            .container-responsive {
                 max-width: 768px;
             }
         }
         
         @media (min-width: 1024px) {
-            .max-w-7xl {
+            .container-responsive {
                 max-width: 1024px;
             }
         }
         
         @media (min-width: 1280px) {
-            .max-w-7xl {
+            .container-responsive {
                 max-width: 1280px;
             }
         }
@@ -176,44 +191,43 @@
 <body class="bg-neutralGray text-darkGray">
     <!-- Navigation -->
     <nav class="bg-midnight shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+        <div class="container-responsive">
+            <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex items-center">
-                    <a href="{% url 'home' %}" class="flex items-center text-2xl font-bold text-white hover:text-cyan transition">
-                        <i class="fas fa-shield-alt mr-2 text-cyan"></i> 
+                    <a href="{% url 'home' %}" class="flex items-center text-xl md:text-2xl font-bold text-white hover:text-cyan transition">
+                        <i class="fas fa-shield-alt mr-2 text-cyan text-lg md:text-xl"></i> 
                         <span>Recovery<span class="text-cyan">Pro</span></span>
                     </a>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="{% url 'home' %}" class="nav-link text-white hover:text-cyan transition font-medium">Home</a>
-                    <a href="{% url 'about' %}" class="nav-link text-white hover:text-cyan transition font-medium">About</a>
-                    <a href="{% url 'faq' %}" class="nav-link text-white hover:text-cyan transition font-medium">FAQ</a>
-                    <a href="{% url 'contact' %}" class="nav-link text-white hover:text-cyan transition font-medium">Contact</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
+                    <a href="{% url 'home' %}" class="nav-link text-white hover:text-cyan transition font-medium text-sm lg:text-base">Home</a>
+                    <a href="{% url 'about' %}" class="nav-link text-white hover:text-cyan transition font-medium text-sm lg:text-base">About</a>
+                    <a href="{% url 'faq' %}" class="nav-link text-white hover:text-cyan transition font-medium text-sm lg:text-base">FAQ</a>
+                    <a href="{% url 'contact' %}" class="nav-link text-white hover:text-cyan transition font-medium text-sm lg:text-base">Contact</a>
                 </div>
 
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2 md:space-x-4">
                     {% if user.is_authenticated %}
-                        <!-- templates/base.html - UPDATE THE NAVIGATION SECTION -->
-
-                        <!-- In the navigation section, update the dropdown menu -->
-                        <div class="relative dropdown">
-                            <button class="flex items-center space-x-2 px-6 py-2.5 rounded-lg btn-primary text-white font-medium">
+                        <!-- Desktop User Menu -->
+                        <div class="hidden md:block relative dropdown">
+                            <button class="flex items-center space-x-2 px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg btn-primary text-white font-medium text-sm lg:text-base">
                                 <i class="fas fa-user-circle"></i>
-                                <span>{{ user.username|truncatechars:15 }}</span>
+                                <span class="hidden lg:inline">{{ user.username|truncatechars:15 }}</span>
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </button>
-                            <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50">
-                                <a href="{% url 'dashboard' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center">
+                            <div class="dropdown-menu absolute right-0 mt-2 w-48 md:w-56 bg-white rounded-lg shadow-xl py-2 z-50">
+                                <a href="{% url 'dashboard' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center text-sm">
                                     <i class="fas fa-tachometer-alt mr-3 text-cyan"></i>Dashboard
                                 </a>
-                                <a href="{% url 'cases' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center">
+                                <a href="{% url 'cases' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center text-sm">
                                     <i class="fas fa-clipboard-list mr-3 text-cyan"></i>My Cases
                                 </a>
-                                <a href="{% url 'profile_settings' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center">
+                                <a href="{% url 'profile_settings' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center text-sm">
                                     <i class="fas fa-cog mr-3 text-cyan"></i>Settings
                                 </a>
-                                <a href="{% url 'notifications_list' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center">
+                                <a href="{% url 'notifications_list' %}" class="block px-4 py-3 hover:bg-neutralGray text-darkGray transition flex items-center text-sm">
                                     <i class="fas fa-bell mr-3 text-cyan"></i>Notifications
                                     {% if notifications and notifications.count > 0 %}
                                         <span class="ml-auto bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -222,14 +236,50 @@
                                     {% endif %}
                                 </a>
                                 <hr class="my-2 border-neutralGray">
-                                <a href="{% url 'logout' %}" class="block px-4 py-3 hover:bg-red-50 text-red-600 transition flex items-center">
+                                <a href="{% url 'logout' %}" class="block px-4 py-3 hover:bg-red-50 text-red-600 transition flex items-center text-sm">
                                     <i class="fas fa-sign-out-alt mr-3"></i>Logout
                                 </a>
                             </div>
                         </div>
                     {% else %}
-                        <a href="{% url 'login' %}" class="px-6 py-2.5 text-cyan border-2 border-cyan rounded-lg hover:bg-cyan hover:text-white transition font-medium">Login</a>
-                        <a href="{% url 'register' %}" class="px-6 py-2.5 btn-primary text-white rounded-lg font-medium">Register</a>
+                        <!-- Desktop Auth Buttons -->
+                        <div class="hidden md:flex items-center space-x-2 lg:space-x-4">
+                            <a href="{% url 'login' %}" class="px-3 lg:px-6 py-2 lg:py-2.5 text-cyan border-2 border-cyan rounded-lg hover:bg-cyan hover:text-white transition font-medium text-sm lg:text-base">Login</a>
+                            <a href="{% url 'register' %}" class="px-3 lg:px-6 py-2 lg:py-2.5 btn-primary text-white rounded-lg font-medium text-sm lg:text-base">Register</a>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-navy rounded-b-lg">
+                <div class="px-4 py-4 space-y-3">
+                    <a href="{% url 'home' %}" class="block text-white hover:text-cyan transition font-medium py-2">Home</a>
+                    <a href="{% url 'about' %}" class="block text-white hover:text-cyan transition font-medium py-2">About</a>
+                    <a href="{% url 'faq' %}" class="block text-white hover:text-cyan transition font-medium py-2">FAQ</a>
+                    <a href="{% url 'contact' %}" class="block text-white hover:text-cyan transition font-medium py-2">Contact</a>
+                    <hr class="border-midnight">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="block text-white hover:text-cyan transition font-medium py-2">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                        <a href="{% url 'cases' %}" class="block text-white hover:text-cyan transition font-medium py-2">
+                            <i class="fas fa-clipboard-list mr-2"></i>My Cases
+                        </a>
+                        <a href="{% url 'profile_settings' %}" class="block text-white hover:text-cyan transition font-medium py-2">
+                            <i class="fas fa-cog mr-2"></i>Settings
+                        </a>
+                        <a href="{% url 'logout' %}" class="block text-center px-4 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-medium">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="block text-center px-4 py-2.5 text-cyan border-2 border-cyan rounded-lg hover:bg-cyan hover:text-white transition font-medium">Login</a>
+                        <a href="{% url 'register' %}" class="block text-center px-4 py-2.5 btn-primary text-white rounded-lg font-medium">Register</a>
                     {% endif %}
                 </div>
             </div>
@@ -238,15 +288,15 @@
 
     <!-- Messages -->
     {% if messages %}
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div class="container-responsive pt-4 md:pt-6">
             {% for message in messages %}
-                <div class="message-alert mb-4 p-4 rounded-lg border-l-4 {% if message.tags == 'success' %}bg-green-50 border-green-500 text-green-700{% elif message.tags == 'error' %}bg-red-50 border-red-500 text-red-700{% elif message.tags == 'warning' %}bg-yellow-50 border-yellow-500 text-yellow-700{% else %}bg-cyan text-white border-cyanDark{% endif %}" role="alert">
+                <div class="message-alert mb-4 p-3 md:p-4 rounded-lg border-l-4 {% if message.tags == 'success' %}bg-green-50 border-green-500 text-green-700{% elif message.tags == 'error' %}bg-red-50 border-red-500 text-red-700{% elif message.tags == 'warning' %}bg-yellow-50 border-yellow-500 text-yellow-700{% else %}bg-cyan text-white border-cyanDark{% endif %}" role="alert">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <i class="fas fa-info-circle mr-3 text-lg"></i>
-                            <span class="font-medium">{{ message }}</span>
+                            <i class="fas fa-info-circle mr-2 md:mr-3 text-base md:text-lg"></i>
+                            <span class="font-medium text-sm md:text-base">{{ message }}</span>
                         </div>
-                        <button onclick="this.parentElement.parentElement.style.display='none'" class="ml-4 text-2xl hover:opacity-70 transition">&times;</button>
+                        <button onclick="this.parentElement.parentElement.style.display='none'" class="ml-2 md:ml-4 text-xl md:text-2xl hover:opacity-70 transition">&times;</button>
                     </div>
                 </div>
             {% endfor %}
@@ -259,11 +309,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-midnight text-white mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer class="bg-midnight text-white mt-12 md:mt-20">
+        <div class="container-responsive py-12 md:py-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
                 <div>
-                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 flex items-center">
                         <i class="fas fa-shield-alt text-cyan mr-2"></i> 
                         <span>Recovery<span class="text-cyan">Pro</span></span>
                     </h3>
@@ -276,8 +326,8 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-cyan">Quick Links</h4>
-                    <ul class="space-y-3 text-sm">
+                    <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Quick Links</h4>
+                    <ul class="space-y-2 md:space-y-3 text-sm">
                         <li><a href="{% url 'home' %}" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Home
                         </a></li>
@@ -293,8 +343,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-cyan">Support</h4>
-                    <ul class="space-y-3 text-sm">
+                    <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Support</h4>
+                    <ul class="space-y-2 md:space-y-3 text-sm">
                         <li><a href="{% url 'contact' %}" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Contact Us
                         </a></li>
@@ -310,7 +360,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-cyan">Connect With Us</h4>
+                    <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Connect With Us</h4>
                     <div class="flex space-x-4 mb-6">
                         <a href="#" class="w-10 h-10 bg-navy hover:bg-cyan rounded-lg flex items-center justify-center transition">
                             <i class="fab fa-facebook text-lg"></i>
@@ -325,7 +375,7 @@
                     <div class="space-y-2 text-sm text-coolGray">
                         <div class="flex items-center">
                             <i class="fas fa-envelope text-cyan mr-2"></i>
-                            <span>support@recoverypro.com</span>
+                            <span class="break-all">support@recoverypro.com</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-phone text-cyan mr-2"></i>
@@ -335,15 +385,26 @@
                 </div>
             </div>
             <hr class="border-navy my-8">
-            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-coolGray">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-coolGray gap-4">
                 <p>&copy; 2025 RecoveryPro. All rights reserved.</p>
-                <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <div class="flex items-center space-x-4">
                     <i class="fas fa-lock text-cyan"></i>
                     <span>SSL Encrypted & Secure</span>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    </script>
 
     {% block extra_js %}{% endblock %}
 </body>
