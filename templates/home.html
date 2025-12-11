@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}RecoveryPro - Professional Scam Recovery Services{% endblock %}
+{% block title %}{{ site_name|default:"RecoveryPro" }} - {{ site_settings.tagline|default:"Professional Scam Recovery Services" }}{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -14,16 +14,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div class="animate-fadeInUp text-center md:text-left">
                 <div class="inline-block bg-cyan bg-opacity-20 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-cyan text-xs md:text-sm font-semibold mb-4 md:mb-6">
-                    <i class="fas fa-shield-check mr-1 md:mr-2"></i>Trusted by 5000+ Victims
+                    <i class="fas fa-shield-check mr-1 md:mr-2"></i>{{ site_settings.trust_badge|default:"Trusted by 5000+ Victims" }}
                 </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">Recover Your <span class="text-cyan">Scammed Funds</span></h1>
-                <p class="text-base md:text-lg lg:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed">Expert recovery agents helping victims of crypto scams, fraud, and financial crimes recover their money through advanced blockchain forensics and legal expertise.</p>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+                    {{ site_settings.hero_title|default:"Recover Your" }} <span class="text-cyan">{{ site_settings.hero_highlight|default:"Scammed Funds" }}</span>
+                </h1>
+                <p class="text-base md:text-lg lg:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed">
+                    {{ site_settings.hero_description|default:"Expert recovery agents helping victims of crypto scams, fraud, and financial crimes recover their money through advanced blockchain forensics and legal expertise." }}
+                </p>
                 <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
                     <a href="{% url 'register' %}" class="bg-cyan text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-cyanDark transition text-center text-sm md:text-base shadow-lg hover:shadow-cyan/50 transform hover:scale-105">
-                        <i class="fas fa-arrow-right mr-2"></i>Start Free Recovery
+                        <i class="fas fa-arrow-right mr-2"></i>{{ site_settings.primary_cta_text|default:"Start Free Recovery" }}
                     </a>
                     <a href="{% url 'contact' %}" class="border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-white hover:text-midnight transition text-center text-sm md:text-base">
-                        <i class="fas fa-phone mr-2"></i>Emergency Hotline
+                        <i class="fas fa-phone mr-2"></i>{{ site_settings.secondary_cta_text|default:"Emergency Hotline" }}
                     </a>
                 </div>
                 
@@ -31,15 +35,15 @@
                 <div class="flex flex-wrap justify-center md:justify-start items-center gap-3 md:gap-6 mt-6 md:mt-10 pt-6 md:pt-8 border-t border-white border-opacity-20">
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-check-circle text-cyan text-base md:text-xl"></i>
-                        <span class="text-xs md:text-sm">24/7 Support</span>
+                        <span class="text-xs md:text-sm">{{ site_settings.feature_1|default:"24/7 Support" }}</span>
                     </div>
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-lock text-cyan text-base md:text-xl"></i>
-                        <span class="text-xs md:text-sm">100% Confidential</span>
+                        <span class="text-xs md:text-sm">{{ site_settings.feature_2|default:"100% Confidential" }}</span>
                     </div>
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-award text-cyan text-base md:text-xl"></i>
-                        <span class="text-xs md:text-sm">Licensed Experts</span>
+                        <span class="text-xs md:text-sm">{{ site_settings.feature_3|default:"Licensed Experts" }}</span>
                     </div>
                 </div>
             </div>
@@ -54,11 +58,11 @@
                     <p class="text-blue-100 mb-4 md:mb-6 text-sm md:text-base">Safe, secure, and professional investigation services</p>
                     <div class="grid grid-cols-2 gap-3 md:gap-4 text-center">
                         <div class="bg-midnight bg-opacity-50 p-3 md:p-4 rounded-xl">
-                            <div class="text-2xl md:text-3xl font-bold text-cyan">95%</div>
+                            <div class="text-2xl md:text-3xl font-bold text-cyan">{{ site_settings.success_rate|default:"95" }}%</div>
                             <div class="text-xs text-blue-200 mt-1">Success Rate</div>
                         </div>
                         <div class="bg-midnight bg-opacity-50 p-3 md:p-4 rounded-xl">
-                            <div class="text-2xl md:text-3xl font-bold text-cyan">48h</div>
+                            <div class="text-2xl md:text-3xl font-bold text-cyan">{{ site_settings.response_time|default:"48" }}h</div>
                             <div class="text-xs text-blue-200 mt-1">Avg Response</div>
                         </div>
                     </div>
@@ -75,7 +79,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 <div class="text-center transform hover:scale-110 transition">
                     <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">
-                        <span class="text-cyan">$</span>50M+
+                        <span class="text-cyan">$</span>{{ site_settings.funds_recovered|default:"50M+" }}
                     </div>
                     <p class="text-coolGray font-medium text-xs md:text-base">Funds Recovered</p>
                     <div class="mt-1 md:mt-2 text-green-500 text-xs font-semibold">
@@ -83,21 +87,27 @@
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">5<span class="hidden sm:inline">,000</span><span class="sm:hidden">K</span><span class="text-cyan">+</span></div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">
+                        {{ site_settings.cases_closed|default:"5,000" }}<span class="text-cyan">+</span>
+                    </div>
                     <p class="text-coolGray font-medium text-xs md:text-base">Cases Closed</p>
                     <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
                         <i class="fas fa-check-circle mr-1"></i>Verified
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">95<span class="text-cyan">%</span></div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">
+                        {{ site_settings.success_rate|default:"95" }}<span class="text-cyan">%</span>
+                    </div>
                     <p class="text-coolGray font-medium text-xs md:text-base">Success Rate</p>
                     <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
                         <i class="fas fa-star mr-1"></i><span class="hidden sm:inline">Industry </span>Leading
                     </div>
                 </div>
                 <div class="text-center transform hover:scale-110 transition">
-                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">150<span class="text-cyan">+</span></div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-bold text-midnight mb-1 md:mb-2">
+                        {{ site_settings.expert_count|default:"150" }}<span class="text-cyan">+</span>
+                    </div>
                     <p class="text-coolGray font-medium text-xs md:text-base">Expert Agents</p>
                     <div class="mt-1 md:mt-2 text-cyan text-xs font-semibold">
                         <i class="fas fa-user-shield mr-1"></i>Certified
@@ -250,6 +260,7 @@
 </section>
 
 <!-- Testimonials Section -->
+{% if site_settings.show_testimonials|default:True %}
 <section class="py-12 md:py-20 bg-neutralGray">
     <div class="container-responsive">
         <div class="text-center mb-10 md:mb-16">
@@ -268,7 +279,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"I lost $45,000 to a crypto investment scam. RecoveryPro traced the funds and recovered 90% within 3 months. Their team was professional and kept me informed every step of the way."</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"I lost $45,000 to a crypto investment scam. {{ site_name|default:"RecoveryPro" }} traced the funds and recovered 90% within 3 months. Their team was professional and kept me informed every step of the way."</p>
                 <div class="flex items-center">
                     <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">JD</div>
                     <div class="ml-4">
@@ -288,7 +299,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"After being scammed by a fake forex broker, I thought my money was gone forever. RecoveryPro's investigation team worked with international authorities and recovered $28,000. Incredible service!"</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"After being scammed by a fake forex broker, I thought my money was gone forever. {{ site_name|default:"RecoveryPro" }}'s investigation team worked with international authorities and recovered $28,000. Incredible service!"</p>
                 <div class="flex items-center">
                     <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">SM</div>
                     <div class="ml-4">
@@ -308,7 +319,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"RecoveryPro helped me recover funds from a romance scam that cost me $12,000. Their compassionate approach and expertise made a difficult situation bearable. Highly recommend!"</p>
+                <p class="text-coolGray mb-4 md:mb-6 leading-relaxed italic text-sm md:text-base">"{{ site_name|default:"RecoveryPro" }} helped me recover funds from a romance scam that cost me $12,000. Their compassionate approach and expertise made a difficult situation bearable. Highly recommend!"</p>
                 <div class="flex items-center">
                     <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">MR</div>
                     <div class="ml-4">
@@ -320,6 +331,9 @@
         </div>
     </div>
 </section>
+{% endif %}
+
+
 
 <!-- CTA Section -->
 <section class="gradient-primary text-white py-12 md:py-20 relative overflow-hidden">

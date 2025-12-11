@@ -435,3 +435,72 @@ def currency_context(request):
         'currency_symbol': '$',
         'currency_info': get_currency_info('USD'),
     }
+
+# core/utils.py - CREATE THIS FILE
+
+from .models import SiteSettings
+from django.core.cache import cache
+
+def get_site_settings():
+    """Get site settings with caching"""
+    cache_key = 'site_settings'
+    settings = cache.get(cache_key)
+    
+    if not settings:
+        settings = SiteSettings.load()
+        cache.set(cache_key, settings, timeout=60*60)  # Cache for 1 hour
+    
+    return settings
+
+def clear_site_settings_cache():
+    """Clear site settings cache"""
+    cache.delete('site_settings')
+
+def get_site_name():
+    """Get site name with fallback"""
+    try:
+        return get_site_settings().site_name
+    except:
+        return 'RecoveryPro'
+
+def get_logo_url():
+    """Get logo URL with fallback to default"""
+    try:
+        settings = get_site_settings()
+        if settings.logo:
+            return settings.logo.url
+    except:
+        pass
+    return '/static/images/logo.png'  # Fallback path
+
+def get_favicon_url():
+    """Get favicon URL"""
+    try:
+        settings = get_site_settings()
+        if settings.favicon:
+            return settings.favicon.url
+    except:
+        pass
+    return '/static/images/favicon.ico'
+
+def get_contact_info():
+    """Get all contact information"""
+    try:
+        settings = get_site_settings()
+        return {
+            'email': settings.contact_email,
+            'phone': settings.contact_phone,
+            'support_email': settings.support_email,
+            'sales_email': settings.sales_email,
+            'address': settings.get_full_address(),
+            'business_hours': settings.business_hours,
+        }
+    except:
+        return {
+            'email': 'support@recoverypro.com',
+            'phone': '+1 (555) 123-4567',
+            'support_email': 'support@recoverypro.com',
+            'sales_email': 'sales@recoverypro.com',
+            'address': '123 Main Street, New York, NY 10001',
+            'business_hours': 'Monday - Friday: 9am - 6pm EST',
+        }

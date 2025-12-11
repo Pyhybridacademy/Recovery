@@ -47,6 +47,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.user_wallet',
+                'core.context_processors.user_currency',  # Your existing one
+                'core.context_processors.site_settings',   # Add this
+                'core.context_processors.social_links', 
             ],
         },
     },

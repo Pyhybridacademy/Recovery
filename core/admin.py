@@ -286,3 +286,52 @@ class AdminMessageAdmin(admin.ModelAdmin):
     list_filter = ['is_read', 'created_at']
     search_fields = ['case__case_id', 'sender__username', 'recipient__username', 'message']
     readonly_fields = ['created_at']
+
+# core/admin.py - ADD THIS AT THE BOTTOM OF THE FILE
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    list_display = ['site_name', 'contact_email', 'contact_phone', 'updated_at']
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('site_name', 'tagline', 'logo', 'favicon', 'site_icon')
+        }),
+        ('Contact Information', {
+            'fields': ('contact_email', 'contact_phone', 'support_email', 'sales_email')
+        }),
+        ('Address Information', {
+            'fields': ('company_name', 'address_line1', 'address_line2', 
+                      'city', 'state', 'zip_code', 'country')
+        }),
+        ('Social Media', {
+            'fields': ('facebook_url', 'twitter_url', 'linkedin_url', 'instagram_url'),
+            'classes': ('collapse',)
+        }),
+        ('Theme & Colors', {
+            'fields': ('primary_color', 'secondary_color', 'accent_color'),
+            'classes': ('collapse',)
+        }),
+        ('Business Settings', {
+            'fields': ('business_hours', 'timezone', 'default_currency',
+                      'min_deposit_amount', 'min_withdrawal_amount'),
+            'classes': ('collapse',)
+        }),
+        ('SEO & Meta', {
+            'fields': ('meta_title', 'meta_description', 'meta_keywords'),
+            'classes': ('collapse',)
+        }),
+        ('Email & Footer', {
+            'fields': ('email_signature', 'footer_text', 'terms_url', 
+                      'privacy_url', 'disclaimer'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    def has_add_permission(self, request):
+        """Prevent adding multiple instances"""
+        return not SiteSettings.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        """Prevent deletion of site settings"""
+        return False

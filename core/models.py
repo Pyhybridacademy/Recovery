@@ -842,3 +842,101 @@ class CryptoWallet(models.Model):
     def __str__(self):
         return f"{self.get_currency_display()} - {self.wallet_address[:20]}..."
 
+# core/models.py - ADD THIS AT THE BOTTOM OF THE FILE
+
+class SiteSettings(models.Model):
+    """Model for storing site-wide configuration"""
+    # Basic Information
+    site_name = models.CharField(max_length=200, default='RecoveryPro')
+    tagline = models.TextField(blank=True, null=True)
+    
+    # Contact Information
+    contact_email = models.EmailField(default='support@recoverypro.com')
+    contact_phone = models.CharField(max_length=20, default='+1 (555) 123-4567')
+    support_email = models.EmailField(default='support@recoverypro.com')
+    sales_email = models.EmailField(default='sales@recoverypro.com')
+    
+    # Address
+    company_name = models.CharField(max_length=200, default='RecoveryPro Inc.')
+    address_line1 = models.CharField(max_length=200, default='123 Main Street')
+    address_line2 = models.CharField(max_length=200, blank=True, null=True)
+    city = models.CharField(max_length=100, default='New York')
+    state = models.CharField(max_length=100, default='NY')
+    zip_code = models.CharField(max_length=20, default='10001')
+    country = models.CharField(max_length=100, default='United States')
+    
+    # Social Media Links
+    facebook_url = models.URLField(blank=True, null=True)
+    twitter_url = models.URLField(blank=True, null=True)
+    linkedin_url = models.URLField(blank=True, null=True)
+    instagram_url = models.URLField(blank=True, null=True)
+    
+    # Media Files
+    logo = models.ImageField(upload_to='site/logo/', blank=True, null=True)
+    favicon = models.ImageField(upload_to='site/favicon/', blank=True, null=True)
+    site_icon = models.ImageField(upload_to='site/icon/', blank=True, null=True)
+    
+    # Colors & Theme
+    primary_color = models.CharField(max_length=7, default='#1e40af', help_text='Primary brand color in hex (#RRGGBB)')
+    secondary_color = models.CharField(max_length=7, default='#0ea5e9', help_text='Secondary brand color in hex')
+    accent_color = models.CharField(max_length=7, default='#10b981', help_text='Accent color for buttons, links')
+    
+    # Business Information
+    business_hours = models.CharField(max_length=200, default='Monday - Friday: 9am - 6pm EST')
+    timezone = models.CharField(max_length=50, default='America/New_York')
+    
+    # Payment & Legal
+    default_currency = models.CharField(max_length=3, choices=User.CURRENCY_CHOICES, default='USD')
+    min_deposit_amount = models.DecimalField(max_digits=10, decimal_places=2, default=10.00)
+    min_withdrawal_amount = models.DecimalField(max_digits=10, decimal_places=2, default=10.00)
+    
+    # SEO & Meta
+    meta_title = models.CharField(max_length=200, blank=True, null=True)
+    meta_description = models.TextField(blank=True, null=True)
+    meta_keywords = models.TextField(blank=True, null=True)
+    
+    # Email Templates
+    email_signature = models.TextField(blank=True, null=True)
+    
+    # Footer Information
+    footer_text = models.TextField(default='© 2024 RecoveryPro. All rights reserved.')
+    terms_url = models.URLField(blank=True, null=True)
+    privacy_url = models.URLField(blank=True, null=True)
+    disclaimer = models.TextField(blank=True, null=True)
+    
+    # Dates
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Site Settings'
+        verbose_name_plural = 'Site Settings'
+    
+    def __str__(self):
+        return f"Site Settings - {self.site_name}"
+    
+    def save(self, *args, **kwargs):
+        # Ensure only one instance exists
+        self.pk = 1
+        super().save(*args, **kwargs)
+    
+    @classmethod
+    def load(cls):
+        """Load site settings, create default if none exists"""
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+    
+    def get_full_address(self):
+        """Return formatted full address"""
+        address_parts = [self.address_line1]
+        if self.address_line2:
+            address_parts.append(self.address_line2)
+        address_parts.extend([
+            f"{self.city}, {self.state} {self.zip_code}",
+            self.country
+        ])
+        return ', '.join(address_parts)
+    
+    def get_contact_phones(self):
+        """Return list of contact phones"""
+        return [self.contact_phone]

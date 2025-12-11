@@ -1,3 +1,5 @@
+admin.py
+
 # core/admin.py - COMPLETE ADMIN CONFIGURATION
 
 from django.contrib import admin
@@ -289,6 +291,622 @@ class AdminMessageAdmin(admin.ModelAdmin):
 
 
 
+context_processors.py
+
+# core/context_processors.py - ENSURE THIS EXISTS
+
+from .models import UserWallet
+
+def user_wallet(request):
+    """Add user wallet to all templates when user is authenticated"""
+    if request.user.is_authenticated:
+        try:
+            wallet = UserWallet.objects.get(user=request.user)
+            return {'user_wallet': wallet}
+        except UserWallet.DoesNotExist:
+            # Create wallet if it doesn't exist
+            wallet = UserWallet.objects.create(user=request.user)
+            return {'user_wallet': wallet}
+    return {'user_wallet': None}
+
+def user_currency(request):
+    """
+    Add user currency information to all templates
+    """
+    if request.user.is_authenticated:
+        return {
+            'user_currency': request.user.preferred_currency,
+            'currency_symbol': request.user.get_currency_symbol(),
+        }
+    return {
+        'user_currency': 'USD',
+        'currency_symbol': '$',
+    }
+
+
+forms.py
+
+# core/forms.py
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
+from django.contrib.auth import get_user_model
+from .models import *
+
+User = get_user_model()
+
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+class MultipleFileField(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleFileInput())
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single_file_clean = super().clean
+        if isinstance(data, (list, tuple)):
+            result = [single_file_clean(d, initial) for d in data]
+        else:
+            result = single_file_clean(data, initial)
+        return result
+# core/forms.py - UPDATE THE UserRegistrationForm
+
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
+        'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+        'placeholder': 'Enter your email address'
+    }))
+    phone = forms.CharField(max_length=20, required=False, widget=forms.TextInput(attrs={
+        'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+        'placeholder': 'Enter your phone number (optional)'
+    }))
+    preferred_currency = forms.ChoiceField(
+        choices=User.CURRENCY_CHOICES,
+        initial='USD',
+        widget=forms.Select(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+        }),
+        help_text="Select your preferred currency for all transactions"
+    )
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'phone', 'preferred_currency', 'password1', 'password2']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Update widget attributes for all fields
+        self.fields['username'].widget.attrs.update({
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Choose a username'
+        })
+        self.fields['password1'].widget.attrs.update({
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Enter your password'
+        })
+        self.fields['password2'].widget.attrs.update({
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Confirm your password'
+        })
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        user.phone = self.cleaned_data['phone']
+        user.preferred_currency = self.cleaned_data['preferred_currency']
+        if commit:
+            user.save()
+        return user
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'phone']
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'phone': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['date_of_birth', 'address', 'city', 'country', 'id_document']
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'address': forms.Textarea(attrs={
+                'rows': 3,
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'city': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'country': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'id_document': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+
+# core/forms.py - COMPLETE ScamCaseForm
+
+class ScamCaseForm(forms.ModelForm):
+    evidence_files = MultipleFileField(
+        required=False,
+        help_text='Upload screenshots, transaction proofs, or any relevant evidence (multiple files allowed)',
+        widget=MultipleFileInput(attrs={
+            'id': 'id_evidence_files',
+            'accept': '.pdf,.jpg,.jpeg,.png,.doc,.docx,.txt',
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+        })
+    )
+    
+    class Meta:
+        model = ScamCase
+        fields = [
+            'scam_type', 'title', 'description', 'amount_lost', 
+            'incident_date', 'blockchain', 'victim_wallet', 'scammer_wallet',
+            'transaction_hash', 'exchange_used', 'bank_name', 'account_debited',
+            'beneficiary_details', 'suspect_email', 'suspect_phone', 'suspect_website'
+        ]  # Remove 'currency' from fields
+        
+        widgets = {
+            'scam_type': forms.Select(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'required': 'true'
+            }),
+            'title': forms.TextInput(attrs={
+                'placeholder': 'Brief description of what happened',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'required': 'true'
+            }),
+            'incident_date': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'required': 'true'
+            }),
+            'description': forms.Textarea(attrs={
+                'rows': 6,
+                'placeholder': 'Describe the incident in detail...',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'required': 'true'
+            }),
+            'amount_lost': forms.NumberInput(attrs={
+                'placeholder': '0.00',
+                'step': '0.01',
+                'min': '0',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'required': 'true'
+            }),
+            'blockchain': forms.TextInput(attrs={
+                'placeholder': 'e.g., Bitcoin, Ethereum, BSC',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'victim_wallet': forms.TextInput(attrs={
+                'placeholder': 'Your wallet address',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'scammer_wallet': forms.TextInput(attrs={
+                'placeholder': 'Scammer\'s wallet address',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'transaction_hash': forms.TextInput(attrs={
+                'placeholder': 'Transaction hash or ID',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'exchange_used': forms.TextInput(attrs={
+                'placeholder': 'e.g., Binance, Coinbase, Kraken',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'bank_name': forms.TextInput(attrs={
+                'placeholder': 'Name of your bank',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'account_debited': forms.TextInput(attrs={
+                'placeholder': 'Last 4 digits of account',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'beneficiary_details': forms.Textarea(attrs={
+                'rows': 3,
+                'placeholder': 'Beneficiary name, account number, bank details',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'suspect_email': forms.EmailInput(attrs={
+                'placeholder': 'suspect@example.com',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'suspect_phone': forms.TextInput(attrs={
+                'placeholder': '+1 (555) 000-0000',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'suspect_website': forms.URLInput(attrs={
+                'placeholder': 'https://example.com or social media profile URL',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)  # Get user from form initialization
+        super().__init__(*args, **kwargs)
+        
+        # Remove currency field entirely since we'll use user's preferred currency
+        if 'currency' in self.fields:
+            del self.fields['currency']
+        
+        # Make scam-specific fields not required initially
+        scam_specific_fields = [
+            'blockchain', 'victim_wallet', 'scammer_wallet', 'transaction_hash',
+            'exchange_used', 'bank_name', 'account_debited', 'beneficiary_details',
+            'suspect_email', 'suspect_phone', 'suspect_website'
+        ]
+        for field in scam_specific_fields:
+            self.fields[field].required = False
+    
+    def clean_amount_lost(self):
+        """Validate amount lost"""
+        amount_lost = self.cleaned_data.get('amount_lost')
+        if amount_lost and amount_lost <= 0:
+            raise forms.ValidationError('Amount lost must be greater than 0.')
+        return amount_lost
+    
+    def clean_incident_date(self):
+        """Validate incident date is not in the future"""
+        incident_date = self.cleaned_data.get('incident_date')
+        if incident_date and incident_date > timezone.now().date():
+            raise forms.ValidationError('Incident date cannot be in the future.')
+        return incident_date
+    
+    def save(self, commit=True):
+        case = super().save(commit=False)
+        # Set currency to user's preferred currency automatically
+        if self.user:
+            case.currency = self.user.preferred_currency
+        if commit:
+            case.save()
+        return case
+
+class WithdrawalForm(forms.ModelForm):
+    class Meta:
+        model = WithdrawalRequest
+        fields = ['amount', 'method', 'bank_name', 'account_number', 'routing_number', 
+                 'crypto_currency', 'crypto_wallet', 'paypal_email', 'cashapp_id']
+        widgets = {
+            'amount': forms.NumberInput(attrs={
+                'min': 1,
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'method': forms.Select(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'bank_name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'account_number': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'routing_number': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'crypto_currency': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'crypto_wallet': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'paypal_email': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'cashapp_id': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Make all fields not required initially, they'll be validated based on method
+        for field in self.fields:
+            self.fields[field].required = False
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        method = cleaned_data.get('method')
+        amount = cleaned_data.get('amount')
+        
+        if not amount or amount <= 0:
+            raise forms.ValidationError('Please enter a valid withdrawal amount.')
+        
+        # Validate method-specific fields
+        if method == 'bank':
+            if not cleaned_data.get('bank_name') or not cleaned_data.get('account_number'):
+                raise forms.ValidationError('Bank name and account number are required for bank transfers.')
+        elif method == 'crypto':
+            if not cleaned_data.get('crypto_currency') or not cleaned_data.get('crypto_wallet'):
+                raise forms.ValidationError('Cryptocurrency and wallet address are required for crypto withdrawals.')
+        elif method == 'paypal':
+            if not cleaned_data.get('paypal_email'):
+                raise forms.ValidationError('PayPal email is required for PayPal withdrawals.')
+        elif method == 'cashapp':
+            if not cleaned_data.get('cashapp_id'):
+                raise forms.ValidationError('CashApp ID is required for CashApp withdrawals.')
+        
+        return cleaned_data
+
+class DepositForm(forms.ModelForm):
+    class Meta:
+        model = UserDeposit
+        fields = ['crypto_currency', 'transaction_hash', 'receipt_proof']
+        widgets = {
+            'crypto_currency': forms.Select(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'transaction_hash': forms.TextInput(attrs={
+                'placeholder': 'Enter your transaction hash from blockchain explorer',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'receipt_proof': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'accept': 'image/*,.pdf'
+            }),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['receipt_proof'].required = True
+        self.fields['receipt_proof'].help_text = 'Upload screenshot of your transaction confirmation'
+
+class KYCVerificationForm(forms.ModelForm):
+    """Form for users to submit KYC documents"""
+    
+    class Meta:
+        model = KYCVerification
+        fields = [
+            'document_type', 
+            'document_number', 
+            'document_front', 
+            'document_back',
+            'selfie',
+            'proof_of_address'
+        ]
+        widgets = {
+            'document_type': forms.Select(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'document_number': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'placeholder': 'Enter your document number'
+            }),
+            'document_front': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'accept': 'image/*'
+            }),
+            'document_back': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'accept': 'image/*'
+            }),
+            'selfie': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'accept': 'image/*'
+            }),
+            'proof_of_address': forms.FileInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'accept': 'image/*,.pdf'
+            }),
+        }
+        help_texts = {
+            'document_front': 'Upload clear photo of the front of your ID',
+            'document_back': 'Upload clear photo of the back of your ID (if applicable)',
+            'selfie': 'Upload a clear selfie holding your ID',
+            'proof_of_address': 'Upload utility bill or bank statement (not older than 3 months)',
+        }
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        document_type = cleaned_data.get('document_type')
+        document_back = cleaned_data.get('document_back')
+        
+        # Require back image for certain document types
+        if document_type in ['drivers_license', 'national_id'] and not document_back:
+            raise forms.ValidationError(
+                f'Back image is required for {self.get_document_type_display()}'
+            )
+        
+        return cleaned_data
+
+# core/forms.py - UPDATE THE EnhancedUserUpdateForm
+
+class EnhancedUserUpdateForm(forms.ModelForm):
+    """Enhanced user update form with currency preference"""
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'phone', 'preferred_currency']
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'phone': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'placeholder': '+1234567890'
+            }),
+            'preferred_currency': forms.Select(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+        help_texts = {
+            'preferred_currency': 'All amounts will be displayed in this currency',
+        }
+        
+class EnhancedProfileUpdateForm(forms.ModelForm):
+    """Enhanced profile update form"""
+    
+    class Meta:
+        model = UserProfile
+        fields = ['date_of_birth', 'address', 'city', 'country']
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'address': forms.Textarea(attrs={
+                'rows': 3,
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+                'placeholder': 'Enter your full address'
+            }),
+            'city': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+            'country': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
+            }),
+        }
+
+class CustomPasswordResetForm(PasswordResetForm):
+    """Custom password reset form with better styling"""
+    
+    email = forms.EmailField(
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Enter your email address',
+            'autocomplete': 'email'
+        })
+    )
+
+class CustomSetPasswordForm(SetPasswordForm):
+    """Custom set password form with better styling"""
+    
+    new_password1 = forms.CharField(
+        label="New password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Enter new password',
+            'autocomplete': 'new-password'
+        }),
+        strip=False,
+    )
+    new_password2 = forms.CharField(
+        label="Confirm password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Confirm new password',
+            'autocomplete': 'new-password'
+        }),
+        strip=False,
+    )
+
+class ChangePasswordForm(forms.Form):
+    """Form for users to change their password from profile settings"""
+    
+    old_password = forms.CharField(
+        label="Current Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Enter current password'
+        })
+    )
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Enter new password'
+        }),
+        help_text='Password must be at least 8 characters long'
+    )
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
+            'placeholder': 'Confirm new password'
+        })
+    )
+    
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+    
+    def clean_old_password(self):
+        old_password = self.cleaned_data.get('old_password')
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError('Current password is incorrect.')
+        return old_password
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password1 = cleaned_data.get('new_password1')
+        new_password2 = cleaned_data.get('new_password2')
+        
+        if new_password1 and new_password2:
+            if new_password1 != new_password2:
+                raise forms.ValidationError('The two password fields must match.')
+            
+            if len(new_password1) < 8:
+                raise forms.ValidationError('Password must be at least 8 characters long.')
+        
+        return cleaned_data
+    
+    def save(self, commit=True):
+        self.user.set_password(self.cleaned_data['new_password1'])
+        if commit:
+            self.user.save()
+        return self.user
+
+class TwoFactorToggleForm(forms.Form):
+    """Form to enable/disable 2FA"""
+    
+    enable_2fa = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
+        })
+    )
+
+class NotificationPreferencesForm(forms.Form):
+    """Form for users to manage notification preferences"""
+    
+    email_case_updates = forms.BooleanField(
+        required=False,
+        label='Case Status Updates',
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
+        })
+    )
+    email_payment_updates = forms.BooleanField(
+        required=False,
+        label='Payment Notifications',
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
+        })
+    )
+    email_withdrawal_updates = forms.BooleanField(
+        required=False,
+        label='Withdrawal Updates',
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
+        })
+    )
+    email_marketing = forms.BooleanField(
+        required=False,
+        label='Marketing & Promotions',
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
+        })
+    )
+
+
+
 models.py
 
 # core/models.py - ADD THESE TO YOUR EXISTING MODELS
@@ -313,6 +931,8 @@ def generate_withdrawal_id():
 
 
 # Add this to your User model (UPDATE EXISTING)
+# core/models.py - UPDATE THE User MODEL
+
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
         ('user', 'User'),
@@ -324,9 +944,37 @@ class User(AbstractUser):
         ('USD', 'US Dollar ($)'),
         ('EUR', 'Euro (€)'),
         ('GBP', 'British Pound (£)'),
-        ('NGN', 'Nigerian Naira (₦)'),
+        ('JPY', 'Japanese Yen (¥)'),
         ('CAD', 'Canadian Dollar (C$)'),
         ('AUD', 'Australian Dollar (A$)'),
+        ('CHF', 'Swiss Franc (CHF)'),
+        ('CNY', 'Chinese Yuan (¥)'),
+        ('INR', 'Indian Rupee (₹)'),
+        ('SGD', 'Singapore Dollar (S$)'),
+        ('HKD', 'Hong Kong Dollar (HK$)'),
+        ('NZD', 'New Zealand Dollar (NZ$)'),
+        ('KRW', 'South Korean Won (₩)'),
+        ('MXN', 'Mexican Peso ($)'),
+        ('BRL', 'Brazilian Real (R$)'),
+        ('RUB', 'Russian Ruble (₽)'),
+        ('ZAR', 'South African Rand (R)'),
+        ('TRY', 'Turkish Lira (₺)'),
+        ('SEK', 'Swedish Krona (kr)'),
+        ('NOK', 'Norwegian Krone (kr)'),
+        ('DKK', 'Danish Krone (kr)'),
+        ('PLN', 'Polish Złoty (zł)'),
+        ('THB', 'Thai Baht (฿)'),
+        ('IDR', 'Indonesian Rupiah (Rp)'),
+        ('MYR', 'Malaysian Ringgit (RM)'),
+        ('PHP', 'Philippine Peso (₱)'),
+        ('VND', 'Vietnamese Đồng (₫)'),
+        ('NGN', 'Nigerian Naira (₦)'),
+        ('EGP', 'Egyptian Pound (E£)'),
+        ('SAR', 'Saudi Riyal (﷼)'),
+        ('AED', 'UAE Dirham (د.إ)'),
+        ('QAR', 'Qatari Riyal (﷼)'),
+        ('KWD', 'Kuwaiti Dinar (د.ك)'),
+        ('BHD', 'Bahraini Dinar (.د.ب)'),
     )
     
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='user')
@@ -351,12 +999,40 @@ class User(AbstractUser):
             'USD': '$',
             'EUR': '€',
             'GBP': '£',
-            'NGN': '₦',
+            'JPY': '¥',
             'CAD': 'C$',
             'AUD': 'A$',
+            'CHF': 'CHF',
+            'CNY': '¥',
+            'INR': '₹',
+            'SGD': 'S$',
+            'HKD': 'HK$',
+            'NZD': 'NZ$',
+            'KRW': '₩',
+            'MXN': '$',
+            'BRL': 'R$',
+            'RUB': '₽',
+            'ZAR': 'R',
+            'TRY': '₺',
+            'SEK': 'kr',
+            'NOK': 'kr',
+            'DKK': 'kr',
+            'PLN': 'zł',
+            'THB': '฿',
+            'IDR': 'Rp',
+            'MYR': 'RM',
+            'PHP': '₱',
+            'VND': '₫',
+            'NGN': '₦',
+            'EGP': 'E£',
+            'SAR': '﷼',
+            'AED': 'د.إ',
+            'QAR': '﷼',
+            'KWD': 'د.ك',
+            'BHD': '.د.ب',
         }
         return symbols.get(self.preferred_currency, '$')
-    
+            
     def send_email_notification(self, subject, template_name, context):
         """Helper method to send email notifications"""
         context['user'] = self
@@ -901,6 +1577,10 @@ class UserWallet(models.Model):
     def can_withdraw(self, amount):
         """Check if user can withdraw specified amount"""
         return self.available_balance >= amount
+    
+    def get_currency_symbol(self):
+        """Get currency symbol from user's preferred currency"""
+        return self.user.get_currency_symbol()
 
 class WithdrawalRequest(models.Model):
     WITHDRAWAL_METHODS = (
@@ -1074,538 +1754,6 @@ class CryptoWallet(models.Model):
         return f"{self.get_currency_display()} - {self.wallet_address[:20]}..."
 
 
-
-forms.py
-
-# core/forms.py
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
-from django.contrib.auth import get_user_model
-from .models import *
-
-User = get_user_model()
-
-class MultipleFileInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-class MultipleFileField(forms.FileField):
-    def __init__(self, *args, **kwargs):
-        kwargs.setdefault("widget", MultipleFileInput())
-        super().__init__(*args, **kwargs)
-
-    def clean(self, data, initial=None):
-        single_file_clean = super().clean
-        if isinstance(data, (list, tuple)):
-            result = [single_file_clean(d, initial) for d in data]
-        else:
-            result = single_file_clean(data, initial)
-        return result
-
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
-        'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-        'placeholder': 'Enter your email address'
-    }))
-    phone = forms.CharField(max_length=20, required=False, widget=forms.TextInput(attrs={
-        'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-        'placeholder': 'Enter your phone number (optional)'
-    }))
-    
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'phone', 'password1', 'password2']
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Update widget attributes for all fields
-        self.fields['username'].widget.attrs.update({
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Choose a username'
-        })
-        self.fields['password1'].widget.attrs.update({
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Enter your password'
-        })
-        self.fields['password2'].widget.attrs.update({
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Confirm your password'
-        })
-    
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.phone = self.cleaned_data['phone']
-        if commit:
-            user.save()
-        return user
-
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'phone']
-        widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'email': forms.EmailInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'phone': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['date_of_birth', 'address', 'city', 'country', 'id_document']
-        widgets = {
-            'date_of_birth': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'address': forms.Textarea(attrs={
-                'rows': 3,
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'city': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'country': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'id_document': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-
-class ScamCaseForm(forms.ModelForm):
-    evidence_files = MultipleFileField(
-        required=False,
-        help_text='Upload screenshots, transaction proofs, or any relevant evidence (multiple files allowed)',
-        widget=MultipleFileInput(attrs={
-            'id': 'id_evidence_files',
-            'accept': '.pdf,.jpg,.jpeg,.png,.doc,.docx,.txt',
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-        })
-    )
-    
-    class Meta:
-        model = ScamCase
-        fields = [
-            'scam_type', 'title', 'description', 'amount_lost', 'currency', 
-            'incident_date', 'blockchain', 'victim_wallet', 'scammer_wallet',
-            'transaction_hash', 'exchange_used', 'bank_name', 'account_debited',
-            'beneficiary_details', 'suspect_email', 'suspect_phone', 'suspect_website'
-        ]
-        widgets = {
-            'scam_type': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'title': forms.TextInput(attrs={
-                'placeholder': 'Brief description of what happened',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'incident_date': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'description': forms.Textarea(attrs={
-                'rows': 6,
-                'placeholder': 'Describe the incident in detail...',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'amount_lost': forms.NumberInput(attrs={
-                'placeholder': '0.00',
-                'step': '0.01',
-                'min': '0',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'currency': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'blockchain': forms.TextInput(attrs={
-                'placeholder': 'e.g., Bitcoin, Ethereum, BSC',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'victim_wallet': forms.TextInput(attrs={
-                'placeholder': 'Your wallet address',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'scammer_wallet': forms.TextInput(attrs={
-                'placeholder': 'Scammer\'s wallet address',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'transaction_hash': forms.TextInput(attrs={
-                'placeholder': 'Transaction hash or ID',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'exchange_used': forms.TextInput(attrs={
-                'placeholder': 'e.g., Binance, Coinbase, Kraken',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'bank_name': forms.TextInput(attrs={
-                'placeholder': 'Name of your bank',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'account_debited': forms.TextInput(attrs={
-                'placeholder': 'Last 4 digits of account',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'beneficiary_details': forms.Textarea(attrs={
-                'rows': 3,
-                'placeholder': 'Beneficiary name, account number, bank details',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'suspect_email': forms.EmailInput(attrs={
-                'placeholder': 'suspect@example.com',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'suspect_phone': forms.TextInput(attrs={
-                'placeholder': '+1 (555) 000-0000',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'suspect_website': forms.URLInput(attrs={
-                'placeholder': 'https://example.com or social media profile URL',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Make scam-specific fields not required initially
-        scam_specific_fields = [
-            'blockchain', 'victim_wallet', 'scammer_wallet', 'transaction_hash',
-            'exchange_used', 'bank_name', 'account_debited', 'beneficiary_details',
-            'suspect_email', 'suspect_phone', 'suspect_website'
-        ]
-        for field in scam_specific_fields:
-            self.fields[field].required = False
-
-class WithdrawalForm(forms.ModelForm):
-    class Meta:
-        model = WithdrawalRequest
-        fields = ['amount', 'method', 'bank_name', 'account_number', 'routing_number', 
-                 'crypto_currency', 'crypto_wallet', 'paypal_email', 'cashapp_id']
-        widgets = {
-            'amount': forms.NumberInput(attrs={
-                'min': 1,
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'method': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'bank_name': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'account_number': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'routing_number': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'crypto_currency': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'crypto_wallet': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'paypal_email': forms.EmailInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'cashapp_id': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Make all fields not required initially, they'll be validated based on method
-        for field in self.fields:
-            self.fields[field].required = False
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        method = cleaned_data.get('method')
-        amount = cleaned_data.get('amount')
-        
-        if not amount or amount <= 0:
-            raise forms.ValidationError('Please enter a valid withdrawal amount.')
-        
-        # Validate method-specific fields
-        if method == 'bank':
-            if not cleaned_data.get('bank_name') or not cleaned_data.get('account_number'):
-                raise forms.ValidationError('Bank name and account number are required for bank transfers.')
-        elif method == 'crypto':
-            if not cleaned_data.get('crypto_currency') or not cleaned_data.get('crypto_wallet'):
-                raise forms.ValidationError('Cryptocurrency and wallet address are required for crypto withdrawals.')
-        elif method == 'paypal':
-            if not cleaned_data.get('paypal_email'):
-                raise forms.ValidationError('PayPal email is required for PayPal withdrawals.')
-        elif method == 'cashapp':
-            if not cleaned_data.get('cashapp_id'):
-                raise forms.ValidationError('CashApp ID is required for CashApp withdrawals.')
-        
-        return cleaned_data
-
-class DepositForm(forms.ModelForm):
-    class Meta:
-        model = UserDeposit
-        fields = ['crypto_currency', 'transaction_hash', 'receipt_proof']
-        widgets = {
-            'crypto_currency': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'transaction_hash': forms.TextInput(attrs={
-                'placeholder': 'Enter your transaction hash from blockchain explorer',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'receipt_proof': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'accept': 'image/*,.pdf'
-            }),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['receipt_proof'].required = True
-        self.fields['receipt_proof'].help_text = 'Upload screenshot of your transaction confirmation'
-
-class KYCVerificationForm(forms.ModelForm):
-    """Form for users to submit KYC documents"""
-    
-    class Meta:
-        model = KYCVerification
-        fields = [
-            'document_type', 
-            'document_number', 
-            'document_front', 
-            'document_back',
-            'selfie',
-            'proof_of_address'
-        ]
-        widgets = {
-            'document_type': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'document_number': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'placeholder': 'Enter your document number'
-            }),
-            'document_front': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'accept': 'image/*'
-            }),
-            'document_back': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'accept': 'image/*'
-            }),
-            'selfie': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'accept': 'image/*'
-            }),
-            'proof_of_address': forms.FileInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'accept': 'image/*,.pdf'
-            }),
-        }
-        help_texts = {
-            'document_front': 'Upload clear photo of the front of your ID',
-            'document_back': 'Upload clear photo of the back of your ID (if applicable)',
-            'selfie': 'Upload a clear selfie holding your ID',
-            'proof_of_address': 'Upload utility bill or bank statement (not older than 3 months)',
-        }
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        document_type = cleaned_data.get('document_type')
-        document_back = cleaned_data.get('document_back')
-        
-        # Require back image for certain document types
-        if document_type in ['drivers_license', 'national_id'] and not document_back:
-            raise forms.ValidationError(
-                f'Back image is required for {self.get_document_type_display()}'
-            )
-        
-        return cleaned_data
-
-class EnhancedUserUpdateForm(forms.ModelForm):
-    """Enhanced user update form with currency preference"""
-    
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'phone', 'preferred_currency']
-        widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'email': forms.EmailInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'phone': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'placeholder': '+1234567890'
-            }),
-            'preferred_currency': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-
-class EnhancedProfileUpdateForm(forms.ModelForm):
-    """Enhanced profile update form"""
-    
-    class Meta:
-        model = UserProfile
-        fields = ['date_of_birth', 'address', 'city', 'country']
-        widgets = {
-            'date_of_birth': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'address': forms.Textarea(attrs={
-                'rows': 3,
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-                'placeholder': 'Enter your full address'
-            }),
-            'city': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-            'country': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition'
-            }),
-        }
-
-class CustomPasswordResetForm(PasswordResetForm):
-    """Custom password reset form with better styling"""
-    
-    email = forms.EmailField(
-        max_length=254,
-        widget=forms.EmailInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Enter your email address',
-            'autocomplete': 'email'
-        })
-    )
-
-class CustomSetPasswordForm(SetPasswordForm):
-    """Custom set password form with better styling"""
-    
-    new_password1 = forms.CharField(
-        label="New password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Enter new password',
-            'autocomplete': 'new-password'
-        }),
-        strip=False,
-    )
-    new_password2 = forms.CharField(
-        label="Confirm password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Confirm new password',
-            'autocomplete': 'new-password'
-        }),
-        strip=False,
-    )
-
-class ChangePasswordForm(forms.Form):
-    """Form for users to change their password from profile settings"""
-    
-    old_password = forms.CharField(
-        label="Current Password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Enter current password'
-        })
-    )
-    new_password1 = forms.CharField(
-        label="New Password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Enter new password'
-        }),
-        help_text='Password must be at least 8 characters long'
-    )
-    new_password2 = forms.CharField(
-        label="Confirm New Password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'w-full px-4 py-3 border border-coolGray rounded-lg focus:ring-2 focus:ring-cyan focus:border-transparent transition',
-            'placeholder': 'Confirm new password'
-        })
-    )
-    
-    def __init__(self, user, *args, **kwargs):
-        self.user = user
-        super().__init__(*args, **kwargs)
-    
-    def clean_old_password(self):
-        old_password = self.cleaned_data.get('old_password')
-        if not self.user.check_password(old_password):
-            raise forms.ValidationError('Current password is incorrect.')
-        return old_password
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        new_password1 = cleaned_data.get('new_password1')
-        new_password2 = cleaned_data.get('new_password2')
-        
-        if new_password1 and new_password2:
-            if new_password1 != new_password2:
-                raise forms.ValidationError('The two password fields must match.')
-            
-            if len(new_password1) < 8:
-                raise forms.ValidationError('Password must be at least 8 characters long.')
-        
-        return cleaned_data
-    
-    def save(self, commit=True):
-        self.user.set_password(self.cleaned_data['new_password1'])
-        if commit:
-            self.user.save()
-        return self.user
-
-class TwoFactorToggleForm(forms.Form):
-    """Form to enable/disable 2FA"""
-    
-    enable_2fa = forms.BooleanField(
-        required=False,
-        widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
-        })
-    )
-
-class NotificationPreferencesForm(forms.Form):
-    """Form for users to manage notification preferences"""
-    
-    email_case_updates = forms.BooleanField(
-        required=False,
-        label='Case Status Updates',
-        widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
-        })
-    )
-    email_payment_updates = forms.BooleanField(
-        required=False,
-        label='Payment Notifications',
-        widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
-        })
-    )
-    email_withdrawal_updates = forms.BooleanField(
-        required=False,
-        label='Withdrawal Updates',
-        widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
-        })
-    )
-    email_marketing = forms.BooleanField(
-        required=False,
-        label='Marketing & Promotions',
-        widget=forms.CheckboxInput(attrs={
-            'class': 'h-4 w-4 text-cyan focus:ring-cyan border-coolGray rounded'
-        })
-    )
 
 urls.py
 
@@ -1870,6 +2018,7 @@ def dashboard(request):
     current_date = timezone.now()
     
     context = {
+        'user': request.user, 
         'cases': user_cases,
         'wallet': wallet,
         'notifications': notifications,
@@ -1950,31 +2099,42 @@ def profile_settings(request):
 def case_list(request):
     cases = ScamCase.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'cases/list.html', {'cases': cases})
+# core/views.py - UPDATED new_case view
 
 @login_required
 def new_case(request):
     if request.method == 'POST':
-        form = ScamCaseForm(request.POST, request.FILES)
+        form = ScamCaseForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            case = form.save(commit=False)
-            case.user = request.user
-            case.save()
-            
-            # Handle file uploads
-            files = request.FILES.getlist('evidence_files')
-            for file in files:
-                EvidenceFile.objects.create(
-                    case=case,
-                    file=file,
-                    file_type=file.content_type
-                )
-            
-            messages.success(request, 'Case submitted successfully! Please choose a recovery plan.')
-            return redirect('payment', case_id=case.case_id)
+            try:
+                with transaction.atomic():
+                    case = form.save(commit=False)
+                    case.user = request.user
+                    case.save()
+                    
+                    # Handle file uploads
+                    files = request.FILES.getlist('evidence_files')
+                    for file in files:
+                        EvidenceFile.objects.create(
+                            case=case,
+                            file=file,
+                            file_type=file.content_type,
+                            description=f"Evidence file for case {case.case_id}"
+                        )
+                    
+                    messages.success(request, 'Case submitted successfully! Please choose a recovery plan.')
+                    return redirect('payment', case_id=case.case_id)
+                    
+            except Exception as e:
+                messages.error(request, f'Error submitting case: {str(e)}')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
-        form = ScamCaseForm()
+        form = ScamCaseForm(user=request.user)
     
-    return render(request, 'cases/new.html', {'form': form})
+    return render(request, 'cases/new.html', {
+        'form': form,
+    })
 
 @login_required
 def case_detail(request, case_id):
@@ -2441,245 +2601,255 @@ def delete_account(request):
     return redirect('profile_settings')
 
 
-utils.py
 
-# core/utils.py - CREATE THIS NEW FILE
+settings.py
 
-import requests
-from decimal import Decimal
-from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from .models import EmailLog
+# scam_recovery/settings.py - ADD/UPDATE THESE SETTINGS
 
+import os
+from pathlib import Path
 
-def get_exchange_rate(from_currency, to_currency):
-    """
-    Get real-time exchange rate from API
-    Falls back to cached rates if API fails
-    """
-    if from_currency == to_currency:
-        return Decimal('1.0')
-    
-    # Fallback rates (update these periodically or cache them)
-    fallback_rates = {
-        'USD': Decimal('1.0'),
-        'EUR': Decimal('0.85'),
-        'GBP': Decimal('0.73'),
-        'NGN': Decimal('1540.0'),
-        'CAD': Decimal('1.35'),
-        'AUD': Decimal('1.50'),
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = 'django-insecure-xw!j7)0c5qbe$yo+dpb6*-g&)p4*ksisp#+8+ke(lidmu#!=et'
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+INSTALLED_APPS = [
+    'simpleui',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'core',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'scam_recovery.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'core.context_processors.user_wallet',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'scam_recovery.wsgi.application'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-    
-    try:
-        # Try to get real-time rates from API
-        if hasattr(settings, 'EXCHANGE_RATE_API_URL'):
-            response = requests.get(settings.EXCHANGE_RATE_API_URL, timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                rates = data.get('rates', {})
-                
-                # Convert from USD base
-                from_rate = Decimal(str(rates.get(from_currency, fallback_rates.get(from_currency, 1))))
-                to_rate = Decimal(str(rates.get(to_currency, fallback_rates.get(to_currency, 1))))
-                
-                return to_rate / from_rate if from_rate != 0 else Decimal('1.0')
-    except Exception as e:
-        print(f"Error fetching exchange rate: {e}")
-    
-    # Use fallback rates
-    from_rate = fallback_rates.get(from_currency, Decimal('1.0'))
-    to_rate = fallback_rates.get(to_currency, Decimal('1.0'))
-    
-    return to_rate / from_rate if from_rate != 0 else Decimal('1.0')
+}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'core.User'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'home'
+
+# Security settings
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+
+# ====================
+# EMAIL CONFIGURATION
+# ====================
+
+# For Development - Console Backend (prints emails to console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# For Production - SMTP Backend (use one of the options below)
+"""
+# Option 1: Gmail SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your-app-password'  # Use App Password, not regular password
+DEFAULT_FROM_EMAIL = 'RecoveryPro <your-email@gmail.com>'
+
+# Option 2: SendGrid
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = 'your-sendgrid-api-key'
+DEFAULT_FROM_EMAIL = 'RecoveryPro <noreply@yourdomain.com>'
+
+# Option 3: AWS SES
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-aws-access-key-id'
+EMAIL_HOST_PASSWORD = 'your-aws-secret-access-key'
+DEFAULT_FROM_EMAIL = 'RecoveryPro <noreply@yourdomain.com>'
+
+# Option 4: Mailgun
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'postmaster@yourdomain.com'
+EMAIL_HOST_PASSWORD = 'your-mailgun-password'
+DEFAULT_FROM_EMAIL = 'RecoveryPro <noreply@yourdomain.com>'
+"""
+
+# Default email settings (used in development)
+DEFAULT_FROM_EMAIL = 'RecoveryPro <noreply@recoverypro.com>'
+SERVER_EMAIL = 'RecoveryPro <noreply@recoverypro.com>'
+
+# Admin email notifications
+ADMINS = [
+    ('Admin', 'admin@recoverypro.com'),
+]
+
+MANAGERS = ADMINS
+
+# ====================
+# FILE UPLOAD SETTINGS
+# ====================
+
+# Maximum upload size (10MB for KYC documents)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
+
+# Allowed file extensions for uploads
+ALLOWED_DOCUMENT_EXTENSIONS = ['.pdf', '.jpg', '.jpeg', '.png']
+ALLOWED_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png']
+
+# ====================
+# CURRENCY SETTINGS
+# ====================
+
+# Default currency
+DEFAULT_CURRENCY = 'USD'
+
+# Exchange rate API (optional - for real-time conversion)
+# You can use: exchangerate-api.com, fixer.io, currencylayer.com
+EXCHANGE_RATE_API_KEY = 'your-api-key-here'  # Get free key from exchangerate-api.com
+EXCHANGE_RATE_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD'
+
+# ====================
+# KYC SETTINGS
+# ====================
+
+# KYC verification settings
+KYC_REQUIRED_FOR_WITHDRAWAL = True
+KYC_REQUIRED_FOR_CASE_SUBMISSION = False
+KYC_MAX_RESUBMISSIONS = 3
+
+# ====================
+# PASSWORD RESET SETTINGS
+# ====================
+
+# Password reset token expiry (in hours)
+PASSWORD_RESET_TIMEOUT = 24
+
+# ====================
+# LOGGING CONFIGURATION
+# ====================
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'email_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'emails.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'core.email': {
+            'handlers': ['email_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Create logs directory if it doesn't exist
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(exist_ok=True)
 
 
-def convert_amount(amount, from_currency, to_currency):
-    """
-    Convert amount from one currency to another
-    """
-    if from_currency == to_currency:
-        return amount
-    
-    rate = get_exchange_rate(from_currency, to_currency)
-    return amount * rate
-
-
-def format_currency(amount, currency_code='USD'):
-    """
-    Format amount with currency symbol
-    """
-    symbols = {
-        'USD': '$',
-        'EUR': '€',
-        'GBP': '£',
-        'NGN': '₦',
-        'CAD': 'C$',
-        'AUD': 'A$',
-    }
-    
-    symbol = symbols.get(currency_code, '$')
-    return f"{symbol}{amount:,.2f}"
-
-
-def send_email_with_log(user, subject, template_name, context, email_type='system'):
-    """
-    Send email and log the attempt
-    """
-    try:
-        # Render email template
-        context['user'] = user
-        html_content = render_to_string(template_name, context)
-        
-        # Create email
-        email = EmailMultiAlternatives(
-            subject=subject,
-            body='',  # Plain text fallback (optional)
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[user.email]
-        )
-        email.attach_alternative(html_content, "text/html")
-        
-        # Send email
-        email.send()
-        
-        # Log success
-        EmailLog.objects.create(
-            user=user,
-            email_type=email_type,
-            subject=subject,
-            recipient=user.email,
-            success=True
-        )
-        
-        return True
-        
-    except Exception as e:
-        # Log failure
-        EmailLog.objects.create(
-            user=user,
-            email_type=email_type,
-            subject=subject,
-            recipient=user.email,
-            success=False,
-            error_message=str(e)
-        )
-        
-        return False
-
-
-def validate_document(file):
-    """
-    Validate uploaded documents (KYC, evidence, etc.)
-    """
-    # Check file size (max 10MB)
-    max_size = 10 * 1024 * 1024  # 10MB
-    if file.size > max_size:
-        return False, "File size must be less than 10MB"
-    
-    # Check file extension
-    allowed_extensions = ['.pdf', '.jpg', '.jpeg', '.png']
-    import os
-    ext = os.path.splitext(file.name)[1].lower()
-    
-    if ext not in allowed_extensions:
-        return False, f"File type {ext} not allowed. Use: {', '.join(allowed_extensions)}"
-    
-    return True, "Valid"
-
-
-def generate_transaction_reference():
-    """
-    Generate unique transaction reference
-    """
-    import uuid
-    return f"TXN{str(uuid.uuid4())[:12].upper()}"
-
-
-def calculate_deposit_amount(case):
-    """
-    Calculate required deposit based on case amount and plan
-    """
-    if not case.payment_plan:
-        return Decimal('0.00')
-    
-    if case.payment_plan.fixed_deposit:
-        return case.payment_plan.fixed_deposit
-    
-    percentage = case.payment_plan.deposit_percentage
-    return (case.amount_lost * percentage) / Decimal('100')
-
-
-def get_case_statistics(user):
-    """
-    Get comprehensive statistics for a user's cases
-    """
-    from django.db.models import Sum, Count, Q
-    from .models import ScamCase, RecoveryTransaction
-    
-    cases = ScamCase.objects.filter(user=user)
-    
-    return {
-        'total_cases': cases.count(),
-        'active_cases': cases.exclude(status__in=['completed', 'rejected']).count(),
-        'completed_cases': cases.filter(status='completed').count(),
-        'rejected_cases': cases.filter(status='rejected').count(),
-        'total_lost': cases.aggregate(total=Sum('amount_lost'))['total'] or Decimal('0'),
-        'total_recovered': RecoveryTransaction.objects.filter(
-            case__user=user
-        ).aggregate(total=Sum('amount_recovered'))['total'] or Decimal('0'),
-        'recovery_rate': 0,  # Calculate based on recovered vs lost
-    }
-
-
-def notify_admins_new_case(case):
-    """
-    Notify admins when a new case is submitted
-    """
-    from django.contrib.auth import get_user_model
-    from .models import Notification
-    
-    User = get_user_model()
-    admins = User.objects.filter(user_type='admin')
-    
-    for admin in admins:
-        Notification.objects.create(
-            user=admin,
-            title='New Case Submitted',
-            message=f'New case {case.case_id} submitted by {case.user.username}. Amount: ${case.amount_lost}',
-            notification_type='system'
-        )
-
-
-def check_kyc_required(user, action='withdrawal'):
-    """
-    Check if KYC is required for specific actions
-    """
-    if action == 'withdrawal' and hasattr(settings, 'KYC_REQUIRED_FOR_WITHDRAWAL'):
-        return settings.KYC_REQUIRED_FOR_WITHDRAWAL and not user.is_kyc_verified
-    
-    if action == 'case_submission' and hasattr(settings, 'KYC_REQUIRED_FOR_CASE_SUBMISSION'):
-        return settings.KYC_REQUIRED_FOR_CASE_SUBMISSION and not user.is_kyc_verified
-    
-    return False
-
-
-# Context processor for currency
-def currency_context(request):
-    """
-    Add currency information to all templates
-    """
-    if request.user.is_authenticated:
-        return {
-            'user_currency': request.user.preferred_currency,
-            'currency_symbol': request.user.get_currency_symbol(),
-        }
-    return {
-        'user_currency': 'USD',
-        'currency_symbol': '$',
-    }
+CSRF_TRUSTED_ORIGINS = [
+    "https://recovery-bxrp.onrender.com",
+]
 
 
 
-
-i want us to modify the registeration page to include currency so that after registration the chosen currency will display on the dashboard, 
+i lets work on site settings functions to dynamically add site name, logo, favicon, phone, address, email from admin

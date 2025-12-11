@@ -1,12 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}RecoveryPro - Scam Recovery Services{% endblock %}</title>
+    
+    <!-- Dynamic Title -->
+    <title>{% block title %}{{ site_name|default:"RecoveryPro - Scam Recovery Services" }}{% endblock %}</title>
+    
+    <!-- Dynamic Favicon -->
+    {% if site_settings.favicon %}
+    <link rel="icon" type="image/x-icon" href="{{ site_settings.favicon.url }}">
+    {% else %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    {% endif %}
+    
+    <!-- Dynamic Meta Tags -->
+    {% if site_settings.meta_description %}
+    <meta name="description" content="{{ site_settings.meta_description }}">
+    {% else %}
+    <meta name="description" content="Professional scam recovery services helping victims recover their funds through expert investigation and recovery.">
+    {% endif %}
+    
+    {% if site_settings.meta_keywords %}
+    <meta name="keywords" content="{{ site_settings.meta_keywords }}">
+    {% else %}
+    <meta name="keywords" content="scam recovery, fraud recovery, financial recovery, scam investigation">
+    {% endif %}
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
+     <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -195,8 +219,12 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <div class="flex items-center">
                     <a href="{% url 'home' %}" class="flex items-center text-xl md:text-2xl font-bold text-white hover:text-cyan transition">
-                        <i class="fas fa-shield-alt mr-2 text-cyan text-lg md:text-xl"></i> 
-                        <span>Recovery<span class="text-cyan">Pro</span></span>
+                        {% if site_settings.logo %}
+                            <img src="{{ site_settings.logo.url }}" alt="{{ site_name }}" class="h-8 md:h-10 mr-2">
+                        {% else %}
+                            <i class="fas fa-shield-alt mr-2 text-cyan text-lg md:text-xl"></i> 
+                            <span>{{ site_name|default:"Recovery" }}<span class="text-cyan">Pro</span></span>
+                        {% endif %}
                     </a>
                 </div>
                 
@@ -312,12 +340,19 @@
     <footer class="bg-midnight text-white mt-12 md:mt-20">
         <div class="container-responsive py-12 md:py-16">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <!-- Company Info -->
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-shield-alt text-cyan mr-2"></i> 
-                        <span>Recovery<span class="text-cyan">Pro</span></span>
+                        {% if site_settings.logo %}
+                            <img src="{{ site_settings.logo.url }}" alt="{{ site_name }}" class="h-8">
+                        {% else %}
+                            <i class="fas fa-shield-alt text-cyan mr-2"></i> 
+                            <span>{{ site_name|default:"Recovery" }}<span class="text-cyan">Pro</span></span>
+                        {% endif %}
                     </h3>
-                    <p class="text-coolGray text-sm leading-relaxed">Helping scam victims recover their funds and rebuild trust through professional investigation and recovery services.</p>
+                    <p class="text-coolGray text-sm leading-relaxed">
+                        {{ site_settings.tagline|default:"Helping scam victims recover their funds and rebuild trust through professional investigation and recovery services." }}
+                    </p>
                     <div class="mt-6">
                         <div class="flex items-center space-x-2 text-cyan">
                             <i class="fas fa-shield-check"></i>
@@ -325,6 +360,8 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Quick Links</h4>
                     <ul class="space-y-2 md:space-y-3 text-sm">
@@ -342,25 +379,62 @@
                         </a></li>
                     </ul>
                 </div>
+                
+                <!-- Support -->
                 <div>
                     <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Support</h4>
                     <ul class="space-y-2 md:space-y-3 text-sm">
                         <li><a href="{% url 'contact' %}" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Contact Us
                         </a></li>
+                        {% if site_settings.privacy_url %}
+                        <li><a href="{{ site_settings.privacy_url }}" class="text-coolGray hover:text-cyan transition flex items-center">
+                            <i class="fas fa-angle-right mr-2"></i>Privacy Policy
+                        </a></li>
+                        {% else %}
                         <li><a href="#" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Privacy Policy
                         </a></li>
+                        {% endif %}
+                        {% if site_settings.terms_url %}
+                        <li><a href="{{ site_settings.terms_url }}" class="text-coolGray hover:text-cyan transition flex items-center">
+                            <i class="fas fa-angle-right mr-2"></i>Terms of Service
+                        </a></li>
+                        {% else %}
                         <li><a href="#" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Terms of Service
                         </a></li>
+                        {% endif %}
                         <li><a href="#" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Help Center
                         </a></li>
                     </ul>
                 </div>
+                
+                <!-- Contact Info & Social Links -->
                 <div>
                     <h4 class="font-bold text-base md:text-lg mb-4 text-cyan">Connect With Us</h4>
+                    
+                    <!-- Social Links -->
+                    {% if site_settings.facebook_url or site_settings.twitter_url or site_settings.linkedin_url %}
+                    <div class="flex space-x-4 mb-6">
+                        {% if site_settings.facebook_url %}
+                        <a href="{{ site_settings.facebook_url }}" target="_blank" class="w-10 h-10 bg-navy hover:bg-cyan rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-facebook text-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.twitter_url %}
+                        <a href="{{ site_settings.twitter_url }}" target="_blank" class="w-10 h-10 bg-navy hover:bg-cyan rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_settings.linkedin_url %}
+                        <a href="{{ site_settings.linkedin_url }}" target="_blank" class="w-10 h-10 bg-navy hover:bg-cyan rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-linkedin text-lg"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% else %}
                     <div class="flex space-x-4 mb-6">
                         <a href="#" class="w-10 h-10 bg-navy hover:bg-cyan rounded-lg flex items-center justify-center transition">
                             <i class="fab fa-facebook text-lg"></i>
@@ -372,21 +446,43 @@
                             <i class="fab fa-linkedin text-lg"></i>
                         </a>
                     </div>
+                    {% endif %}
+                    
+                    <!-- Contact Information -->
                     <div class="space-y-2 text-sm text-coolGray">
                         <div class="flex items-center">
                             <i class="fas fa-envelope text-cyan mr-2"></i>
-                            <span class="break-all">support@recoverypro.com</span>
+                            <span class="break-all">{{ contact_email|default:"support@recoverypro.com" }}</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-phone text-cyan mr-2"></i>
-                            <span>+1 (800) 123-4567</span>
+                            <span>{{ contact_phone|default:"+1 (800) 123-4567" }}</span>
                         </div>
+                        {% if company_address %}
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-cyan mr-2 mt-1"></i>
+                            <span>{{ company_address }}</span>
+                        </div>
+                        {% endif %}
+                        {% if site_settings.business_hours %}
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-cyan mr-2"></i>
+                            <span>{{ site_settings.business_hours }}</span>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            
             <hr class="border-navy my-8">
+            
+            <!-- Footer Bottom -->
             <div class="flex flex-col md:flex-row justify-between items-center text-sm text-coolGray gap-4">
-                <p>&copy; 2025 RecoveryPro. All rights reserved.</p>
+                {% if site_settings.footer_text %}
+                <div>{{ site_settings.footer_text|safe }}</div>
+                {% else %}
+                <p>&copy; 2025 {{ site_name|default:"RecoveryPro" }}. All rights reserved.</p>
+                {% endif %}
                 <div class="flex items-center space-x-4">
                     <i class="fas fa-lock text-cyan"></i>
                     <span>SSL Encrypted & Secure</span>
