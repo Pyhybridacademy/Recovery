@@ -1,100 +1,271 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Contact RecoveryPro{% endblock %}
+{% block title %}Contact Us - {{ site_name|default:"RecoveryPro" }}{% endblock %}
 
 {% block content %}
-<section class="py-16 bg-light">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-5xl font-bold text-center mb-4">Contact Us</h1>
-        <p class="text-xl text-gray-600 text-center mb-16">Get in touch with our recovery team</p>
+<div class="container-responsive py-8 md:py-12">
+    <!-- Page Header -->
+    <div class="text-center mb-10 md:mb-16 animate-fadeInUp">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight mb-4">Contact Us</h1>
+        <p class="text-coolGray text-lg md:text-xl max-w-3xl mx-auto">
+            Get in touch with our recovery specialists through any of the channels below. 
+            We're here to help you 24/7.
+        </p>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="bg-white p-8 rounded-lg shadow-card text-center">
-                <div class="text-4xl text-primary mb-4"><i class="fas fa-phone"></i></div>
-                <h3 class="text-xl font-bold mb-2">Phone</h3>
-                <p class="text-gray-600 mb-2">+1 (800) 123-4567</p>
-                <p class="text-sm text-gray-500">Available 24/7</p>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-card text-center">
-                <div class="text-4xl text-primary mb-4"><i class="fas fa-envelope"></i></div>
-                <h3 class="text-xl font-bold mb-2">Email</h3>
-                <p class="text-gray-600 mb-2">support@recoverypro.com</p>
-                <p class="text-sm text-gray-500">We respond within 2 hours</p>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-card text-center">
-                <div class="text-4xl text-primary mb-4"><i class="fas fa-map-marker-alt"></i></div>
-                <h3 class="text-xl font-bold mb-2">Address</h3>
-                <p class="text-gray-600 mb-2">123 Recovery Street</p>
-                <p class="text-sm text-gray-500">New York, NY 10001</p>
+    <!-- Contact Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+        <!-- WhatsApp Card -->
+        <div class="bg-white rounded-xl shadow-card p-6 md:p-8 animate-fadeIn hover:glow-effect">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fab fa-whatsapp text-3xl md:text-4xl text-green-600"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-midnight mb-4">WhatsApp</h3>
+                <p class="text-coolGray mb-6 text-sm md:text-base">
+                    Chat with us instantly on WhatsApp for quick responses and support.
+                </p>
+                
+               {% if contact_phone %}
+        <a href="https://wa.me/{{ contact_phone|cut:' '|cut:'+'|cut:'-' }}?text=Hello%20{{ site_name|default:'RecoveryPro' }}%2C%20I%20need%20help%20with%20scam%20recovery"
+           target="_blank"
+           class="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp"></i>
+            Chat on WhatsApp
+        </a>
+        <p class="mt-4 text-darkGray font-medium text-sm md:text-base">
+            <i class="fas fa-phone text-green-600 mr-2"></i>
+            {{ contact_phone }}
+        </p>
+        {% else %}
+        <div class="w-full py-3 px-4 bg-gray-200 text-gray-500 font-medium rounded-lg flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp Not Available
+        </div>
+        <p class="mt-4 text-coolGray text-sm italic">
+            Contact phone not configured in admin settings
+        </p>
+        {% endif %} 
+                <div class="mt-6 pt-6 border-t border-neutralGray w-full">
+                    <div class="flex items-center justify-center gap-2 text-sm text-coolGray">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Support Available</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-white p-8 rounded-lg shadow-card">
-                <h2 class="text-2xl font-bold mb-6">Send us a Message</h2>
-                <form method="post" class="space-y-4">
-                    {% csrf_token %}
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Name</label>
-                        <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+        <!-- Email Card -->
+        <div class="bg-white rounded-xl shadow-card p-6 md:p-8 animate-fadeIn hover:glow-effect" style="animation-delay: 0.1s">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-cyanLight/20 rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-envelope text-3xl md:text-4xl text-cyan"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-midnight mb-4">Email Support</h3>
+                <p class="text-coolGray mb-6 text-sm md:text-base">
+                    Send us an email for detailed inquiries, document submissions, or formal communications.
+                </p>
+                
+                {% if contact_email %}
+                <a href="mailto:{{ contact_email }}?subject=Scam%20Recovery%20Inquiry&body=Hello%20{{ site_name|default:'RecoveryPro' }}%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about%3A"
+                   class="w-full py-3 px-4 bg-cyan hover:bg-cyanDark text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope"></i>
+                    Send Email
+                </a>
+                <p class="mt-4 text-darkGray font-medium text-sm md:text-base break-all">
+                    <i class="fas fa-at text-cyan mr-2"></i>
+                    {{ contact_email }}
+                </p>
+                {% else %}
+                <div class="w-full py-3 px-4 bg-gray-200 text-gray-500 font-medium rounded-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope"></i>
+                    Email Not Configured
+                </div>
+                <p class="mt-4 text-coolGray text-sm italic">
+                    Contact email not configured in admin settings
+                </p>
+                {% endif %}
+                
+                <div class="mt-6 pt-6 border-t border-neutralGray w-full">
+                    <div class="flex items-center justify-center gap-2 text-sm text-coolGray">
+                        <i class="fas fa-reply"></i>
+                        <span>Response within 24 hours</span>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Email</label>
-                        <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Subject</label>
-                        <input type="text" name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Message</label>
-                        <textarea name="message" rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-secondary transition"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
-                </form>
+                </div>
             </div>
+        </div>
 
-            <div class="bg-white p-8 rounded-lg shadow-card">
-                <h2 class="text-2xl font-bold mb-6">Why Choose RecoveryPro?</h2>
-                <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-4"></i>
-                        <div>
-                            <h4 class="font-bold mb-1">Expert Team</h4>
-                            <p class="text-gray-600 text-sm">150+ certified fraud investigators and recovery specialists</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-4"></i>
-                        <div>
-                            <h4 class="font-bold mb-1">95% Success Rate</h4>
-                            <p class="text-gray-600 text-sm">Industry-leading recovery success in resolved cases</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-4"></i>
-                        <div>
-                            <h4 class="font-bold mb-1">Contingency Based</h4>
-                            <p class="text-gray-600 text-sm">You only pay if we recover your funds</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-4"></i>
-                        <div>
-                            <h4 class="font-bold mb-1">24/7 Support</h4>
-                            <p class="text-gray-600 text-sm">Always available to answer your questions</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-4"></i>
-                        <div>
-                            <h4 class="font-bold mb-1">100% Confidential</h4>
-                            <p class="text-gray-600 text-sm">Your information is encrypted and protected</p>
-                        </div>
-                    </li>
-                </ul>
+        <!-- Telegram Card -->
+        <div class="bg-white rounded-xl shadow-card p-6 md:p-8 animate-fadeIn hover:glow-effect" style="animation-delay: 0.2s">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fab fa-telegram text-3xl md:text-4xl text-blue-500"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-midnight mb-4">Telegram</h3>
+                <p class="text-coolGray mb-6 text-sm md:text-base">
+                    Connect with us on Telegram for secure and private communication.
+                </p>
+                
+                <!-- Hardcoded Telegram link - You can update this later -->
+                <a href="https://t.me/recoverypro_support" 
+                   target="_blank"
+                   class="w-full py-3 px-4 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fab fa-telegram"></i>
+                    Join Telegram
+                </a>
+                <p class="mt-4 text-darkGray font-medium text-sm md:text-base">
+                    <i class="fab fa-telegram text-blue-500 mr-2"></i>
+                    @recoverypro_support
+                </p>
+                
+                <div class="mt-6 pt-6 border-t border-neutralGray w-full">
+                    <div class="flex items-center justify-center gap-2 text-sm text-coolGray">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>End-to-End Encrypted</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+
+    <!-- Additional Contact Information -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-16">
+        <!-- Office Hours & Info -->
+        <div class="bg-white rounded-xl shadow-card p-6 md:p-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-midnight mb-6">Office Information</h2>
+            
+            <div class="space-y-6">
+                {% if company_address %}
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-midnight/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-map-marker-alt text-cyan text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-darkGray text-lg mb-1">Our Location</h3>
+                        <p class="text-coolGray">{{ company_address }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if contact_phone %}
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-midnight/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-phone text-cyan text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-darkGray text-lg mb-1">Phone Support</h3>
+                        <p class="text-coolGray mb-2">{{ contact_phone }}</p>
+                        <p class="text-sm text-coolGray">For urgent matters and verified clients only</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if site_settings.business_hours %}
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-midnight/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-clock text-cyan text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-darkGray text-lg mb-1">Business Hours</h3>
+                        <p class="text-coolGray">{{ site_settings.business_hours }}</p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-midnight/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-clock text-cyan text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-darkGray text-lg mb-1">Business Hours</h3>
+                        <p class="text-coolGray">Monday - Friday: 9:00 AM - 6:00 PM (GMT)</p>
+                        <p class="text-coolGray">Emergency Support: 24/7 via WhatsApp</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Security & Privacy Notice -->
+        <div class="bg-midnight rounded-xl shadow-card p-6 md:p-8 text-white">
+            <h2 class="text-2xl md:text-3xl font-bold text-cyan mb-6">Security & Privacy</h2>
+            
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-cyan/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-shield-alt text-cyanLight text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-lg mb-1">End-to-End Encryption</h3>
+                        <p class="text-coolGray">All communications are encrypted to protect your sensitive information.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-cyan/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-user-lock text-cyanLight text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-lg mb-1">Strict Confidentiality</h3>
+                        <p class="text-coolGray">Your case details and personal information are kept strictly confidential.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-cyan/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-file-contract text-cyanLight text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-lg mb-1">Secure Documentation</h3>
+                        <p class="text-coolGray">All documents and evidence are stored in our secure, encrypted database.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-4 bg-navy rounded-lg border-l-4 border-cyan">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-exclamation-circle text-cyanLight text-lg mt-1"></i>
+                        <div>
+                            <p class="font-medium text-sm">For existing clients, please include your Case ID in all communications for faster response.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response Time Information -->
+    <div class="bg-gradient-to-r from-midnight to-navy rounded-xl shadow-card p-6 md:p-8 text-white">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Expected Response Times</h2>
+            <p class="text-cyanLight max-w-3xl mx-auto">We prioritize all inquiries and aim to respond as quickly as possible.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div class="text-cyanLight text-3xl md:text-4xl font-bold mb-2">5-15 min</div>
+                <h3 class="font-bold text-lg mb-2">WhatsApp</h3>
+                <p class="text-coolGray text-sm">Instant messaging for quick questions and updates</p>
+            </div>
+            
+            <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div class="text-cyanLight text-3xl md:text-4xl font-bold mb-2">1-2 hours</div>
+                <h3 class="font-bold text-lg mb-2">Telegram</h3>
+                <p class="text-coolGray text-sm">Secure messaging for detailed discussions</p>
+            </div>
+            
+            <div class="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div class="text-cyanLight text-3xl md:text-4xl font-bold mb-2">24 hours</div>
+                <h3 class="font-bold text-lg mb-2">Email</h3>
+                <p class="text-coolGray text-sm">Formal communications and document submissions</p>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <div class="inline-flex items-center gap-2 bg-navy px-4 py-2 rounded-full">
+                <i class="fas fa-star text-yellow-400"></i>
+                <span class="text-sm">Emergency cases are prioritized for immediate response</span>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

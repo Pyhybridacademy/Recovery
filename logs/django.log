@@ -1641,3 +1641,482 @@ INFO 2025-12-04 13:38:23,877 basehttp "GET /contact/ HTTP/1.1" 200 24206
 INFO 2025-12-04 13:38:26,933 basehttp "GET /about/ HTTP/1.1" 200 35778
 INFO 2025-12-04 13:38:42,517 basehttp "GET /contact/ HTTP/1.1" 200 24206
 INFO 2025-12-04 13:38:50,945 basehttp "GET /faq/ HTTP/1.1" 200 24540
+INFO 2025-12-11 10:27:43,251 autoreload Watching for file changes with StatReloader
+INFO 2025-12-11 10:27:55,207 basehttp "GET / HTTP/1.1" 200 43618
+INFO 2025-12-11 10:27:55,782 basehttp "GET / HTTP/1.1" 200 43618
+WARNING 2025-12-11 10:27:58,649 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-11 10:28:00,852 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:28:19,121 basehttp "GET / HTTP/1.1" 200 43618
+WARNING 2025-12-11 10:28:20,764 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:28:21,623 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2025-12-11 10:28:21,937 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-12-11 10:28:22,074 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+INFO 2025-12-11 10:28:23,248 basehttp "GET /static/admin/simpleui-x/css/login.css?_=2.1 HTTP/1.1" 200 500
+INFO 2025-12-11 10:28:23,266 basehttp "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 200 115997
+INFO 2025-12-11 10:28:23,318 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 200 101784
+INFO 2025-12-11 10:28:23,365 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 200 240033
+INFO 2025-12-11 10:28:23,401 basehttp "GET /static/admin/simpleui-x/js/login.js?_=3.3 HTTP/1.1" 200 669
+INFO 2025-12-11 10:28:23,464 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 200 3516
+INFO 2025-12-11 10:28:23,576 basehttp "GET /static/admin/simpleui-x/img/bg.svg HTTP/1.1" 200 9547
+INFO 2025-12-11 10:28:23,600 basehttp "GET /static/admin/simpleui-x/particles/app.js HTTP/1.1" 200 3728
+INFO 2025-12-11 10:28:23,689 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 200 93675
+INFO 2025-12-11 10:28:23,723 basehttp "GET /static/admin/simpleui-x/particles/particles.js HTTP/1.1" 200 51264
+INFO 2025-12-11 10:28:24,341 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 200 664912
+INFO 2025-12-11 10:28:24,767 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 150472
+WARNING 2025-12-11 10:28:24,895 log Not Found: /favicon.ico
+WARNING 2025-12-11 10:28:24,897 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-12-11 10:28:25,427 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200
+INFO 2025-12-11 10:28:32,399 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-12-11 10:28:33,231 basehttp "GET /admin/ HTTP/1.1" 200 26731
+INFO 2025-12-11 10:28:33,356 basehttp "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 200 6994
+INFO 2025-12-11 10:28:33,393 basehttp "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 200 1194
+INFO 2025-12-11 10:28:33,444 basehttp "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 200 3861
+INFO 2025-12-11 10:28:33,472 basehttp "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 200 524
+INFO 2025-12-11 10:28:33,507 basehttp "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 200 1177
+INFO 2025-12-11 10:28:33,515 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 200 811
+INFO 2025-12-11 10:28:33,544 basehttp "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 200 6329
+INFO 2025-12-11 10:28:33,559 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 200 12677
+INFO 2025-12-11 10:28:33,564 basehttp "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 200 4274
+INFO 2025-12-11 10:28:33,687 basehttp "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 200 21589
+INFO 2025-12-11 10:28:34,172 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25096
+INFO 2025-12-11 10:28:34,216 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 107460
+INFO 2025-12-11 10:29:46,538 basehttp "GET / HTTP/1.1" 200 45895
+WARNING 2025-12-11 10:29:47,801 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:29:51,381 basehttp "GET /dashboard/ HTTP/1.1" 200 34471
+WARNING 2025-12-11 10:29:52,864 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:30:06,122 basehttp "GET /admin/core/user/ HTTP/1.1" 200 45866
+INFO 2025-12-11 10:30:06,203 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 200 811
+INFO 2025-12-11 10:30:06,206 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 200 189
+INFO 2025-12-11 10:30:06,265 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 200 4867
+INFO 2025-12-11 10:30:06,276 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 200 811
+INFO 2025-12-11 10:30:06,279 basehttp "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 200 6878
+INFO 2025-12-11 10:30:06,282 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 200 524
+INFO 2025-12-11 10:30:06,285 basehttp "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 200 22120
+INFO 2025-12-11 10:30:06,340 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 200 4270
+INFO 2025-12-11 10:30:06,341 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 200 12677
+INFO 2025-12-11 10:30:06,345 basehttp "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 200 16565
+INFO 2025-12-11 10:30:06,358 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 200 1194
+INFO 2025-12-11 10:30:06,392 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 200 14237
+INFO 2025-12-11 10:30:06,423 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,424 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,427 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,426 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,432 basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+INFO 2025-12-11 10:30:06,447 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,447 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,456 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,457 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,508 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-11 10:30:06,793 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:06,793 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-12-11 10:30:07,005 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-12-11 10:30:15,193 basehttp "GET / HTTP/1.1" 200 43618
+WARNING 2025-12-11 10:30:17,436 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:30:20,411 basehttp "GET /login/ HTTP/1.1" 200 21518
+WARNING 2025-12-11 10:30:26,060 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-11 10:30:26,192 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:30:43,784 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:30:44,290 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:30:51,156 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:30:51,581 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:30:58,203 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:30:58,630 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:31:02,589 basehttp "GET /password-reset/ HTTP/1.1" 200 18491
+WARNING 2025-12-11 10:31:02,997 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:31:20,773 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-12-11 10:31:20,828 basehttp "GET /login/ HTTP/1.1" 200 23002
+WARNING 2025-12-11 10:31:21,844 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:32:01,479 basehttp "GET /password-reset/009443cd-7133-425d-9b64-9e3519dc3f11 HTTP/1.1" 301 0
+INFO 2025-12-11 10:32:01,539 basehttp "GET /password-reset/009443cd-7133-425d-9b64-9e3519dc3f11/ HTTP/1.1" 200 18375
+WARNING 2025-12-11 10:32:02,989 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:32:36,455 basehttp "POST /password-reset/009443cd-7133-425d-9b64-9e3519dc3f11/ HTTP/1.1" 302 0
+INFO 2025-12-11 10:32:36,530 basehttp "GET /login/ HTTP/1.1" 200 23060
+WARNING 2025-12-11 10:32:37,735 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:33:00,266 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:33:00,947 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:33:08,483 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:33:08,953 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:33:18,106 basehttp "POST /login/ HTTP/1.1" 200 22354
+WARNING 2025-12-11 10:33:19,442 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-11 10:33:20,936 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:33:41,449 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-12-11 10:33:41,533 basehttp "GET /dashboard/ HTTP/1.1" 200 51921
+WARNING 2025-12-11 10:33:42,593 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:34:29,936 basehttp "GET /cases/ HTTP/1.1" 200 54162
+WARNING 2025-12-11 10:34:30,953 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:34:46,128 basehttp "GET / HTTP/1.1" 200 45898
+WARNING 2025-12-11 10:34:47,481 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:35:08,321 basehttp "GET /contact/ HTTP/1.1" 200 24206
+WARNING 2025-12-11 10:35:09,482 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:35:14,096 basehttp "GET / HTTP/1.1" 200 45898
+WARNING 2025-12-11 10:35:18,994 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:35:38,702 basehttp "GET / HTTP/1.1" 200 45898
+WARNING 2025-12-11 10:35:42,462 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:35:56,093 basehttp "GET /dashboard/ HTTP/1.1" 200 51921
+WARNING 2025-12-11 10:35:59,753 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:36:11,639 basehttp "GET /cases/ HTTP/1.1" 200 54162
+WARNING 2025-12-11 10:36:14,040 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:36:19,848 basehttp "GET /settings/ HTTP/1.1" 200 33820
+WARNING 2025-12-11 10:36:22,440 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-11 10:36:42,279 basehttp "GET /notifications/ HTTP/1.1" 200 27857
+WARNING 2025-12-11 10:36:44,182 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-11 10:36:49,090 log Method Not Allowed (GET): /logout/
+WARNING 2025-12-11 10:36:49,148 basehttp "GET /logout/ HTTP/1.1" 405 0
+INFO 2025-12-14 21:43:16,008 autoreload Watching for file changes with StatReloader
+INFO 2025-12-14 21:43:33,099 basehttp "GET / HTTP/1.1" 200 45895
+INFO 2025-12-14 21:43:33,101 basehttp - Broken pipe from ('127.0.0.1', 55516)
+WARNING 2025-12-14 21:43:37,734 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-14 21:43:39,884 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-14 21:43:45,568 basehttp "GET / HTTP/1.1" 200 45895
+WARNING 2025-12-14 21:43:46,695 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-14 21:43:47,949 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2025-12-14 21:43:49,445 basehttp "GET /admin/ HTTP/1.1" 200 26731
+INFO 2025-12-14 21:43:52,789 basehttp "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 200 6994
+INFO 2025-12-14 21:43:52,799 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 200 240033
+INFO 2025-12-14 21:43:52,810 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 200 101784
+INFO 2025-12-14 21:43:52,869 basehttp "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 200 115997
+INFO 2025-12-14 21:43:52,877 basehttp "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 200 3861
+INFO 2025-12-14 21:43:53,031 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 200 93675
+INFO 2025-12-14 21:43:53,048 basehttp "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 200 1194
+INFO 2025-12-14 21:43:53,080 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 200 12677
+INFO 2025-12-14 21:43:53,164 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 200 3516
+INFO 2025-12-14 21:43:53,291 basehttp "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 200 524
+INFO 2025-12-14 21:43:53,316 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 200 811
+INFO 2025-12-14 21:43:53,440 basehttp "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 200 4274
+INFO 2025-12-14 21:43:53,593 basehttp "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 200 1177
+INFO 2025-12-14 21:43:53,602 basehttp "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 200 6329
+INFO 2025-12-14 21:43:53,605 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 200 664912
+INFO 2025-12-14 21:43:53,690 basehttp "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 200 21589
+INFO 2025-12-14 21:43:54,907 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200
+INFO 2025-12-14 21:43:55,072 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 107460
+INFO 2025-12-14 21:43:55,116 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25096
+INFO 2025-12-14 21:43:55,156 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 150472
+WARNING 2025-12-14 21:44:00,344 log Not Found: /favicon.ico
+WARNING 2025-12-14 21:44:00,345 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+INFO 2025-12-14 21:44:03,327 basehttp "GET /admin/core/sitesettings/ HTTP/1.1" 200 25826
+INFO 2025-12-14 21:44:03,398 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 200 811
+INFO 2025-12-14 21:44:03,399 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 200 811
+INFO 2025-12-14 21:44:03,406 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 200 189
+INFO 2025-12-14 21:44:03,434 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 200 4270
+INFO 2025-12-14 21:44:03,444 basehttp "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 200 22120
+INFO 2025-12-14 21:44:03,449 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 200 524
+INFO 2025-12-14 21:44:03,459 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-12-14 21:44:03,510 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 200 4867
+INFO 2025-12-14 21:44:03,520 basehttp "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 200 6878
+INFO 2025-12-14 21:44:03,529 basehttp "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 200 16565
+INFO 2025-12-14 21:44:04,433 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-12-14 21:44:04,740 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-12-14 21:44:04,822 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-12-14 21:44:04,827 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-12-14 21:44:04,839 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-12-14 21:44:05,412 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-12-14 21:44:05,624 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 200 1194
+INFO 2025-12-14 21:44:05,625 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 200 12677
+INFO 2025-12-14 21:44:05,674 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 200 14237
+INFO 2025-12-14 21:44:05,729 basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+INFO 2025-12-14 21:44:05,980 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-12-14 21:44:09,900 basehttp "GET /admin/core/sitesettings/1/change/ HTTP/1.1" 200 31787
+INFO 2025-12-14 21:44:10,038 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-12-14 21:44:10,040 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-12-14 21:44:10,110 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-12-14 21:44:10,166 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:44:10,328 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2025-12-14 21:46:15,762 basehttp "POST /admin/core/sitesettings/1/change/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:46:15,798 basehttp "GET /admin/core/sitesettings/ HTTP/1.1" 200 26004
+INFO 2025-12-14 21:46:20,528 basehttp "GET / HTTP/1.1" 200 45935
+WARNING 2025-12-14 21:46:21,597 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-14 21:46:55,337 basehttp "GET / HTTP/1.1" 200 43658
+WARNING 2025-12-14 21:46:57,878 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-14 21:47:00,589 basehttp "GET /login/ HTTP/1.1" 200 21528
+INFO 2025-12-14 21:47:04,508 basehttp "POST /login/ HTTP/1.1" 200 22364
+INFO 2025-12-14 21:47:33,220 basehttp - Broken pipe from ('127.0.0.1', 52882)
+INFO 2025-12-14 21:47:34,308 basehttp "POST /login/ HTTP/1.1" 200 22364
+INFO 2025-12-14 21:47:48,670 basehttp "GET /admin/core/user/ HTTP/1.1" 200 45866
+INFO 2025-12-14 21:47:48,725 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:47:48,753 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-12-14 21:47:48,765 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-12-14 21:47:48,998 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-12-14 21:48:10,528 basehttp "GET /password-reset/ HTTP/1.1" 200 18511
+INFO 2025-12-14 21:48:19,768 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:48:19,818 basehttp "GET /login/ HTTP/1.1" 200 23012
+INFO 2025-12-14 21:48:56,329 basehttp "GET /password-reset/11f5af68-c53f-4667-b430-6e40ce460f51/ HTTP/1.1" 200 18395
+INFO 2025-12-14 21:49:18,007 basehttp "POST /password-reset/11f5af68-c53f-4667-b430-6e40ce460f51/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:49:18,034 basehttp "GET /login/ HTTP/1.1" 200 23070
+INFO 2025-12-14 21:49:38,842 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:49:40,527 basehttp "GET /dashboard/ HTTP/1.1" 200 51941
+INFO 2025-12-14 21:50:56,239 basehttp "GET /kyc/ HTTP/1.1" 200 23594
+INFO 2025-12-14 21:51:41,668 basehttp "POST /kyc/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:51:41,717 basehttp "GET /kyc/ HTTP/1.1" 200 20581
+INFO 2025-12-14 21:52:03,636 basehttp "GET /admin/ HTTP/1.1" 200 26799
+INFO 2025-12-14 21:52:04,825 basehttp "GET /admin/core/user/ HTTP/1.1" 200 45866
+INFO 2025-12-14 21:52:05,012 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:52:09,368 basehttp "GET /admin/core/kycverification/ HTTP/1.1" 200 40816
+INFO 2025-12-14 21:52:09,428 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:52:13,033 basehttp "GET /admin/core/kycverification/1/change/ HTTP/1.1" 200 20744
+INFO 2025-12-14 21:52:13,120 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:52:13,560 basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-12-14 21:52:13,645 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-12-14 21:52:13,690 basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-12-14 21:52:13,719 basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-12-14 21:52:13,751 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-12-14 21:52:13,753 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-12-14 21:52:14,382 basehttp "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-12-14 21:52:14,383 basehttp "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-12-14 21:52:44,217 basehttp "POST /admin/core/kycverification/1/change/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:52:44,267 basehttp "GET /admin/core/kycverification/ HTTP/1.1" 200 41005
+INFO 2025-12-14 21:52:44,349 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-14 21:52:54,727 basehttp "GET /kyc/ HTTP/1.1" 200 20040
+INFO 2025-12-14 21:53:00,356 basehttp "GET /dashboard/ HTTP/1.1" 200 53716
+INFO 2025-12-14 21:53:33,067 basehttp "GET /settings/ HTTP/1.1" 200 34305
+INFO 2025-12-14 21:54:07,904 basehttp "POST /settings/ HTTP/1.1" 302 0
+INFO 2025-12-14 21:54:07,939 basehttp "GET /settings/ HTTP/1.1" 200 35136
+INFO 2025-12-14 21:54:41,020 basehttp "GET /dashboard/ HTTP/1.1" 200 53700
+INFO 2025-12-14 21:54:50,803 basehttp "GET /about/ HTTP/1.1" 200 35828
+INFO 2025-12-14 21:55:00,109 basehttp "GET /faq/ HTTP/1.1" 200 24560
+INFO 2025-12-14 22:15:49,344 basehttp "GET /faq/ HTTP/1.1" 200 24557
+WARNING 2025-12-14 22:15:50,685 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-14 22:15:51,937 basehttp "GET /contact/ HTTP/1.1" 200 24223
+WARNING 2025-12-14 22:15:52,455 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-29 19:32:25,547 autoreload Watching for file changes with StatReloader
+INFO 2025-12-29 19:32:38,316 basehttp "GET / HTTP/1.1" 200 43658
+WARNING 2025-12-29 19:32:40,732 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-29 19:32:40,804 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+INFO 2025-12-29 19:32:52,201 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-12-29 19:32:53,704 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+INFO 2025-12-29 19:32:53,876 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:53,888 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:53,992 basehttp "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:54,003 basehttp "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:54,548 basehttp "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:54,551 basehttp "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:56,880 basehttp "GET /static/admin/simpleui-x/css/login.css?_=2.1 HTTP/1.1" 200 500
+INFO 2025-12-29 19:32:57,291 basehttp "GET /static/admin/simpleui-x/particles/app.js HTTP/1.1" 200 3728
+INFO 2025-12-29 19:32:57,383 basehttp "GET /static/admin/simpleui-x/js/login.js?_=3.3 HTTP/1.1" 200 669
+INFO 2025-12-29 19:32:57,624 basehttp "GET /static/admin/simpleui-x/img/bg.svg HTTP/1.1" 200 9547
+INFO 2025-12-29 19:32:58,064 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:32:59,517 basehttp "GET /static/admin/simpleui-x/particles/particles.js HTTP/1.1" 200 51264
+INFO 2025-12-29 19:32:59,924 basehttp "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:14,836 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-12-29 19:33:19,603 basehttp "GET /admin/ HTTP/1.1" 200 26848
+INFO 2025-12-29 19:33:19,738 basehttp "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,755 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,793 basehttp "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,837 basehttp "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,921 basehttp "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,936 basehttp "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,972 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:19,990 basehttp "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:20,004 basehttp "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:20,038 basehttp "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:21,153 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:21,198 basehttp "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-brands-400.woff2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:38,789 basehttp "GET /admin/core/user/ HTTP/1.1" 200 45878
+INFO 2025-12-29 19:33:38,789 basehttp "GET /admin/core/emaillog/ HTTP/1.1" 200 39707
+INFO 2025-12-29 19:33:38,923 basehttp "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:38,924 basehttp "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:38,924 basehttp "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:38,925 basehttp "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:38,926 basehttp "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,192 basehttp "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,195 basehttp "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,196 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,299 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,322 basehttp "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,324 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,371 basehttp "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,430 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,538 basehttp "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,539 basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,539 basehttp "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,541 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,548 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,585 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,585 basehttp "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,590 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:39,630 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-29 19:33:39,875 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-29 19:33:40,466 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:40,468 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-12-29 19:33:42,007 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-12-29 19:34:12,313 basehttp "GET / HTTP/1.1" 200 43658
+WARNING 2025-12-29 19:34:15,482 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-29 19:34:17,188 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:34:17,197 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:34:20,615 basehttp "GET /login/ HTTP/1.1" 200 21528
+WARNING 2025-12-29 19:34:22,865 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:34:22,869 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:34:28,424 basehttp "POST /login/ HTTP/1.1" 200 22364
+WARNING 2025-12-29 19:34:30,419 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:34:30,420 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:34:47,606 basehttp "GET /password-reset/ HTTP/1.1" 200 18511
+WARNING 2025-12-29 19:34:49,715 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:34:49,716 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:35:02,907 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-12-29 19:35:03,132 basehttp "GET /login/ HTTP/1.1" 200 23012
+WARNING 2025-12-29 19:35:07,072 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:35:07,073 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:35:23,955 basehttp "GET /password-reset/710375ca-f476-4811-938b-85559f14cc5c/ HTTP/1.1" 200 18395
+WARNING 2025-12-29 19:35:26,452 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:35:26,454 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:35:41,851 basehttp "POST /password-reset/710375ca-f476-4811-938b-85559f14cc5c/ HTTP/1.1" 302 0
+INFO 2025-12-29 19:35:41,902 basehttp "GET /login/ HTTP/1.1" 200 23070
+WARNING 2025-12-29 19:35:44,546 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:35:44,550 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:36:03,013 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-12-29 19:36:03,478 basehttp "GET /dashboard/ HTTP/1.1" 200 53704
+WARNING 2025-12-29 19:36:06,646 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:36:06,648 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:36:29,996 basehttp "GET /about/ HTTP/1.1" 200 35828
+WARNING 2025-12-29 19:36:32,292 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:36:32,453 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:36:41,099 basehttp "GET / HTTP/1.1" 200 45938
+WARNING 2025-12-29 19:36:43,550 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:36:43,554 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:36:46,888 basehttp "GET /about/ HTTP/1.1" 200 35828
+WARNING 2025-12-29 19:36:49,078 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:36:49,081 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:36:55,623 basehttp "GET /faq/ HTTP/1.1" 200 24560
+WARNING 2025-12-29 19:36:57,664 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:36:57,667 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:37:10,385 basehttp "GET /contact/ HTTP/1.1" 200 24226
+WARNING 2025-12-29 19:37:12,676 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:12,680 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:37:25,004 basehttp "GET /dashboard/ HTTP/1.1" 200 53704
+WARNING 2025-12-29 19:37:27,792 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:27,800 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:37:29,174 basehttp "GET /cases/ HTTP/1.1" 200 54174
+WARNING 2025-12-29 19:37:31,207 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:31,214 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:37:34,823 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:34,938 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,055 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,125 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,189 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,241 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,290 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,347 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,398 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,459 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,546 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+INFO 2025-12-29 19:37:35,608 basehttp "GET /cases/1CCED796/ HTTP/1.1" 200 47543
+WARNING 2025-12-29 19:37:35,790 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:35,791 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:37:37,924 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:37,930 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:37:45,317 basehttp "GET /settings/ HTTP/1.1" 200 34299
+WARNING 2025-12-29 19:37:47,691 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:37:47,694 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:38:16,383 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:38:16,393 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:38:27,684 basehttp "GET /notifications/ HTTP/1.1" 200 29036
+WARNING 2025-12-29 19:38:30,097 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:38:30,100 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:38:40,288 basehttp "GET /cases/074FA777/ HTTP/1.1" 200 40683
+WARNING 2025-12-29 19:38:42,807 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:38:42,810 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:38:46,653 basehttp "GET /contact/?case=074FA777 HTTP/1.1" 200 24226
+WARNING 2025-12-29 19:38:49,133 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:38:49,135 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:38:53,302 basehttp "GET / HTTP/1.1" 200 45938
+WARNING 2025-12-29 19:38:55,922 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:38:55,923 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:39:00,363 basehttp "GET /contact/ HTTP/1.1" 200 24226
+WARNING 2025-12-29 19:39:03,248 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:39:03,285 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:39:31,419 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:39:31,420 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:40:35,382 basehttp "POST /contact/ HTTP/1.1" 200 24228
+WARNING 2025-12-29 19:40:37,496 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:40:37,498 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:41:06,425 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:41:06,427 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:42:07,122 basehttp "GET /admin/core/sitesettings/ HTTP/1.1" 200 25837
+INFO 2025-12-29 19:42:13,618 basehttp "GET /admin/core/sitesettings/1/change/ HTTP/1.1" 200 31827
+INFO 2025-12-29 19:42:13,781 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:42:13,789 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-12-29 19:42:13,847 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-12-29 19:42:13,947 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-12-29 19:42:14,050 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-12-29 19:46:31,236 basehttp "POST /contact/ HTTP/1.1" 200 31046
+WARNING 2025-12-29 19:46:33,214 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:46:33,218 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:47:02,301 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:47:02,304 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:49:02,882 basehttp "POST /contact/ HTTP/1.1" 200 31046
+WARNING 2025-12-29 19:49:04,748 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:49:04,749 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:49:33,935 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:49:33,937 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:50:08,588 basehttp "POST /contact/ HTTP/1.1" 200 31288
+WARNING 2025-12-29 19:50:10,543 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:50:10,545 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:50:39,640 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:50:39,645 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:51:20,786 basehttp "POST /contact/ HTTP/1.1" 200 31301
+WARNING 2025-12-29 19:51:22,834 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:51:22,837 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:51:51,858 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:51:51,861 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:52:56,376 basehttp "POST /contact/ HTTP/1.1" 200 31196
+WARNING 2025-12-29 19:52:58,443 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:52:58,445 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:53:26,543 basehttp "GET / HTTP/1.1" 200 45940
+WARNING 2025-12-29 19:53:28,577 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:53:28,582 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:53:57,587 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:53:57,588 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:54:43,414 basehttp "GET / HTTP/1.1" 200 45948
+WARNING 2025-12-29 19:54:45,646 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:54:45,647 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:55:00,794 basehttp "GET /register/ HTTP/1.1" 200 25737
+WARNING 2025-12-29 19:55:03,526 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:55:03,528 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:55:07,588 basehttp "GET /login/ HTTP/1.1" 200 23818
+WARNING 2025-12-29 19:55:09,951 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:55:09,954 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:55:12,469 basehttp "GET /dashboard/ HTTP/1.1" 200 53714
+WARNING 2025-12-29 19:55:15,109 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:55:15,111 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:55:23,660 basehttp "GET /faq/ HTTP/1.1" 200 24570
+WARNING 2025-12-29 19:55:26,186 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:55:26,188 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:55:54,837 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:55:54,838 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 19:58:57,132 basehttp "GET /faq/ HTTP/1.1" 200 47721
+WARNING 2025-12-29 19:58:59,726 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:58:59,728 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 19:59:28,171 log Not Found: /serviceworker.js
+WARNING 2025-12-29 19:59:28,173 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:00:28,447 basehttp "GET /contact/ HTTP/1.1" 200 31204
+INFO 2025-12-29 20:00:30,619 basehttp "GET /faq/ HTTP/1.1" 200 47721
+WARNING 2025-12-29 20:00:30,999 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:00:31,011 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:00:33,018 basehttp "GET /about/ HTTP/1.1" 200 35838
+WARNING 2025-12-29 20:00:33,302 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:00:33,309 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 20:00:35,418 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:00:35,421 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 20:01:04,131 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:01:04,133 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:26:39,021 autoreload Watching for file changes with StatReloader
+INFO 2025-12-29 20:27:39,919 basehttp - Broken pipe from ('127.0.0.1', 58195)
+INFO 2025-12-29 20:27:40,189 basehttp "GET /admin/ HTTP/1.1" 200 26848
+INFO 2025-12-29 20:27:43,887 basehttp "GET /admin/core/sitesettings/ HTTP/1.1" 200 25837
+WARNING 2025-12-29 20:27:47,411 log Not Found: /favicon.ico
+WARNING 2025-12-29 20:27:47,413 basehttp "GET /favicon.ico HTTP/1.1" 404 9607
+WARNING 2025-12-29 20:27:54,537 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1960
+WARNING 2025-12-29 20:27:56,046 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:27:56,047 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:28:00,868 basehttp "GET /about/ HTTP/1.1" 200 45695
+WARNING 2025-12-29 20:28:03,586 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:28:03,590 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:28:25,677 basehttp "GET /about/ HTTP/1.1" 200 45695
+WARNING 2025-12-29 20:28:27,701 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:28:27,703 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 20:28:56,745 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:28:56,747 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+INFO 2025-12-29 20:29:37,849 basehttp "GET /cases/ HTTP/1.1" 200 54184
+WARNING 2025-12-29 20:29:40,101 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:29:40,104 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622
+WARNING 2025-12-29 20:30:09,409 log Not Found: /serviceworker.js
+WARNING 2025-12-29 20:30:09,411 basehttp "GET /serviceworker.js HTTP/1.1" 404 9622

@@ -405,7 +405,7 @@
                             <i class="fas fa-angle-right mr-2"></i>Terms of Service
                         </a></li>
                         {% endif %}
-                        <li><a href="#" class="text-coolGray hover:text-cyan transition flex items-center">
+                        <li><a href="{% url 'contact' %}" class="text-coolGray hover:text-cyan transition flex items-center">
                             <i class="fas fa-angle-right mr-2"></i>Help Center
                         </a></li>
                     </ul>
@@ -505,3 +505,4 @@
     {% block extra_js %}{% endblock %}
 </body>
 </html>
+

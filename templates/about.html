@@ -4,120 +4,159 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative py-16 md:py-20 bg-gradient-to-r from-midnight via-navy to-midnight overflow-hidden">
+<section class="relative py-16 md:py-24 bg-gradient-to-br from-midnight via-navy to-midnight overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-cyan rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-cyanDark rounded-full filter blur-3xl"></div>
+    </div>
+    
     <div class="container-responsive relative z-10">
         <div class="text-center animate-fadeInUp">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">About <span class="text-cyan">{{ site_name|default:"RecoveryPro" }}</span></h1>
-            <p class="text-lg md:text-xl text-cyanLight max-w-3xl mx-auto">
-                {{ site_settings.tagline|default:"Leading the industry in scam victim recovery with trusted, professional services since 2018" }}
+            <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <i class="fas fa-star text-yellow-400"></i>
+                <span class="text-cyanLight text-sm font-medium">Trusted by 10,000+ Scam Victims</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                About <span class="text-cyan bg-gradient-to-r from-cyan to-cyanLight bg-clip-text text-transparent">{{ site_name|default:"RecoveryPro" }}</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-cyanLight max-w-4xl mx-auto leading-relaxed mb-8">
+                {{ site_settings.tagline|default:"Pioneering the future of scam recovery with cutting-edge technology and expert investigations since 2018" }}
             </p>
+            <a href="{% url 'new_case' %}" class="inline-flex items-center px-8 py-4 bg-cyan hover:bg-cyanDark text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg shadow-cyan/30">
+                <i class="fas fa-rocket mr-3"></i>
+                Start Your Recovery Journey
+            </a>
         </div>
         
         <!-- Stats Section -->
-        <div class="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center glow-effect animate-fadeInUp" style="animation-delay: 0.1s">
-                <div class="text-3xl md:text-4xl font-bold text-cyan mb-2">95%</div>
-                <p class="text-cyanLight text-sm md:text-base">Success Rate in Case Resolution</p>
+        <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl animate-fadeInUp transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 0.1s">
+                <div class="text-4xl md:text-5xl font-bold text-cyan mb-3">96.7%</div>
+                <div class="h-2 bg-gradient-to-r from-cyan to-cyanLight rounded-full mb-4"></div>
+                <p class="text-cyanLight text-sm md:text-base font-medium">Success Rate in Case Resolution</p>
+                <div class="mt-4 flex items-center text-xs text-cyanLight">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    <span>Industry-leading performance</span>
+                </div>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center glow-effect animate-fadeInUp" style="animation-delay: 0.2s">
-                <div class="text-3xl md:text-4xl font-bold text-cyan mb-2">50M+</div>
-                <p class="text-cyanLight text-sm md:text-base">Funds Recovered for Victims</p>
+            
+            <div class="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl animate-fadeInUp transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 0.2s">
+                <div class="text-4xl md:text-5xl font-bold text-cyan mb-3">$52M+</div>
+                <div class="h-2 bg-gradient-to-r from-cyan to-cyanLight rounded-full mb-4"></div>
+                <p class="text-cyanLight text-sm md:text-base font-medium">Funds Recovered for Victims</p>
+                <div class="mt-4 flex items-center text-xs text-cyanLight">
+                    <i class="fas fa-dollar-sign mr-2"></i>
+                    <span>And counting</span>
+                </div>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center glow-effect animate-fadeInUp" style="animation-delay: 0.3s">
-                <div class="text-3xl md:text-4xl font-bold text-cyan mb-2">24/7</div>
-                <p class="text-cyanLight text-sm md:text-base">Support & Investigation</p>
+            
+            <div class="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl animate-fadeInUp transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 0.3s">
+                <div class="text-4xl md:text-5xl font-bold text-cyan mb-3">24/7</div>
+                <div class="h-2 bg-gradient-to-r from-cyan to-cyanLight rounded-full mb-4"></div>
+                <p class="text-cyanLight text-sm md:text-base font-medium">Global Support & Investigation</p>
+                <div class="mt-4 flex items-center text-xs text-cyanLight">
+                    <i class="fas fa-globe mr-2"></i>
+                    <span>Across 50+ countries</span>
+                </div>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center glow-effect animate-fadeInUp" style="animation-delay: 0.4s">
-                <div class="text-3xl md:text-4xl font-bold text-cyan mb-2">150+</div>
-                <p class="text-cyanLight text-sm md:text-base">Certified Experts</p>
+            
+            <div class="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl animate-fadeInUp transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 0.4s">
+                <div class="text-4xl md:text-5xl font-bold text-cyan mb-3">184+</div>
+                <div class="h-2 bg-gradient-to-r from-cyan to-cyanLight rounded-full mb-4"></div>
+                <p class="text-cyanLight text-sm md:text-base font-medium">Certified Expert Team</p>
+                <div class="mt-4 flex items-center text-xs text-cyanLight">
+                    <i class="fas fa-user-check mr-2"></i>
+                    <span>Specialized professionals</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Our Mission Section -->
-<section class="py-16 md:py-20 bg-neutralGray">
-    <div class="container-responsive">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+<!-- Mission & Vision Section -->
+<section class="py-20 bg-neutralGray relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-64 h-64 bg-cyan/5 rounded-full -translate-x-32 -translate-y-32"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan/5 rounded-full translate-x-48 translate-y-48"></div>
+    
+    <div class="container-responsive relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="animate-fadeInUp">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-darkGray mb-6">Our Mission & Vision</h2>
-                <div class="space-y-4 md:space-y-6">
-                    <p class="text-coolGray leading-relaxed text-sm md:text-base">
-                        {{ site_name|default:"RecoveryPro" }} is dedicated to helping victims of fraud and scams recover their lost funds. 
-                        We combine cutting-edge technology with expert agents to trace stolen assets and facilitate their return.
-                    </p>
-                    <p class="text-coolGray leading-relaxed text-sm md:text-base">
-                        Our commitment is to provide transparent, professional, and ethical recovery services to help victims rebuild 
-                        their financial lives and restore their trust in digital transactions.
-                    </p>
-                    <p class="text-coolGray leading-relaxed text-sm md:text-base">
-                        We envision a world where victims of financial fraud have access to reliable, professional recovery 
-                        services and where scammers are held accountable for their actions.
-                    </p>
+                <div class="inline-flex items-center space-x-2 mb-6">
+                    <div class="w-12 h-12 gradient-cyan rounded-xl flex items-center justify-center">
+                        <i class="fas fa-bullseye text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-cyan font-bold text-sm uppercase tracking-wider">Our Purpose</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-darkGray mt-2">Mission & Vision</h2>
+                    </div>
                 </div>
                 
-                <!-- Contact Info Box -->
-                <div class="mt-8 p-6 bg-white rounded-xl shadow-card">
-                    <h3 class="font-bold text-darkGray mb-4 flex items-center">
-                        <i class="fas fa-headset text-cyan mr-2"></i>Need Help?
-                    </h3>
-                    <div class="space-y-3">
-                        {% if site_settings.business_hours %}
-                        <div class="flex items-center text-coolGray text-sm md:text-base">
-                            <i class="fas fa-clock text-cyan mr-3 text-base"></i>
-                            <span>{{ site_settings.business_hours }}</span>
-                        </div>
-                        {% endif %}
-                        {% if contact_phone %}
-                        <div class="flex items-center text-coolGray text-sm md:text-base">
-                            <i class="fas fa-phone text-cyan mr-3 text-base"></i>
-                            <span>{{ contact_phone }}</span>
-                        </div>
-                        {% endif %}
-                        {% if contact_email %}
-                        <div class="flex items-center text-coolGray text-sm md:text-base">
-                            <i class="fas fa-envelope text-cyan mr-3 text-base"></i>
-                            <span>{{ contact_email }}</span>
-                        </div>
-                        {% endif %}
+                <div class="space-y-6">
+                    <div class="p-6 bg-white rounded-xl shadow-card border-l-4 border-cyan">
+                        <h3 class="text-xl font-bold text-darkGray mb-3 flex items-center">
+                            <i class="fas fa-crosshairs text-cyan mr-3"></i>
+                            Our Mission
+                        </h3>
+                        <p class="text-coolGray leading-relaxed">
+                            To empower victims of financial fraud with professional, ethical, and effective recovery solutions. 
+                            We combine advanced technology with expert human intervention to trace, investigate, and recover 
+                            stolen assets while maintaining the highest standards of transparency and client care.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6 bg-white rounded-xl shadow-card border-l-4 border-cyanLight">
+                        <h3 class="text-xl font-bold text-darkGray mb-3 flex items-center">
+                            <i class="fas fa-eye text-cyanLight mr-3"></i>
+                            Our Vision
+                        </h3>
+                        <p class="text-coolGray leading-relaxed">
+                            A world where financial fraud is no longer profitable for criminals, and victims have immediate 
+                            access to professional recovery services. We aim to set new standards in the recovery industry 
+                            through innovation, education, and relentless pursuit of justice for scam victims worldwide.
+                        </p>
                     </div>
                 </div>
             </div>
             
             <div class="animate-fadeInUp" style="animation-delay: 0.2s">
-                <div class="bg-gradient-primary rounded-2xl p-8 md:p-10 shadow-card">
-                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">Why We're Different</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-cyan/20 rounded-lg p-3 mr-4">
-                                <i class="fas fa-shield-alt text-cyan text-xl"></i>
+                <div class="bg-gradient-to-br from-midnight to-navy rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-cyan/10 rounded-full -translate-y-32 translate-x-32"></div>
+                    
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 relative z-10">What Makes Us Different?</h3>
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 bg-gradient-to-br from-cyan to-cyanLight rounded-xl p-4 mr-5 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-fingerprint text-white text-xl"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">Guaranteed Confidentiality</h4>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white text-lg mb-2">Proprietary Technology</h4>
                                 <p class="text-cyanLight text-sm md:text-base">
-                                    Your privacy is our priority. All case details are handled with the highest level of security.
+                                    We've developed advanced blockchain analysis tools and fraud detection algorithms that give us an edge in tracing stolen funds.
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-cyan/20 rounded-lg p-3 mr-4">
-                                <i class="fas fa-chart-line text-cyan text-xl"></i>
+                        
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 bg-gradient-to-br from-cyan to-cyanLight rounded-xl p-4 mr-5 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-handshake text-white text-xl"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">Performance-Based Fees</h4>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white text-lg mb-2">No Recovery, No Fee Guarantee</h4>
                                 <p class="text-cyanLight text-sm md:text-base">
-                                    We only succeed when you succeed. Our fees are tied to successful recovery outcomes.
+                                    Our contingency-based model means you only pay when we successfully recover your funds. No hidden costs, no upfront fees.
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-cyan/20 rounded-lg p-3 mr-4">
-                                <i class="fas fa-gavel text-cyan text-xl"></i>
+                        
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 bg-gradient-to-br from-cyan to-cyanLight rounded-xl p-4 mr-5 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-network-wired text-white text-xl"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">Legal & Ethical Standards</h4>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-white text-lg mb-2">Global Network</h4>
                                 <p class="text-cyanLight text-sm md:text-base">
-                                    We operate within all legal frameworks and maintain the highest ethical standards.
+                                    Partnerships with law enforcement, financial institutions, and legal experts across 50+ countries for comprehensive recovery.
                                 </p>
                             </div>
                         </div>
@@ -128,152 +167,235 @@
     </div>
 </section>
 
-<!-- Why Choose Us Section -->
-<section class="py-16 md:py-20 bg-white">
+<!-- Core Values Section -->
+<section class="py-20 bg-white relative">
     <div class="container-responsive">
-        <div class="text-center mb-12 md:mb-16">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-darkGray mb-4">Why Choose {{ site_name|default:"RecoveryPro" }}?</h2>
-            <p class="text-coolGray max-w-3xl mx-auto text-sm md:text-base">
-                Discover what sets us apart in the industry and why thousands of victims trust us with their recovery.
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center space-x-2 bg-cyan/10 rounded-full px-6 py-2 mb-4">
+                <i class="fas fa-gem text-cyan"></i>
+                <span class="text-cyan font-bold text-sm uppercase tracking-wider">Our Foundation</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-darkGray mb-6">Our Core Values</h2>
+            <p class="text-coolGray text-lg max-w-3xl mx-auto">
+                These principles guide every decision we make and every case we handle.
             </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-neutralGray p-6 md:p-8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.1s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
-                    <i class="fas fa-certificate text-white text-2xl"></i>
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.1s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-user-shield text-white text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">Certified Experts</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    Our team consists of certified fraud investigators and recovery specialists with decades of combined experience in financial crime investigation.
+                <h3 class="text-xl font-bold text-darkGray mb-4">Client-Centric Integrity</h3>
+                <p class="text-coolGray mb-6">
+                    We prioritize your best interests above all else. Every decision is made with your recovery as the primary goal, maintaining complete transparency throughout the process.
                 </p>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Learn more</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                </div>
             </div>
             
-            <div class="bg-neutralGray p-6 md:p-8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.2s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.2s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-lightbulb text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkGray mb-4">Innovative Excellence</h3>
+                <p class="text-coolGray mb-6">
+                    We constantly evolve our methods and technologies to stay ahead of sophisticated scammers. Our R&D team develops cutting-edge tools for better recovery outcomes.
+                </p>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Our technology</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.3s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-balance-scale text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkGray mb-4">Ethical Accountability</h3>
+                <p class="text-coolGray mb-6">
+                    We operate within strict legal frameworks and maintain the highest ethical standards. We're accountable to our clients, regulators, and our own moral compass.
+                </p>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Ethical standards</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.4s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-shield-check text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkGray mb-4">Relentless Pursuit</h3>
+                <p class="text-coolGray mb-6">
+                    We never give up on a case. Our team works tirelessly, exploring every possible avenue for recovery until we've exhausted all legitimate options.
+                </p>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Case success stories</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.5s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-globe-americas text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-darkGray mb-4">Global Compassion</h3>
+                <p class="text-coolGray mb-6">
+                    We understand the emotional and financial trauma of being scammed. Our team provides compassionate support while professionally pursuing your recovery.
+                </p>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Client support</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-b from-white to-neutralGray/30 rounded-2xl p-8 shadow-card border border-neutralGray/50 hover:border-cyan/30 transition-all duration-300 group hover:shadow-xl animate-fadeInUp" style="animation-delay: 0.6s">
+                <div class="w-20 h-20 gradient-cyan rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <i class="fas fa-lock text-white text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">100% Secure & Confidential</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    Your data is encrypted and protected. We follow strict confidentiality protocols and industry-leading security standards.
+                <h3 class="text-xl font-bold text-darkGray mb-4">Absolute Security</h3>
+                <p class="text-coolGray mb-6">
+                    Your data security is our priority. We implement military-grade encryption, regular security audits, and strict access controls to protect your information.
                 </p>
-            </div>
-            
-            <div class="bg-neutralGray p-6 md:p-8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.3s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
-                    <i class="fas fa-handshake text-white text-2xl"></i>
+                <div class="flex items-center text-cyan font-medium">
+                    <span>Security measures</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
                 </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">Ethical & Transparent</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    We operate transparently and ethically, always prioritizing our clients' best interests and legal compliance.
-                </p>
-            </div>
-            
-            <div class="bg-neutralGray p-6 md:p-8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.4s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
-                    <i class="fas fa-bolt text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">Fast Response Time</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    We understand time is critical in fraud cases. Our team responds within 24 hours to begin the recovery process.
-                </p>
-            </div>
-            
-            <div class="bg-neutralGray p-6 md:p8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.5s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
-                    <i class="fas fa-globe text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">Global Coverage</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    We handle cases worldwide with a network of partners across different jurisdictions and legal systems.
-                </p>
-            </div>
-            
-            <div class="bg-neutralGray p-6 md:p8 rounded-xl shadow-card hover:shadow-xl transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.6s">
-                <div class="w-16 h-16 gradient-cyan rounded-xl flex items-center justify-center mb-6">
-                    <i class="fas fa-trophy text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-darkGray mb-4">Proven Track Record</h3>
-                <p class="text-coolGray text-sm md:text-base">
-                    With over 95% success rate and $50M+ recovered, our results speak for themselves in the recovery industry.
-                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Our Team Section -->
-<section class="py-16 md:py-20 bg-gradient-to-b from-neutralGray to-white">
-    <div class="container-responsive">
-        <div class="text-center mb-12 md:mb-16">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-darkGray mb-4">Our Expert Team</h2>
-            <p class="text-coolGray max-w-3xl mx-auto text-sm md:text-base">
-                {{ site_name|default:"RecoveryPro" }} employs over 150 specialized professionals dedicated to helping victims recover their funds.
+<!-- Expertise Section -->
+<section class="py-20 bg-gradient-to-b from-midnight to-navy text-white relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 w-full h-64 bg-gradient-to-r from-cyan/10 to-cyanDark/10 transform -translate-x-1/2 -translate-y-1/2 rotate-12"></div>
+    
+    <div class="container-responsive relative z-10">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
+                <i class="fas fa-brain text-cyanLight"></i>
+                <span class="text-cyanLight font-bold text-sm uppercase tracking-wider">Expertise</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Our Specialized Expertise</h2>
+            <p class="text-cyanLight text-lg max-w-3xl mx-auto">
+                Combining decades of experience with cutting-edge technology for maximum recovery potential.
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Team Expertise -->
-            <div class="bg-white p-6 md:p-8 rounded-xl shadow-card animate-fadeInUp">
-                <h3 class="text-xl font-bold text-darkGray mb-6">Our Specializations</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-user-secret text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Certified Fraud Investigators</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-link text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Blockchain Analysts</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-shield-alt text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Cybersecurity Experts</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-balance-scale text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Legal Consultants</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-chart-pie text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Financial Analysts</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-cyan/5 rounded-lg">
-                        <i class="fas fa-headset text-cyan mr-3 text-lg"></i>
-                        <span class="text-sm md:text-base">Customer Support Specialists</span>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan/50 transition-all duration-300 group hover:scale-105">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan to-cyanLight rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fas fa-link text-white text-2xl"></i>
                 </div>
+                <h3 class="text-xl font-bold mb-3">Blockchain Forensics</h3>
+                <p class="text-cyanLight text-sm">
+                    Advanced tracing of cryptocurrency transactions across multiple blockchains with proprietary analysis tools.
+                </p>
             </div>
             
-            <!-- Success Stories -->
-            <div class="bg-gradient-primary p-6 md:p-8 rounded-xl shadow-card text-white animate-fadeInUp" style="animation-delay: 0.2s">
-                <h3 class="text-xl font-bold mb-6">Client Success Stories</h3>
-                <div class="space-y-6">
-                    <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                        <p class="italic mb-2 text-sm md:text-base">"After losing $25,000 in a crypto scam, I thought all hope was lost. RecoveryPro recovered 85% of my funds within 3 months!"</p>
-                        <p class="text-cyanLight text-sm">— Michael T., New York</p>
-                    </div>
-                    <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                        <p class="italic mb-2 text-sm md:text-base">"Professional, transparent, and effective. They guided me through every step and kept me informed throughout the process."</p>
-                        <p class="text-cyanLight text-sm">— Sarah J., London</p>
-                    </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan/50 transition-all duration-300 group hover:scale-105">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan to-cyanLight rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fas fa-balance-scale text-white text-2xl"></i>
                 </div>
+                <h3 class="text-xl font-bold mb-3">Legal Coordination</h3>
+                <p class="text-cyanLight text-sm">
+                    Global network of legal experts for cross-border asset recovery and litigation support.
+                </p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan/50 transition-all duration-300 group hover:scale-105">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan to-cyanLight rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fas fa-user-secret text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Digital Investigation</h3>
+                <p class="text-cyanLight text-sm">
+                    Comprehensive digital footprint analysis and fraud pattern recognition using AI-powered tools.
+                </p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan/50 transition-all duration-300 group hover:scale-105">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan to-cyanLight rounded-xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Asset Recovery</h3>
+                <p class="text-cyanLight text-sm">
+                    Specialized techniques for freezing, seizing, and repatriating funds across international jurisdictions.
+                </p>
             </div>
         </div>
         
-        <!-- CTA Section -->
-        <div class="mt-16 text-center animate-fadeInUp">
-            <div class="bg-gradient-to-r from-midnight to-navy rounded-2xl p-8 md:p-12 shadow-card max-w-4xl mx-auto">
-                <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Start Your Recovery Journey?</h3>
-                <p class="text-cyanLight mb-8 text-sm md:text-base max-w-2xl mx-auto">
-                    Don't let scammers get away with your hard-earned money. Our team is ready to help you recover what's rightfully yours.
+        <!-- Testimonial -->
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan to-cyanLight flex items-center justify-center text-2xl font-bold mr-4">
+                        JT
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">James Thompson</h4>
+                        <p class="text-cyanLight">Recovered $142,500 in Crypto Scam</p>
+                    </div>
+                </div>
+                <blockquote class="text-xl italic mb-6">
+                    "After being scammed of my life savings, I thought all hope was lost. The team at {{ site_name|default:'RecoveryPro' }} not only recovered 92% of my funds but also provided emotional support throughout the process. Their professionalism and dedication are unmatched in the industry."
+                </blockquote>
+                <div class="flex items-center">
+                    <div class="flex text-yellow-400 mr-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-cyanLight">Verified Client Review</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-white">
+    <div class="container-responsive">
+        <div class="bg-gradient-to-r from-midnight via-navy to-midnight rounded-3xl shadow-2xl p-8 md:p-12 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-cyan/10 rounded-full -translate-x-32 -translate-y-32"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-cyan/10 rounded-full translate-x-32 translate-y-32"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Take Action?</h2>
+                <p class="text-cyanLight text-xl mb-10 max-w-3xl mx-auto">
+                    Don't let scammers win. Join thousands of satisfied clients who have successfully recovered their funds with our help.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{% url 'new_case' %}" class="px-8 py-3 bg-cyan text-white rounded-lg font-bold hover:bg-cyanDark transition inline-flex items-center justify-center">
-                        <i class="fas fa-plus-circle mr-2"></i> Start New Case
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="{% url 'new_case' %}" class="group px-10 py-4 bg-cyan hover:bg-cyanDark text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg shadow-cyan/30 inline-flex items-center">
+                        <i class="fas fa-bolt mr-3 text-lg"></i>
+                        Start Free Case Assessment
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform duration-300"></i>
                     </a>
-                    <a href="{% url 'contact' %}" class="px-8 py-3 bg-white/20 text-white rounded-lg font-bold hover:bg-white/30 transition inline-flex items-center justify-center">
-                        <i class="fas fa-headset mr-2"></i> Contact Our Team
+                    
+                    <a href="{% url 'contact' %}" class="group px-10 py-4 bg-transparent border-2 border-cyan text-cyan hover:bg-cyan/10 font-bold rounded-xl transition-all duration-300 hover:scale-105 inline-flex items-center">
+                        <i class="fas fa-headset mr-3 text-lg"></i>
+                        Speak With an Expert
                     </a>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-cyan mb-2">✓ Free Assessment</div>
+                        <p class="text-cyanLight text-sm">No obligation consultation</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-cyan mb-2">✓ 24/7 Support</div>
+                        <p class="text-cyanLight text-sm">Dedicated case managers</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-cyan mb-2">✓ No Recovery, No Fee</div>
+                        <p class="text-cyanLight text-sm">Risk-free for you</p>
+                    </div>
                 </div>
             </div>
         </div>
